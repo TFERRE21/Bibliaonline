@@ -1,5 +1,5 @@
 const books = [
-["Gênesis",50,"genesis"],["Êxodo",40,"exodo"],["Levítico",27,"levitico"],["Números",36,"numeros"],["Deuteronômio",34,"deuteronomio"],["Josué",24,"josue"],["Juízes",21,"juizes"],["Rute",4,"rute"],["1 Samuel",31,"1-samuel"],["2 Samuel",24,"2-samuel"],["1 Reis",22,"1-reis"],["2 Reis",25,"2-reis"],["1 Crônicas",29,"1-cronicas"],["2 Crônicas",36,"2-cronicas"],["Esdras",10,"esdras"],["Neemias",13,"neemias"],["Ester",10,"ester"],["Jó",42,"jo"],["Salmos",150,"salmos"],["Provérbios",31,"proverbios"],["Eclesiastes",12,"eclesiastes"],["Cânticos",8,"canticos"],["Isaías",66,"isaias"],["Jeremias",52,"jeremias"],["Lamentações",5,"lamentacoes"],["Ezequiel",48,"ezequiel"],["Daniel",12,"daniel"],["Oséias",14,"oseias"],["Joel",3,"joel"],["Amós",9,"amos"],["Obadias",1,"obadias"],["Jonas",4,"jonas"],["Miquéias",7,"miqueias"],["Naum",3,"naum"],["Habacuque",3,"habacuque"],["Sofonias",3,"sofonias"],["Ageu",2,"ageu"],["Zacarias",14,"zacarias"],["Malaquias",4,"malaquias"],["Mateus",28,"mateus"],["Marcos",16,"marcos"],["Lucas",24,"lucas"],["João",21,"joao"],["Atos",28,"atos"],["Romanos",16,"romanos"],["1 Coríntios",16,"1-corintios"],["2 Coríntios",13,"2-corintios"],["Gálatas",6,"galatas"],["Efésios",6,"efesios"],["Filipenses",4,"filipenses"],["Colossenses",4,"colossenses"],["1 Tessalonicenses",5,"1-tessalonicenses"],["2 Tessalonicenses",3,"2-tessalonicenses"],["1 Timóteo",6,"1-timoteo"],["2 Timóteo",4,"2-timoteo"],["Tito",3,"tito"],["Filemom",1,"filemom"],["Hebreus",13,"hebreus"],["Tiago",5,"tiago"],["1 Pedro",5,"1-pedro"],["2 Pedro",3,"2-pedro"],["1 João",5,"1-joao"],["2 João",1,"2-joao"],["3 João",1,"3-joao"],["Judas",1,"judas"],["Apocalipse",22,"apocalipse"]
+["Gênesis",50,"genesis","genesis"],["Êxodo",40,"exodo","exodus"],["Levítico",27,"levitico","leviticus"],["Números",36,"numeros","numbers"],["Deuteronômio",34,"deuteronomio","deuteronomy"],["Josué",24,"josue","joshua"],["Juízes",21,"juizes","judges"],["Rute",4,"rute","ruth"],["1 Samuel",31,"1-samuel","1-samuel"],["2 Samuel",24,"2-samuel","2-samuel"],["1 Reis",22,"1-reis","1-kings"],["2 Reis",25,"2-reis","2-kings"],["1 Crônicas",29,"1-cronicas","1-chronicles"],["2 Crônicas",36,"2-cronicas","2-chronicles"],["Esdras",10,"esdras","ezra"],["Neemias",13,"neemias","nehemiah"],["Ester",10,"ester","esther"],["Jó",42,"jo","job"],["Salmos",150,"salmos","psalms"],["Provérbios",31,"proverbios","proverbs"],["Eclesiastes",12,"eclesiastes","ecclesiastes"],["Cânticos",8,"canticos","song-of-solomon"],["Isaías",66,"isaias","isaiah"],["Jeremias",52,"jeremias","jeremiah"],["Lamentações",5,"lamentacoes","lamentations"],["Ezequiel",48,"ezequiel","ezekiel"],["Daniel",12,"daniel","daniel"],["Oséias",14,"oseias","hosea"],["Joel",3,"joel","joel"],["Amós",9,"amos","amos"],["Obadias",1,"obadias","obadiah"],["Jonas",4,"jonas","jonah"],["Miquéias",7,"miqueias","micah"],["Naum",3,"naum","nahum"],["Habacuque",3,"habacuque","habakkuk"],["Sofonias",3,"sofonias","zephaniah"],["Ageu",2,"ageu","haggai"],["Zacarias",14,"zacarias","zechariah"],["Malaquias",4,"malaquias","malachi"],["Mateus",28,"mateus","matthew"],["Marcos",16,"marcos","mark"],["Lucas",24,"lucas","luke"],["João",21,"joao","john"],["Atos",28,"atos","acts"],["Romanos",16,"romanos","romans"],["1 Coríntios",16,"1-corintios","1-corinthians"],["2 Coríntios",13,"2-corintios","2-corinthians"],["Gálatas",6,"galatas","galatians"],["Efésios",6,"efesios","ephesians"],["Filipenses",4,"filipenses","philippians"],["Colossenses",4,"colossenses","colossians"],["1 Tessalonicenses",5,"1-tessalonicenses","1-thessalonians"],["2 Tessalonicenses",3,"2-tessalonicenses","2-thessalonians"],["1 Timóteo",6,"1-timoteo","1-timothy"],["2 Timóteo",4,"2-timoteo","2-timothy"],["Tito",3,"tito","titus"],["Filemom",1,"filemom","philemon"],["Hebreus",13,"hebreus","hebrews"],["Tiago",5,"tiago","james"],["1 Pedro",5,"1-pedro","1-peter"],["2 Pedro",3,"2-pedro","2-peter"],["1 João",5,"1-joao","1-john"],["2 João",1,"2-joao","2-john"],["3 João",1,"3-joao","3-john"],["Judas",1,"judas","jude"],["Apocalipse",22,"apocalipse","revelation"]
 ];
 const $ = (id) => document.getElementById(id);
 const bookSelect = $("bookSelect"), chapterSelect = $("chapterSelect"), content = $("chapterContent"), status = $("readerStatus");
@@ -15,28 +15,24 @@ bookSelect.addEventListener("change",fillChapters);
 async function loadChapter() {
   const book=books[Number(bookSelect.value)], chapter=chapterSelect.value;
   status.textContent="Carregando "+book[0]+" "+chapter+"…";
-  content.innerHTML='<div class="reader-empty"><span>◌</span><h3>Preparando a leitura</h3><p>Aguarde enquanto buscamos o capítulo.</p></div>';
-  const queries=[encodeURIComponent(book[0]+" "+chapter),encodeURIComponent(book[2]+" "+chapter)];
-  let result=null, error=null;
-  for (const q of queries) {
-    try {
-      const res=await fetch("https://bible-api.com/"+q+"?translation=almeida");
-      if(!res.ok) throw new Error("Serviço indisponível");
-      const data=await res.json();
-      if(data.verses && data.verses.length){result=data;break}
-      error=new Error("Capítulo não encontrado");
-    } catch(e){error=e}
+  content.innerHTML='<div class="reader-empty"><span>◌</span><h3>Preparando a leitura</h3><p>Aguarde enquanto carregamos o capítulo da biblioteca local.</p></div>';
+  try {
+    const res=await fetch("/biblia/pt/"+book[3]+"/"+chapter+".json");
+    if(!res.ok) throw new Error("Capítulo ainda não importado");
+    const data=await res.json();
+    if(!Array.isArray(data.verses)||!data.verses.length) throw new Error("Conteúdo inválido");
+    status.textContent=book[0]+" "+chapter+" · "+data.verses.length+" versículos · Bíblia Portuguesa Mundial (BPM)";
+    content.innerHTML="";
+    data.verses.forEach(v=>{
+      const p=document.createElement("p"), n=document.createElement("sup");
+      n.className="verse-num";n.textContent=v.v;n.setAttribute("aria-label","Versículo "+v.v);
+      p.append(n,document.createTextNode(String(v.t||"").trim()));content.append(p);
+    });
+    content.style.fontSize=fontSize+"px";
+  } catch(e) {
+    status.textContent="Biblioteca bíblica local ainda não importada.";
+    content.innerHTML='<div class="reader-empty"><span>⌁</span><h3>Texto bíblico em preparação</h3><p>A biblioteca completa será carregada na etapa de instalação. Esta página não consulta APIs em tempo real.</p></div>';
   }
-  if(!result) {
-    status.textContent="Não foi possível carregar o capítulo agora.";
-    content.innerHTML='<div class="reader-empty"><span>⌁</span><h3>Leitura temporariamente indisponível</h3><p>Verifique sua conexão e tente novamente. O serviço de texto bíblico pode estar indisponível.</p></div>';
-    return;
-  }
-  status.textContent=(result.reference||book[0]+" "+chapter)+" · "+result.verses.length+" versículos";
-  content.innerHTML="";
-  result.verses.forEach(v=>{const p=document.createElement("p");const n=document.createElement("sup");n.className="verse-num";n.textContent=v.verse;n.setAttribute("aria-label","Versículo "+v.verse);p.append(n,document.createTextNode(String(v.text||"").trim()));content.append(p)});
-  content.style.fontSize=fontSize+"px";
-  content.scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 $("readButton").addEventListener("click",loadChapter);
 $("fontUp").addEventListener("click",()=>{fontSize=Math.min(30,fontSize+2);content.style.fontSize=fontSize+"px";localStorage.setItem("bibleFontSize",fontSize)});
