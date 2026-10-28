@@ -113,6 +113,7 @@ async function main() {
     for (const entry of library) {
       if (!validate(entry, false)) { console.warn('[editorial] Item ignorado por campos ausentes:', entry.id); continue; }
       entry.publishedAt = entry.publishedAt || new Date().toISOString().slice(0,10);
+      try { await generateAiIllustration(entry); } catch(error) { console.warn('[editorial] Ilustração IA não criada; usando SVG de reserva:',error.message); }
       const target = path.join(CONTENT_DIR, entry.id, 'index.html');
       fs.mkdirSync(path.dirname(target), {recursive:true});
       if (!fs.existsSync(target)) fs.writeFileSync(target, renderItem(entry), 'utf8');
