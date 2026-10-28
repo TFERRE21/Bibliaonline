@@ -2,32 +2,58 @@ name: Publicar Bíblia Online no GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: "15 9 * * *"
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Baixar código
         uses: actions/checkout@v4
-      - name: Configurar Python
-        uses: actions/setup-python@v5
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
         with:
-          python-version: "3.x"
-      - name: Gerar sitemap automaticamente
-        run: python scripts/generate-sitemap.py
+          node-version: "20"
+      - name: Reaproveitar Bíblia já importada
+        uses: actions/cache@v4
+        with:
+          path: public/biblia/pt
+          key: bpm-corpus-v1
+      - name: Importar Bíblia Portuguesa Mundial para arquivos locais
+        run: npm run bible:import
+      - name: Gerar biblioteca e páginas
+        env:
+          SITE_URL: https://tferre21.github.io/Bibliaonline
+        run: npm run content:build
+      - name: Publicar próximo conteúdo editorial
+        env:
+          SITE_URL: https://tferre21.github.io/Bibliaonline
+        run: npm run content:publish
+      - name: Persistir estado editorial para a próxima execução
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/content-library.json data/publication-state.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Atualiza conteúdo editorial automático"
+            git push
+          else
+            echo "Sem alterações no estado editorial."
+          fi
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
-      - name: Preparar arquivos do site
+      - name: Preparar arquivos estáticos
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: public
   deploy:
     environment:
       name: github-pages
