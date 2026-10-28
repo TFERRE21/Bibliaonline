@@ -1,0 +1,11 @@
+[Unit]
+Description=Agendamento diário de conteúdo Bíblia Online
+
+[Timer]
+OnCalendar=*-*-* 06:15:00
+Persistent=true
+RandomizedDelaySec=20m
+Unit=bibliaonline-content.service
+
+[Install]
+WantedBy=timers.target
