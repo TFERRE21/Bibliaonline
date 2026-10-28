@@ -2,8 +2,8 @@
 
 ## O que está incluído
 - Site responsivo e páginas institucionais
-- Biblioteca inicial com 12 materiais originais: estudos, esboços, histórias bíblicas infantis, um roteiro de quadrinhos e desenhos para colorir
-- Gerador de páginas estáticas, ilustrações SVG originais e sitemap
+- Biblioteca inicial com 15 materiais originais: estudos, esboços, histórias bíblicas infantis, um roteiro de quadrinhos e desenhos para colorir
+- Gerador de páginas estáticas, biblioteca com busca/filtros, ilustrações SVG originais e sitemap
 - Servidor Node.js sem dependências externas
 - Serviço e timer systemd para execução diária
 - Geração assistida por IA opcional, com validação básica e detecção de duplicidade
@@ -43,10 +43,10 @@ sudo chown -R www-data:www-data /opt/bibliaonline/data /opt/bibliaonline/public
 
 ## Como funciona a automação
 - Na primeira instalação, `npm run content:build` publica os 12 materiais iniciais.
-- A rotina diária publica o próximo item da biblioteca que ainda não foi publicado.
-- Quando os itens iniciais acabam, o sistema tenta criar um novo rascunho com a API se `OPENAI_API_KEY` estiver configurada.
+- A rotina diária publica o próximo item da biblioteca que ainda não foi publicado. A biblioteca inclui estudos, esboços, histórias infantis, quadrinhos, desenhos, devocional, atividades e quiz; a página `ferramentas.html` oferece quiz interativo e plano de leitura de 7 dias.
+- Quando os itens iniciais acabam, o sistema tenta criar um novo rascunho com a API se `OPENAI_API_KEY` estiver configurada. Para ilustrações PNG geradas por IA em novos quadrinhos/atividades, configure `GENERATE_AI_IMAGES=true`; isso pode gerar custos adicionais. Sem essa opção, o sistema usa SVGs originais como alternativa.
 - Se não houver chave ou a geração falhar na validação, o sistema registra o problema e não publica uma página nova de baixa qualidade só para aumentar a quantidade.
-- A geração de quadrinhos e desenhos usa SVGs originais simples; são ilustrações-base que podem ser aprimoradas editorialmente.
+- A geração de quadrinhos e desenhos usa SVGs originais simples como alternativa; com `GENERATE_AI_IMAGES=true`, novos quadrinhos/atividades podem receber também ilustrações PNG geradas por IA.
 
 ## Revisão editorial e AdSense
 A validação automática confere campos, estrutura mínima e duplicidade, mas não substitui revisão humana de precisão bíblica, teologia, linguagem, direitos autorais ou segurança infantil. Os textos bíblicos são indicados por referência; não são reproduzidos extensamente de traduções protegidas. Confirme a licença de qualquer tradução usada no leitor bíblico.
