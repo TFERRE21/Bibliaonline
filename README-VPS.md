@@ -63,4 +63,14 @@ Os espaços de publicidade são apenas marcadores visuais, não anúncios ativos
 - O Google deve ser usado por meio de sitemap, Search Console e boas práticas de SEO, não como fonte para copiar páginas ou resultados automaticamente. Conteúdo em escala sem valor original pode prejudicar a indexação e a monetização.
 - Para um futuro leitor bíblico local, uma fonte a avaliar é a Bíblia Portuguesa Mundial (BPM), disponibilizada pelo eBible.org em domínio público: https://ebible.org/details.php?id=porbrbsl. A própria fonte informa que a tradução ainda está em revisão. Se o texto for importado, manter os créditos, a indicação da versão e um link para a fonte; não misturar o texto com traduções protegidas por direitos autorais.
 - O conteúdo gerado localmente é uma base de trabalho editorial, não uma validação teológica automática. Revise referências, interpretações e materiais infantis antes de publicar em escala. Não aumente páginas apenas para preencher o sitemap: cada página precisa oferecer utilidade real ao leitor.
+## Leitor bíblico local (sem chamadas em tempo real)
+O leitor do site foi preparado para usar arquivos JSON locais da Bíblia Portuguesa Mundial (BPM), em vez de chamar um serviço externo a cada capítulo. A BPM é declarada como domínio público pelo eBible.org, mas é uma tradução ainda em revisão; a interface identifica a versão e mantém os links de fonte/licença.
+
+Na etapa de preparação do ambiente, depois de instalar Node.js 20+, execute:
+```bash
+npm run bible:import
+```
+O importador baixa os capítulos públicos em arquivos JSON para `public/biblia/pt/`, com até seis transferências simultâneas, validação básica, tentativas automáticas e retomada: os capítulos já baixados são preservados. A importação completa exige internet e espaço em disco na primeira execução; depois disso, o leitor funciona a partir dos arquivos locais. Não é necessário cadastro, chave nem assinatura. A fonte aberta informa que os capítulos são arquivos JSON públicos e identifica a BPM como tradução portuguesa disponível: https://free.bible/pt/developers/.
+
+**Ordem recomendada na implantação final:** instalar Node.js 20+, executar `npm run bible:import`, gerar o site com `npm run content:build`, então iniciar o servidor web. A VPS ainda não foi alterada nesta etapa.
 
