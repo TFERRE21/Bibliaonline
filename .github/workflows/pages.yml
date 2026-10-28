@@ -16,6 +16,12 @@ jobs:
     steps:
       - name: Baixar código
         uses: actions/checkout@v4
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Gerar sitemap automaticamente
+        run: python scripts/generate-sitemap.py
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5
       - name: Preparar arquivos do site
