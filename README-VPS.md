@@ -57,3 +57,10 @@ sudo chown -R www-data:www-data /opt/bibliaonline/data /opt/bibliaonline/public
 A validação automática confere campos, estrutura mínima e duplicidade, mas não substitui revisão humana de precisão bíblica, teologia, linguagem, direitos autorais ou segurança infantil. Os textos bíblicos são indicados por referência; não são reproduzidos extensamente de traduções protegidas. Confirme a licença de qualquer tradução usada no leitor bíblico.
 
 Os espaços de publicidade são apenas marcadores visuais, não anúncios ativos. Configure os códigos oficiais apenas conforme a conta e as políticas aplicáveis. A geração de sitemap ajuda os buscadores a descobrir URLs, mas não garante indexação nem aprovação para monetização.
+
+## Fontes bíblicas, conteúdo próprio e buscadores
+- O gerador cria materiais editoriais locais com estruturas diferentes por formato (estudo, devocional, esboço, atividade infantil, quiz, quadrinhos e colorir). Ele não usa IA remota, não exige API key e não copia resultados de pesquisa.
+- O Google deve ser usado por meio de sitemap, Search Console e boas práticas de SEO, não como fonte para copiar páginas ou resultados automaticamente. Conteúdo em escala sem valor original pode prejudicar a indexação e a monetização.
+- Para um futuro leitor bíblico local, uma fonte a avaliar é a Bíblia Portuguesa Mundial (BPM), disponibilizada pelo eBible.org em domínio público: https://ebible.org/details.php?id=porbrbsl. A própria fonte informa que a tradução ainda está em revisão. Se o texto for importado, manter os créditos, a indicação da versão e um link para a fonte; não misturar o texto com traduções protegidas por direitos autorais.
+- O conteúdo gerado localmente é uma base de trabalho editorial, não uma validação teológica automática. Revise referências, interpretações e materiais infantis antes de publicar em escala. Não aumente páginas apenas para preencher o sitemap: cada página precisa oferecer utilidade real ao leitor.
+
