@@ -17,7 +17,7 @@ async function loadChapter() {
   status.textContent="Carregando "+book[0]+" "+chapter+"…";
   content.innerHTML='<div class="reader-empty"><span>◌</span><h3>Preparando a leitura</h3><p>Aguarde enquanto carregamos o capítulo da biblioteca local.</p></div>';
   try {
-    const res=await fetch("/biblia/pt/"+book[3]+"/"+chapter+".json");
+    const res=await fetch("biblia/pt/"+book[3]+"/"+chapter+".json");
     if(!res.ok) throw new Error("Capítulo ainda não importado");
     const data=await res.json();
     if(!Array.isArray(data.verses)||!data.verses.length) throw new Error("Conteúdo inválido");
