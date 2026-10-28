@@ -15,9 +15,10 @@ const CONTENT_DIR = path.join(PUBLIC_DIR, 'conteudo');
 const STATE_FILE = path.join(ROOT, 'data', 'publication-state.json');
 const BASE_URL = (process.env.SITE_URL || 'https://example.com').replace(/\/$/, '');
 const API_KEY = process.env.OPENAI_API_KEY || '';
+const GENERATE_AI_IMAGES = process.env.GENERATE_AI_IMAGES === 'true';
 const MODEL = process.env.OPENAI_MODEL || 'gpt-4.1-mini';
-const TYPES = ['estudo', 'esboco', 'historia', 'quadrinho', 'colorir'];
-const LABELS = { estudo: 'Estudo bíblico', esboco: 'Esboço bíblico', historia: 'Historinha bíblica', quadrinho: 'Quadrinhos bíblicos', colorir: 'Desenho para colorir' };
+const TYPES = ['estudo', 'esboco', 'historia', 'quadrinho', 'colorir', 'devocional', 'atividade', 'quiz'];
+const LABELS = { estudo: 'Estudo bíblico', esboco: 'Esboço bíblico', historia: 'Historinha bíblica', quadrinho: 'Quadrinhos bíblicos', colorir: 'Desenho para colorir', devocional: 'Devocional diário', atividade: 'Atividade bíblica', quiz: 'Quiz bíblico' };
 const ESCAPE = value => String(value ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const slugify = value => String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 80);
 const readJson = (file, fallback) => { try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch { return fallback; } };
@@ -41,7 +42,7 @@ function artSvg(item) {
     }).join('');
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 ${item.sections.length>3?480:250}" role="img" aria-label="${title}"><rect width="800" height="${item.sections.length>3?480:250}" fill="#fffdf5"/>${panels}</svg>`;
   }
-  if (type === 'colorir') {
+  if (type === 'colorir' || type === 'atividade') {
     drawing = '<circle cx="660" cy="90" r="42" fill="white" stroke="#1f2c26" stroke-width="4"/><path d="M0 330 L170 160 310 300 450 170 620 325 730 220 800 285 V480 H0Z" fill="white" stroke="#1f2c26" stroke-width="4"/><path d="M140 385 V290 M140 310 l-40 -28 M140 330 l42 -30 M140 275 l-28 42 h56Z" fill="white" stroke="#1f2c26" stroke-width="4" stroke-linejoin="round"/><path d="M540 385 V280 M540 300 l-40 -30 M540 325 l42 -30 M540 263 l-28 42 h56Z" fill="white" stroke="#1f2c26" stroke-width="4" stroke-linejoin="round"/><path d="M60 100 q-8 -35 30 -38 q20 -36 48 -3 q36 -3 37 33Z" fill="white" stroke="#1f2c26" stroke-width="4"/>';
     if (/jonas|peixe/i.test(item.title)) drawing += '<ellipse cx="380" cy="270" rx="105" ry="58" fill="white" stroke="#1f2c26" stroke-width="4"/><path d="M475 270 l65 -45 v90Z" fill="white" stroke="#1f2c26" stroke-width="4"/><circle cx="325" cy="255" r="6" fill="#1f2c26"/><path d="M365 245 q30 25 0 50" fill="none" stroke="#1f2c26" stroke-width="4"/>';
     else drawing += '<circle cx="385" cy="260" r="45" fill="white" stroke="#1f2c26" stroke-width="4"/><path d="M385 305 v80 m-35 -45 l35 15 35 -15 m-35 45 l-28 40 m28 -40 l28 40" fill="none" stroke="#1f2c26" stroke-width="4" stroke-linecap="round"/>';
@@ -60,7 +61,9 @@ function renderHub(items) {
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Biblioteca de estudos bíblicos, esboços, histórias para crianças, quadrinhos e desenhos para colorir."><meta name="robots" content="index,follow"><link rel="canonical" href="${BASE_URL}/conteudo/"><link rel="stylesheet" href="/styles.css"><title>Biblioteca de conteúdo bíblico | Bíblia Online</title></head><body><header class="site-header"><div class="container header-inner"><a class="brand" href="/"><span class="brand-mark">✦</span><span>Bíblia<span class="brand-light">Online</span><small>PALAVRA • ESTUDO • FÉ</small></span></a><a href="/" class="section-link">Página inicial ↗</a></div></header><main class="container section"><span class="eyebrow">BIBLIOTECA EM CRESCIMENTO</span><h1 style="color:var(--green);font-size:clamp(35px,5vw,52px)">Conteúdo para estudar, ensinar e criar.</h1><p>Materiais com referências para leitura bíblica, perguntas de reflexão e atividades originais. Novos conteúdos são preparados pelo mecanismo editorial conforme a biblioteca disponível.</p><div class="feature-grid" style="margin:30px 0">${cards}</div><p>Quantidade de materiais publicados: <strong>${items.length}</strong>.</p></main><footer class="site-footer"><div class="container footer-bottom"><span>© ${new Date().getFullYear()} Bíblia Online</span><span><a href="/privacidade.html">Privacidade</a> · <a href="/contato.html">Contato</a></span></div></footer></body></html>`;
 }
 function validate(item, strict = true) {
-  if (!item || !TYPES.includes(item.type) || !item.title || !item.description || !item.reference || !item.intro || !Array.isArray(item.sections) || item.sections.length < 3) return false;
+  if (!item || !TYPES.includes(item.type) || !item.title || !item.description || !item.reference || !item.intro || !Array.isArray(item.sections)) return false;
+  const minimumSections = item.type === 'colorir' ? 2 : item.type === 'quadrinho' ? 4 : 3;
+  if (item.sections.length < minimumSections) return false;
   if (item.title.length > 100 || item.description.length > 180 || item.sections.some(s=>!s.heading || !s.body || (strict && s.body.length < 80))) return false;
   if (!item.questions || item.questions.length < 2) return false;
   item.id = slugify(item.id || item.title);
@@ -68,9 +71,9 @@ function validate(item, strict = true) {
 }
 async function createAiItem(existing) {
   if (!API_KEY) return null;
-  const wanted = TYPES[new Date().getUTCDate() % TYPES.length];
+  const wanted = TYPES[Math.floor(Date.now() / 86400000) % TYPES.length];
   const avoid = existing.map(x=>x.title).slice(-100);
-  const prompt = `Crie um conteúdo bíblico ORIGINAL em português brasileiro para um site de leitura e estudo. Tipo obrigatório: ${wanted}. Evite estes títulos já usados: ${JSON.stringify(avoid)}. Use paráfrase própria, não reproduza versículos ou traduções bíblicas protegidas por direitos autorais. Não invente referências: escolha uma passagem bíblica conhecida e indique apenas a referência. Conteúdo respeitoso, claro e útil, sem promessas de cura/riqueza nem alegações históricas duvidosas. Para histórias infantis, linguagem adequada e inclua orientação para ler a passagem com um adulto. Para desenhos/quadrinhos, descreva roteiro e cenas com texto original. Responda SOMENTE JSON com chaves id,type,title,description,reference,readingMinutes,intro,sections (array de {heading,body}, pelo menos 3 itens e cada body com 80+ caracteres),questions (3 strings),prayer. Para tipo quadrinho, sections devem ser seis quadros. Para colorir, inclua instruções de atividade em sections. Não crie texto genérico repetitivo.`;
+  const prompt = `Crie um conteúdo bíblico ORIGINAL em português brasileiro para um site de leitura e estudo. Tipo obrigatório: ${wanted}. Evite estes títulos já usados: ${JSON.stringify(avoid)}. Use paráfrase própria, não reproduza versículos ou traduções bíblicas protegidas por direitos autorais. Não invente referências: escolha uma passagem bíblica conhecida e indique apenas a referência. Conteúdo respeitoso, claro e útil, sem promessas de cura/riqueza nem alegações históricas duvidosas. Para histórias infantis, linguagem adequada e inclua orientação para ler a passagem com um adulto. Para desenhos/quadrinhos/atividades, descreva cenas e instruções originais. Para devocional, inclua aplicação prática do dia; para quiz, crie perguntas educativas com respostas explicadas dentro de sections; para atividade, inclua instruções adequadas à idade. Responda SOMENTE JSON com chaves id,type,title,description,reference,readingMinutes,intro,sections (array de {heading,body}, pelo menos 3 itens e cada body com 80+ caracteres),questions (3 strings),prayer. Para tipo quadrinho, sections devem ser seis quadros. Para colorir, inclua instruções de atividade em sections. Não crie texto genérico repetitivo.`;
   const response = await fetch('https://api.openai.com/v1/responses', {method:'POST',headers:{'Authorization':'Bearer '+API_KEY,'Content-Type':'application/json'},body:JSON.stringify({model:MODEL,input:prompt})});
   if (!response.ok) throw new Error('A API de geração retornou HTTP '+response.status);
   const data = await response.json();
@@ -97,7 +100,7 @@ async function main() {
       const target = path.join(CONTENT_DIR, entry.id, 'index.html');
       fs.mkdirSync(path.dirname(target), {recursive:true});
       if (!fs.existsSync(target)) fs.writeFileSync(target, renderItem(entry), 'utf8');
-      if (['quadrinho','colorir'].includes(entry.type)) {
+      if (['quadrinho','colorir','atividade'].includes(entry.type)) {
         const artPath=path.join(PUBLIC_DIR,'assets','arte',entry.id+'.svg');
         fs.mkdirSync(path.dirname(artPath),{recursive:true});
         if(!fs.existsSync(artPath)) fs.writeFileSync(artPath, artSvg(entry), 'utf8');
@@ -132,7 +135,7 @@ async function main() {
   } else {
     console.log('[editorial] Página já existe; evitando sobrescrita: '+item.id);
   }
-  if (['quadrinho','colorir'].includes(item.type)) {
+  if (['quadrinho','colorir','atividade'].includes(item.type)) {
     const artPath=path.join(PUBLIC_DIR,'assets','arte',item.id+'.svg');
     fs.mkdirSync(path.dirname(artPath),{recursive:true});
     if(!fs.existsSync(artPath))fs.writeFileSync(artPath,artSvg(item),'utf8');
