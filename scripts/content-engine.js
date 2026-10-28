@@ -13,6 +13,7 @@ const PUBLIC_DIR = path.join(ROOT, 'public');
 const CONTENT_DIR = path.join(PUBLIC_DIR, 'conteudo');
 const STATE_FILE = path.join(ROOT, 'data', 'publication-state.json');
 const BASE_URL = (process.env.SITE_URL || 'https://example.com').replace(/\/$/, '');
+const BASE_PATH = (() => { try { return new URL(BASE_URL).pathname.replace(/\/$/, ''); } catch { return ''; } })();
 const TYPES = ['estudo', 'esboco', 'historia', 'quadrinho', 'colorir', 'devocional', 'atividade', 'quiz'];
 const LABELS = { estudo: 'Estudo bíblico', esboco: 'Esboço bíblico', historia: 'Historinha bíblica', quadrinho: 'Quadrinhos bíblicos', colorir: 'Desenho para colorir', devocional: 'Devocional diário', atividade: 'Atividade bíblica', quiz: 'Quiz bíblico' };
 const ESCAPE = value => String(value ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -278,6 +279,24 @@ function buildAll(items) {
   for(const p of ['estudos.html','esbocos.html','infantil.html','ferramentas.html','sobre.html','privacidade.html','termos.html','contato.html']) add(BASE_URL+'/'+p,p==='privacidade.html'||p==='termos.html'?'0.3':'0.6');
   add(BASE_URL+'/conteudo/','0.9');
   for(const item of items) if(fs.existsSync(path.join(CONTENT_DIR,item.id,'index.html'))) add(BASE_URL+'/conteudo/'+item.id+'/','0.7');
+  // GitHub Pages project sites live under /<repo>/; VPS/custom domains use the root path.
+  // Rewrite only root-relative HTML href/src attributes, leaving external URLs untouched.
+  if (BASE_PATH) {
+    const prefixRootPath = html => html.replace(/(href|src)=(["'])\\/(?!\\/)/g, (match, attr, quote) => attr+'='+quote+BASE_PATH+'/');
+    for (const dir of [PUBLIC_DIR, CONTENT_DIR]) {
+      const walk = current => {
+        for (const entry of fs.readdirSync(current, {withFileTypes:true})) {
+          const file = path.join(current, entry.name);
+          if (entry.isDirectory()) walk(file);
+          else if (entry.isFile() && entry.name.endsWith('.html')) {
+            const html = fs.readFileSync(file, 'utf8');
+            fs.writeFileSync(file, prefixRootPath(html), 'utf8');
+          }
+        }
+      };
+      walk(dir);
+    }
+  }
   fs.writeFileSync(path.join(PUBLIC_DIR,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+sitemap.join('\n')+'\n</urlset>\n','utf8');
   console.log('[editorial] Sitemap atualizado:',sitemap.length,'URLs');
 }
