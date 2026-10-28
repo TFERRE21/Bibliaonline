@@ -42,9 +42,11 @@ if [[ ! -f .env ]]; then
   echo "Arquivo .env criado. Edite SITE_URL para o domínio real antes de publicar."
 fi
 
-if ! grep -q '^SITE_URL=https\?://' .env || grep -q 'SEU-DOMINIO.com.br' .env; then
-  echo "ATENÇÃO: configure SITE_URL no arquivo $APP_DIR/.env com o domínio real."
-  echo "O site não deve ser publicado usando o domínio de exemplo."
+if ! grep -Eq '^SITE_URL=https?://[^/[:space:]]+' .env || grep -q 'SEU-DOMINIO.com.br' .env; then
+  echo "ERRO: configure SITE_URL no arquivo $APP_DIR/.env com o domínio real antes de instalar."
+  echo "Edite com: sudo nano $APP_DIR/.env"
+  echo "O script foi interrompido para não gerar sitemap com domínio de exemplo."
+  exit 1
 fi
 
 mkdir -p data public
