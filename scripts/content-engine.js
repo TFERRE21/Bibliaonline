@@ -161,7 +161,7 @@ function buildAll(items) {
     fs.mkdirSync(path.join(PUBLIC_DIR, 'assets'), {recursive:true});
     fs.copyFileSync(favicon, path.join(PUBLIC_DIR, 'assets', 'favicon.svg'));
   }
-  fs.writeFileSync(path.join(PUBLIC_DIR, 'robots.txt'), 'User-agent: *\\nAllow: /\\nSitemap: '+BASE_URL+'/sitemap.xml\\n', 'utf8');
+  fs.writeFileSync(path.join(PUBLIC_DIR, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: '+BASE_URL+'/sitemap.xml\n', 'utf8');
   fs.writeFileSync(path.join(CONTENT_DIR,'index.html'),renderHub(items.filter(x=>fs.existsSync(path.join(CONTENT_DIR,x.id,'index.html')))),'utf8');
   const sitemap = [];
   const add = (loc,priority) => sitemap.push(`  <url><loc>${ESCAPE(loc)}</loc><lastmod>${new Date().toISOString().slice(0,10)}</lastmod><priority>${priority}</priority></url>`);
