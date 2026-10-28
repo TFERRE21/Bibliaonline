@@ -6,7 +6,7 @@
 - Gerador de páginas estáticas, biblioteca com busca/filtros, página de ferramentas com quiz interativo e plano de leitura de 7 dias, ilustrações SVG originais e sitemap
 - Servidor Node.js sem dependências externas
 - Serviço e timer systemd para execução diária
-- Banco editorial local gratuito com 32 temas adicionais, publicação diária e detecção de duplicidade
+- Banco editorial local gratuito com 31 temas adicionais, publicação diária e detecção de duplicidade
 
 ## Requisitos
 - Ubuntu/Debian com Node.js 20 ou superior
