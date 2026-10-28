@@ -35,4 +35,4 @@ jobs:
           grep -q 'guia-amizade-e-lealdade' public/sitemap.xml
           ! grep -q 'api.openai.com' scripts/content-engine.js
           ! grep -q 'bible-api.com' app.js
-          grep -q '/biblia/pt/' app.js
+          grep -q 'biblia/pt/' app.js
