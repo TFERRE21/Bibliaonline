@@ -1,0 +1,13 @@
+{
+  "name": "bibliaonline-vps",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site estático e motor editorial automático para Bíblia Online",
+  "type": "commonjs",
+  "scripts": {
+    "content:publish": "node scripts/content-engine.js",
+    "content:build": "node scripts/content-engine.js",
+    "start": "node server.js"
+  },
+  "engines": { "node": ">=20" }
+}
