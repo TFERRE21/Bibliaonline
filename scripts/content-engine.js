@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 /**
  * Biblia Online editorial engine.
- * Daily: publishes one reviewed seed from data/content-library.json, then optionally
- * drafts a new original item with the OpenAI API when OPENAI_API_KEY is configured.
- * No external package dependencies.
+ * Daily: publishes reviewed seed materials, then creates a structured draft from a free,
+ * local editorial bank. No paid API or external package dependency is required.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -14,9 +13,6 @@ const PUBLIC_DIR = path.join(ROOT, 'public');
 const CONTENT_DIR = path.join(PUBLIC_DIR, 'conteudo');
 const STATE_FILE = path.join(ROOT, 'data', 'publication-state.json');
 const BASE_URL = (process.env.SITE_URL || 'https://example.com').replace(/\/$/, '');
-const API_KEY = process.env.OPENAI_API_KEY || '';
-const GENERATE_AI_IMAGES = process.env.GENERATE_AI_IMAGES === 'true';
-const MODEL = process.env.OPENAI_MODEL || 'gpt-4.1-mini';
 const TYPES = ['estudo', 'esboco', 'historia', 'quadrinho', 'colorir', 'devocional', 'atividade', 'quiz'];
 const LABELS = { estudo: 'Estudo bíblico', esboco: 'Esboço bíblico', historia: 'Historinha bíblica', quadrinho: 'Quadrinhos bíblicos', colorir: 'Desenho para colorir', devocional: 'Devocional diário', atividade: 'Atividade bíblica', quiz: 'Quiz bíblico' };
 const ESCAPE = value => String(value ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -61,6 +57,79 @@ function renderHub(items) {
   const cards = items.slice().sort((a,b)=>(b.publishedAt||'').localeCompare(a.publishedAt||'')).map(item=>`<a class="feature-card content-card" data-type="${ESCAPE(item.type)}" data-search="${ESCAPE((item.title+' '+item.description+' '+item.reference+' '+LABELS[item.type]).toLowerCase())}" href="/conteudo/${ESCAPE(item.id)}/"><span class="card-kicker">${ESCAPE(LABELS[item.type]||'Conteúdo bíblico')} · ${ESCAPE(item.reference)}</span><h2>${ESCAPE(item.title)}</h2><p>${ESCAPE(item.description)}</p><span class="card-arrow">Ler conteúdo ↗</span></a>`).join('');
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Biblioteca de estudos bíblicos, esboços, histórias para crianças, quadrinhos e desenhos para colorir."><meta name="robots" content="index,follow"><link rel="canonical" href="${BASE_URL}/conteudo/"><link rel="stylesheet" href="/styles.css"><title>Biblioteca de conteúdo bíblico | Bíblia Online</title></head><body><header class="site-header"><div class="container header-inner"><a class="brand" href="/"><span class="brand-mark">✦</span><span>Bíblia<span class="brand-light">Online</span><small>PALAVRA • ESTUDO • FÉ</small></span></a><a href="/" class="section-link">Página inicial ↗</a></div></header><main class="container section"><span class="eyebrow">BIBLIOTECA EM CRESCIMENTO</span><h1 style="color:var(--green);font-size:clamp(35px,5vw,52px)">Conteúdo para estudar, ensinar e criar.</h1><p>Materiais com referências para leitura bíblica, perguntas de reflexão e atividades originais. Novos conteúdos são preparados pelo mecanismo editorial conforme a biblioteca disponível.</p><div class="library-tools"><label for="contentSearch">Buscar conteúdo<input id="contentSearch" type="search" placeholder="Ex.: oração, perdão, crianças..."></label><label for="contentType">Categoria<select id="contentType"><option value="all">Todas as categorias</option>${TYPES.map(type=>`<option value="${type}">${LABELS[type]}</option>`).join('')}</select></label><p id="contentCount" aria-live="polite"></p></div><div class="feature-grid library-grid" style="margin:30px 0">${cards}</div><p>Quantidade de materiais publicados: <strong>${items.length}</strong>.</p></main><footer class="site-footer"><div class="container footer-bottom"><span>© ${new Date().getFullYear()} Bíblia Online</span><span><a href="/privacidade.html">Privacidade</a> · <a href="/contato.html">Contato</a></span></div></footer><script>const q=document.getElementById("contentSearch"),t=document.getElementById("contentType"),cards=[...document.querySelectorAll(".content-card")],count=document.getElementById("contentCount");function filter(){let n=0;cards.forEach(c=>{const ok=(t.value==="all"||c.dataset.type===t.value)&&c.dataset.search.includes(q.value.toLowerCase().trim());c.hidden=!ok;if(ok)n++});count.textContent=n+" material(is) encontrado(s)."}q.addEventListener("input",filter);t.addEventListener("change",filter);filter();</script></body></html>`;
 }
+
+const LOCAL_TOPICS = [
+['amizade-e-lealdade','Amizade e lealdade','Provérbios 17:17; João 15:12–15','A Bíblia apresenta a amizade como presença, lealdade e amor que se expressa em atitudes. As passagens convidam a refletir sobre cuidado mútuo, honestidade e limites saudáveis.','Pratique uma atitude concreta de amizade: escute sem interromper, cumpra uma promessa possível ou ofereça ajuda respeitosa.'],
+['perdao-e-reconciliacao','Perdão e reconciliação','Mateus 18:21–35; Efésios 4:31–32','O ensino bíblico sobre perdão chama à misericórdia, mas não exige negar o dano sofrido nem permanecer em situações perigosas. Reconciliação também envolve verdade, responsabilidade e mudança.','Reflita sobre um passo seguro e realista: nomear o que aconteceu, buscar conselho confiável ou estabelecer limites necessários.'],
+['sabedoria-nas-escolhas','Sabedoria nas escolhas','Tiago 1:5; Provérbios 3:5–6','As Escrituras valorizam a busca de sabedoria, o discernimento e a disposição para ouvir bons conselhos. Decisões responsáveis consideram princípios, consequências e as pessoas afetadas.','Antes de uma decisão, escreva as opções, procure informação confiável e converse com alguém experiente e de confiança.'],
+['gratidao-diaria','Gratidão no cotidiano','Salmo 100; Colossenses 3:15–17','A gratidão bíblica é uma prática de reconhecimento, não uma obrigação de fingir que tudo está bem. Ela pode coexistir com lamento, dúvidas e a procura por ajuda.','Anote três coisas pelas quais sente gratidão e uma dificuldade sobre a qual precisa conversar ou buscar apoio.'],
+['servico-ao-proximo','Servir ao próximo','Marcos 10:42–45; Gálatas 5:13','Jesus relaciona grandeza ao serviço e desafia o uso do poder para dominar. Servir significa respeitar a dignidade do outro, sem manipulação e sem abandonar limites saudáveis.','Escolha uma ação útil que respeite a necessidade real da pessoa: oferecer escuta, compartilhar uma tarefa ou apoiar uma iniciativa comunitária.'],
+['coragem-e-medo','Coragem em tempos difíceis','Josué 1:7–9; Salmo 56:3–4','Os textos bíblicos falam de coragem sem afirmar que pessoas de fé nunca sentem medo. Coragem pode incluir pedir ajuda, agir com prudência e continuar um passo de cada vez.','Identifique o que está sob seu controle hoje e escolha um passo seguro. Se o problema for grave, procure ajuda adequada.'],
+['justica-e-misericordia','Praticar justiça e misericórdia','Miqueias 6:8; Lucas 10:25–37','A justiça bíblica aparece ligada à misericórdia, à humildade e ao cuidado com o próximo. A parábola do samaritano desafia barreiras sociais e pergunta quem age como próximo.','Observe uma necessidade na sua comunidade e pense em uma forma concreta, respeitosa e sustentável de contribuir.'],
+['familia-e-dialogo','Diálogo e respeito na família','Efésios 4:25–32; Colossenses 3:12–14','A comunicação respeitosa exige verdade, paciência e disposição para ouvir. Nenhum texto deve ser usado para justificar violência ou impedir alguém de procurar proteção.','Pratique ouvir até o fim, falar sobre fatos sem insultos e combinar um momento tranquilo para conversar.'],
+['ansiedade-e-cuidado','Preocupações e cuidado integral','Filipenses 4:6–9; Salmo 46','A oração pode oferecer espaço para expressar preocupações e buscar paz, mas não substitui cuidados médicos, psicológicos ou ajuda prática quando necessários.','Compartilhe uma preocupação com pessoa confiável, divida tarefas em etapas e procure apoio profissional se precisar.'],
+['integridade-no-dia-a-dia','Integridade nas pequenas atitudes','Provérbios 10:9; Lucas 16:10','Integridade é coerência entre valores e ações, inclusive quando ninguém está observando. A honestidade fortalece a confiança e exige reconhecer erros e reparar danos.','Escolha uma situação cotidiana em que possa ser mais transparente e corrija com responsabilidade algum erro pendente.'],
+['generosidade-com-equilibrio','Generosidade com responsabilidade','2 Coríntios 9:6–8; Provérbios 19:17','A generosidade bíblica é voluntária e consciente. Não deve ser usada para constranger pessoas, prometer recompensas garantidas ou pressionar quem não tem condições de contribuir.','Planeje uma forma de compartilhar tempo, conhecimento ou recursos sem comprometer necessidades essenciais suas ou de sua família.'],
+['esperanca-e-paciencia','Esperança e paciência','Romanos 12:12; Salmo 27:13–14','A esperança bíblica não apaga a realidade da espera nem oferece uma data garantida para a solução dos problemas. Ela pode sustentar perseverança e solidariedade durante processos longos.','Defina um próximo passo possível e identifique quem pode caminhar ao seu lado enquanto você espera.'],
+['palavras-que-edificam','Palavras que edificam','Efésios 4:29; Provérbios 15:1','A Bíblia trata a fala como responsabilidade. Palavras podem esclarecer, consolar e corrigir com respeito, ou ferir e espalhar conflitos quando usadas sem cuidado.','Antes de enviar uma mensagem difícil, releia-a e pergunte se é verdadeira, necessária e respeitosa.'],
+['humildade-para-aprender','Humildade para aprender','Provérbios 9:9; Filipenses 2:3–4','Humildade não significa desprezar a própria dignidade; significa reconhecer limites, aprender com outras pessoas e considerar necessidades alheias sem buscar superioridade.','Peça feedback específico a alguém confiável e escolha uma sugestão que possa colocar em prática.'],
+['descanso-e-equilibrio','Descanso e equilíbrio','Marcos 6:30–32; Êxodo 20:8–10','As narrativas bíblicas reconhecem a importância de interromper atividades e recuperar forças. O descanso pode ser parte de uma vida responsável, não sinal de preguiça.','Revise sua rotina e reserve um período realista para descansar, dormir e estar presente com pessoas queridas.'],
+['cuidado-com-a-criacao','Cuidar da criação','Gênesis 2:15; Salmo 24:1','A Bíblia apresenta a criação como algo que merece cuidado. Essa responsabilidade pode ser expressa em hábitos cotidianos e em ações comunitárias que respeitam pessoas, animais e ambiente.','Escolha uma ação ambiental possível nesta semana, como reduzir desperdício ou cuidar de um espaço compartilhado.'],
+['lideranca-serva','Liderança que serve','João 13:1–17; 1 Pedro 5:2–3','O gesto de Jesus ao lavar os pés dos discípulos oferece uma imagem de liderança que serve em vez de explorar. Liderar também exige responsabilidade, escuta e prestação de contas.','Como líder ou participante, pergunte de que apoio o grupo precisa e divida tarefas de forma justa.'],
+['fé-e-atitudes','Fé demonstrada em atitudes','Tiago 2:14–18; Mateus 7:24–27','Tiago relaciona fé e obras ao cuidado concreto, enquanto Jesus compara ouvir e praticar a construir sobre fundamento firme. A prática não é exibicionismo, mas coerência.','Transforme uma convicção em ação observável e avalie com humildade se ela realmente ajudou alguém.'],
+['recomecar-com-responsabilidade','Recomeçar com responsabilidade','Lamentações 3:22–24; Lucas 15:11–24','Textos bíblicos sobre misericórdia e retorno podem ajudar a pensar em recomeços. Recomeçar não apaga consequências: pode incluir reconhecer erros, reparar danos e aceitar apoio.','Escolha uma pequena mudança sustentável e, se prejudicou alguém, considere como assumir responsabilidade de maneira segura.'],
+['comunidade-e-pertencimento','Comunidade e pertencimento','1 Coríntios 12:12–27; Hebreus 10:24–25','A imagem do corpo em 1 Coríntios destaca diversidade de dons e interdependência. Uma comunidade saudável valoriza cada pessoa e evita tratar diferenças como motivo de exclusão.','Convide alguém a participar, reconheça uma contribuição pouco notada ou ofereça ajuda para que todos possam participar.'],
+['discernimento-e-verdade','Discernimento diante das informações','Atos 17:11; Provérbios 18:13','A sabedoria bíblica incentiva escuta atenta e exame cuidadoso. Compartilhar uma informação sem verificar pode causar dano; discernimento inclui conferir contexto e fontes confiáveis.','Antes de repassar uma notícia, confira a origem, a data e se outras fontes confiáveis confirmam a informação.'],
+['contentamento-e-simplicidade','Contentamento e simplicidade','Filipenses 4:11–13; 1 Timóteo 6:6–8','O contentamento descrito por Paulo não significa passividade diante da injustiça ou ausência de necessidades. É uma reflexão sobre valores que não dependem apenas de possuir mais.','Revise um hábito de consumo e escolha uma prioridade alinhada com seus valores e necessidades reais.'],
+['ensinar-com-paciencia','Ensinar com paciência','Deuteronômio 6:6–7; 2 Timóteo 3:14–15','O ensino da fé acontece por palavras, exemplo e repetição cuidadosa. Com crianças, é importante adaptar a linguagem, acolher perguntas e respeitar o desenvolvimento de cada uma.','Leia uma pequena passagem com uma criança, pergunte o que ela entendeu e escute sem exigir respostas decoradas.'],
+['consolo-no-luto','Consolo em tempos de luto','Salmo 34:18; João 11:32–36','A Bíblia não trata o choro como falta de fé. A cena de Jesus chorando diante da morte de Lázaro mostra espaço para tristeza, presença e compaixão.','Apoie quem sofre com presença e escuta, sem pressionar a pessoa a superar a dor rapidamente nem oferecer explicações fáceis.'],
+['responsabilidade-com-o-dinheiro','Responsabilidade com recursos','Provérbios 21:5; Lucas 14:28','A prudência bíblica valoriza planejamento e consideração dos custos. O texto não promete riqueza automática; ele pode inspirar orçamento realista, prioridades e decisões responsáveis.','Anote receitas, despesas essenciais e compromissos. Se houver dívidas difíceis, procure orientação financeira confiável e evite promessas milagrosas.'],
+['hospitalidade-e-acolhimento','Hospitalidade e acolhimento','Romanos 12:13; Hebreus 13:1–2','A hospitalidade bíblica convida a acolher e compartilhar. O acolhimento respeitoso também considera segurança, consentimento, diferenças culturais e os limites de quem oferece ajuda.','Pense em uma forma de fazer alguém se sentir incluído, como convidar para uma conversa ou orientar quem está chegando a um grupo.'],
+['perseveranca-no-aprendizado','Perseverança no aprendizado','Provérbios 4:5–7; 2 Pedro 1:5–8','Aprender exige tempo, prática e disposição para corrigir erros. A formação espiritual e intelectual cresce com leitura cuidadosa, perguntas e aplicação responsável.','Escolha um tema para estudar durante a semana, anote dúvidas e procure fontes confiáveis para aprofundar.'],
+['paz-e-resolucao-de-conflitos','Buscar paz sem ignorar a verdade','Romanos 12:18; Mateus 5:9','A Bíblia valoriza a paz, reconhecendo que nem todo conflito depende de uma única pessoa. Buscar paz não significa tolerar abuso, esconder injustiças ou abrir mão de proteção.','Se for seguro, tente uma conversa objetiva sobre o problema. Quando houver ameaça ou violência, priorize segurança e ajuda especializada.'],
+['vocacao-e-dons','Reconhecer dons e servir','Romanos 12:4–8; 1 Coríntios 12:4–7','As passagens sobre dons descrevem diversidade de capacidades para o bem comum. Elas não precisam ser usadas para comparar pessoas ou pressioná-las a assumir tarefas além de seus limites.','Liste algo que você faz bem e pergunte como pode usar essa habilidade para contribuir de forma equilibrada com outras pessoas.'],
+['leitura-biblica-com-contexto','Ler a Bíblia considerando o contexto','Neemias 8:8; Lucas 24:27','Compreender uma passagem envolve observar quem fala, a quem, em que situação e como ela se conecta ao restante do livro. Uma frase isolada pode ser interpretada de maneira equivocada.','Leia o parágrafo completo, observe o gênero do texto e consulte referências cruzadas ou comentários de fontes confiáveis.'],
+['gratidao-em-familia','Prática de gratidão em família','Salmo 145:4–7; Deuteronômio 6:6–7','Conversas simples sobre gratidão podem ajudar famílias a recordar histórias, valores e cuidados recebidos. É importante permitir que cada pessoa fale com sinceridade, inclusive sobre dificuldades.','Reserve alguns minutos para cada pessoa mencionar algo bom e uma necessidade pela qual gostaria de receber apoio.'],
+['amizade-com-limites','Amizade, respeito e limites','Provérbios 13:20; 1 Coríntios 15:33','Relacionamentos influenciam escolhas, mas limites saudáveis também são importantes. Uma amizade não deve exigir segredo perigoso, controle, humilhação ou abandono de convicções pessoais.','Reflita se seus relacionamentos respeitam sua segurança e dignidade. Converse com alguém confiável se sentir pressão ou medo.']
+];
+function createLocalItem(existing) {
+  const used = new Set(existing.map(x => x.topicKey || x.id));
+  const topic = LOCAL_TOPICS.find(t => !used.has(t[0]) && !existing.some(x => x.id === 'guia-' + t[0]));
+  if (!topic) return null;
+  const [key,title,reference,core,practice] = topic;
+  const typeCycle = ['estudo','devocional','esboco','atividade','historia','quiz','quadrinho','colorir'];
+  const type = typeCycle[existing.length % typeCycle.length];
+  const typeTitles = {
+    estudo: 'Estudo bíblico: ', devocional: 'Devocional: ', esboco: 'Esboço: ',
+    atividade: 'Atividade bíblica: ', historia: 'Reflexão bíblica para crianças: ',
+    quiz: 'Quiz bíblico: ', quadrinho: 'Roteiro de quadrinhos: ', colorir: 'Desenho para colorir: '
+  };
+  const titleOut = typeTitles[type] + title;
+  const sections = [
+    {heading:'1. Leia a passagem com atenção',body:core+' Leia integralmente as referências indicadas, observe o contexto e anote palavras ou ideias que se repetem. Diferencie o que o texto afirma das suas próprias aplicações.'},
+    {heading:'2. Compreenda a ideia central',body:'A ideia principal deste material é refletir sobre '+title.toLowerCase()+'. Compare a sua observação com o contexto da passagem e considere como diferentes pessoas podem vivenciar o tema. Evite transformar o texto em promessa automática ou regra fora de contexto.'},
+    {heading:'3. Leve o aprendizado à prática',body:practice+' Ao aplicar a passagem, respeite a realidade das pessoas envolvidas e procure ajuda qualificada quando a situação exigir. Uma aplicação responsável deve produzir cuidado, honestidade e ações concretas.'},
+    {heading:'4. Converse, desenhe ou compartilhe',body:'Releia a referência bíblica e explique a ideia central com suas próprias palavras. Para grupos, convide cada pessoa a participar sem pressão. Para crianças, leia o texto com um adulto, adapte a conversa à idade e deixe espaço para perguntas.'}
+  ];
+  const item = {
+    id:'guia-'+key, topicKey:key, type, title:titleOut,
+    description:(type==='colorir'?'Proposta de desenho bíblico e conversa para colorir e refletir sobre ':type==='quadrinho'?'Roteiro educativo para quadrinhos sobre ':type==='atividade'?'Atividade prática para conversar sobre ':type==='historia'?'Material de conversa infantil sobre ':type==='quiz'?'Perguntas para revisar o tema ':type==='esboco'?'Estrutura para compartilhar uma reflexão sobre ':type==='devocional'?'Leitura breve e aplicação diária sobre ':'Estudo guiado sobre ')+title.toLowerCase()+'.',
+    reference, readingMinutes:5,
+    intro:core+' Este material é um guia de estudo e reflexão, não substitui a leitura integral da passagem bíblica.',
+    sections,
+    questions:[
+      'O que o contexto da passagem ensina sobre '+title.toLowerCase()+'?',
+      'Que atitude concreta pode colocar esse aprendizado em prática?',
+      'Que dúvida ou ponto merece ser estudado com mais profundidade?'
+    ],
+    prayer:'Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.',
+    generatedBy:'local-editorial-bank'
+  };
+  if (!validate(item)) throw new Error('Material do banco local não passou na validação: '+item.id);
+  item.publishedAt = new Date().toISOString().slice(0,10);
+  return item;
+}
+
 function validate(item, strict = true) {
   if (!item || !TYPES.includes(item.type) || !item.title || !item.description || !item.reference || !item.intro || !Array.isArray(item.sections)) return false;
   const minimumSections = item.type === 'colorir' ? 2 : item.type === 'quadrinho' ? 4 : 3;
@@ -89,21 +158,6 @@ async function createAiItem(existing) {
   item.generatedBy = 'ai-draft-validated';
   return item;
 }
-async function generateAiIllustration(item) {
-  if (!API_KEY || !GENERATE_AI_IMAGES || !['quadrinho','colorir','atividade'].includes(item.type)) return false;
-  const out = path.join(PUBLIC_DIR,'assets','arte',item.id+'.png');
-  if (fs.existsSync(out)) return true;
-  const prompt = item.type === 'colorir' || item.type === 'atividade'
-    ? 'Crie uma página de atividade infantil bíblica original para impressão, preto e branco, contornos grossos e limpos, sem texto legível, sem marcas. Tema: '+item.title+'. Adequada para crianças, sem violência, composição simples com bastante espaço em branco, página vertical.'
-    : 'Crie uma ilustração original em estilo de quadrinhos infantis bíblicos, amigável e educativa, personagens genéricos originais, sem texto, sem marcas. Tema: '+item.title+'.';
-  const response = await fetch('https://api.openai.com/v1/images/generations',{method:'POST',headers:{'Authorization':'Bearer '+API_KEY,'Content-Type':'application/json'},body:JSON.stringify({model:'gpt-image-1',prompt,size:'1024x1024',quality:'low',output_format:'png'})});
-  if (!response.ok) throw new Error('A geração de imagem retornou HTTP '+response.status);
-  const data = await response.json();
-  const b64 = data.data && data.data[0] && data.data[0].b64_json;
-  if (!b64) throw new Error('A geração de imagem não retornou arquivo PNG');
-  fs.mkdirSync(path.dirname(out),{recursive:true}); fs.writeFileSync(out,Buffer.from(b64,'base64'));
-  return true;
-}
 async function main() {
   fs.mkdirSync(CONTENT_DIR,{recursive:true});
   const library = readJson(DATA_FILE, []);
@@ -113,7 +167,6 @@ async function main() {
     for (const entry of library) {
       if (!validate(entry, false)) { console.warn('[editorial] Item ignorado por campos ausentes:', entry.id); continue; }
       entry.publishedAt = entry.publishedAt || new Date().toISOString().slice(0,10);
-      try { await generateAiIllustration(entry); } catch(error) { console.warn('[editorial] Ilustração IA não criada; usando SVG de reserva:',error.message); }
       const target = path.join(CONTENT_DIR, entry.id, 'index.html');
       fs.mkdirSync(path.dirname(target), {recursive:true});
       if (!fs.existsSync(target)) fs.writeFileSync(target, renderItem(entry), 'utf8');
@@ -134,31 +187,20 @@ async function main() {
   }
   let item = library.find(x=>!publishedIds.has(x.id));
   let source = 'biblioteca editorial';
-  if (!item && API_KEY) {
-    // Faz novas tentativas para que uma resposta duplicada/inválida não interrompa
-    // permanentemente a publicação diária. Conteúdo existente nunca é removido.
-    const maxAttempts = 3;
-    for (let attempt = 1; attempt <= maxAttempts && !item; attempt++) {
-      try {
-        item = await createAiItem(library);
-        if (item) {
-          library.push(item);
-          writeJson(DATA_FILE, library);
-          source = 'geração assistida por IA';
-        }
-      } catch (error) {
-        console.error('[editorial] Tentativa IA ' + attempt + '/' + maxAttempts + ' falhou:', error.message);
-      }
+  if (!item) {
+    item = createLocalItem(library);
+    if (item) {
+      library.push(item);
+      writeJson(DATA_FILE, library);
+      source = 'banco editorial local gratuito';
     }
   }
   if (!item) {
-    if (!API_KEY) console.error('[editorial] Publicação diária de novos materiais exige OPENAI_API_KEY no .env do VPS. Os conteúdos existentes serão preservados.');
-    else console.error('[editorial] Não foi possível gerar um novo conteúdo válido após as tentativas. Os conteúdos existentes serão preservados e haverá nova tentativa no próximo agendamento.');
+    console.log('[editorial] Banco editorial local esgotado. Nenhum conteúdo repetido foi publicado; páginas e sitemap foram atualizados.');
     buildAll(library);
     return;
   }
   if (!validate(item, source !== 'biblioteca editorial')) throw new Error('Item editorial inválido: '+item.id);
-  try { await generateAiIllustration(item); } catch(error) { console.warn('[editorial] Ilustração IA não criada; usando SVG de reserva:',error.message); }
   item.publishedAt = item.publishedAt || new Date().toISOString().slice(0,10);
   const target = path.join(CONTENT_DIR,item.id,'index.html');
   if (!fs.existsSync(target)) {
