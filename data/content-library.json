@@ -1,86 +1,449 @@
 [
   {
-    "id":"estudo-oracao-constante","type":"estudo","title":"Como desenvolver uma vida de oração constante","description":"Um roteiro bíblico prático para criar uma rotina de oração com sinceridade, gratidão e perseverança.","reference":"Mateus 6:5–13; Filipenses 4:6–7; 1 Tessalonicenses 5:16–18","readingMinutes":6,
-    "intro":"A oração aparece na Bíblia como diálogo, dependência e relacionamento com Deus. Em vez de tratá-la como fórmula para conseguir tudo o que desejamos, podemos estudá-la como uma prática de fé que molda nossa atenção, nossas escolhas e nossa maneira de cuidar das pessoas.",
-    "sections":[{"heading":"1. Procure sinceridade, não aparência","body":"Em Mateus 6:5–13, Jesus orienta seus discípulos sobre a intenção por trás da oração e apresenta uma oração-modelo. Leia o trecho completo e observe como ele equilibra reverência, dependência diária, perdão e pedido de proteção."},{"heading":"2. Apresente preocupações com gratidão","body":"Filipenses 4:6–7 conecta oração, súplica e gratidão. A passagem não exige que alguém esconda a tristeza nem promete que toda dificuldade desaparecerá imediatamente. Ela convida a levar as preocupações a Deus e a buscar a paz que guarda o coração e a mente."},{"heading":"3. Crie um ritmo possível","body":"Escolha um momento realista, leia uma passagem curta, anote uma observação e ore de forma honesta. A constância cresce com passos sustentáveis. Se perder um dia, retome sem transformar a prática em motivo de culpa."}],
-    "questions":["O que a oração-modelo de Mateus 6 ensina sobre prioridades?","Que preocupação você pode expressar com sinceridade, sem deixar de procurar ajuda prática?","Qual pequeno horário diário seria sustentável nesta semana?"],
-    "prayer":"Deus, ajuda-me a buscar-te com sinceridade, a agradecer pelo que recebo e a agir com sabedoria diante das minhas preocupações. Amém."
+    "id": "estudo-oracao-constante",
+    "type": "estudo",
+    "title": "Como desenvolver uma vida de oração constante",
+    "description": "Um roteiro bíblico prático para criar uma rotina de oração com sinceridade, gratidão e perseverança.",
+    "reference": "Mateus 6:5–13; Filipenses 4:6–7; 1 Tessalonicenses 5:16–18",
+    "readingMinutes": 6,
+    "intro": "A oração aparece na Bíblia como diálogo, dependência e relacionamento com Deus. Em vez de tratá-la como fórmula para conseguir tudo o que desejamos, podemos estudá-la como uma prática de fé que molda nossa atenção, nossas escolhas e nossa maneira de cuidar das pessoas.",
+    "sections": [
+      {
+        "heading": "1. Procure sinceridade, não aparência",
+        "body": "Em Mateus 6:5–13, Jesus orienta seus discípulos sobre a intenção por trás da oração e apresenta uma oração-modelo. Leia o trecho completo e observe como ele equilibra reverência, dependência diária, perdão e pedido de proteção."
+      },
+      {
+        "heading": "2. Apresente preocupações com gratidão",
+        "body": "Filipenses 4:6–7 conecta oração, súplica e gratidão. A passagem não exige que alguém esconda a tristeza nem promete que toda dificuldade desaparecerá imediatamente. Ela convida a levar as preocupações a Deus e a buscar a paz que guarda o coração e a mente."
+      },
+      {
+        "heading": "3. Crie um ritmo possível",
+        "body": "Escolha um momento realista, leia uma passagem curta, anote uma observação e ore de forma honesta. A constância cresce com passos sustentáveis. Se perder um dia, retome sem transformar a prática em motivo de culpa."
+      }
+    ],
+    "questions": [
+      "O que a oração-modelo de Mateus 6 ensina sobre prioridades?",
+      "Que preocupação você pode expressar com sinceridade, sem deixar de procurar ajuda prática?",
+      "Qual pequeno horário diário seria sustentável nesta semana?"
+    ],
+    "prayer": "Deus, ajuda-me a buscar-te com sinceridade, a agradecer pelo que recebo e a agir com sabedoria diante das minhas preocupações. Amém."
   },
   {
-    "id":"estudo-salmo-23","type":"estudo","title":"Salmo 23: confiança em meio às mudanças","description":"Leia as imagens do Salmo 23 em seu contexto e reflita sobre cuidado, direção e esperança.","reference":"Salmo 23","readingMinutes":5,
-    "intro":"O Salmo 23 usa a imagem de um pastor para expressar confiança no cuidado de Deus. Suas figuras poéticas falam tanto de descanso quanto de caminhos difíceis; por isso, a mensagem não deve ser reduzida à ideia de que a vida nunca terá problemas.",
-    "sections":[{"heading":"1. Cuidado e provisão","body":"Leia os versículos 1–3. Observe as imagens de pastagem, águas tranquilas e renovação. Pergunte como essas figuras comunicam cuidado e direção ao leitor."},{"heading":"2. Presença no vale","body":"No versículo 4, o cenário muda: há um vale escuro. A confiança não depende de negar o perigo, mas de afirmar a presença de Deus durante a travessia."},{"heading":"3. Hospitalidade e esperança","body":"Os versículos finais usam imagens de mesa, óleo e morada. Considere como hospitalidade e permanência completam o quadro de cuidado apresentado pelo salmo."}],
-    "questions":["Qual imagem do salmo mais chama sua atenção e por quê?","Como a passagem reconhece a dificuldade sem terminar no desespero?","Que atitude concreta pode expressar cuidado por alguém nesta semana?"],
-    "prayer":"Senhor, guia meus passos, sustenta-me nos dias difíceis e ensina-me a oferecer cuidado e hospitalidade a outras pessoas. Amém."
+    "id": "estudo-salmo-23",
+    "type": "estudo",
+    "title": "Salmo 23: confiança em meio às mudanças",
+    "description": "Leia as imagens do Salmo 23 em seu contexto e reflita sobre cuidado, direção e esperança.",
+    "reference": "Salmo 23",
+    "readingMinutes": 5,
+    "intro": "O Salmo 23 usa a imagem de um pastor para expressar confiança no cuidado de Deus. Suas figuras poéticas falam tanto de descanso quanto de caminhos difíceis; por isso, a mensagem não deve ser reduzida à ideia de que a vida nunca terá problemas.",
+    "sections": [
+      {
+        "heading": "1. Cuidado e provisão",
+        "body": "Leia os versículos 1–3. Observe as imagens de pastagem, águas tranquilas e renovação. Pergunte como essas figuras comunicam cuidado e direção ao leitor."
+      },
+      {
+        "heading": "2. Presença no vale",
+        "body": "No versículo 4, o cenário muda: há um vale escuro. A confiança não depende de negar o perigo, mas de afirmar a presença de Deus durante a travessia."
+      },
+      {
+        "heading": "3. Hospitalidade e esperança",
+        "body": "Os versículos finais usam imagens de mesa, óleo e morada. Considere como hospitalidade e permanência completam o quadro de cuidado apresentado pelo salmo."
+      }
+    ],
+    "questions": [
+      "Qual imagem do salmo mais chama sua atenção e por quê?",
+      "Como a passagem reconhece a dificuldade sem terminar no desespero?",
+      "Que atitude concreta pode expressar cuidado por alguém nesta semana?"
+    ],
+    "prayer": "Senhor, guia meus passos, sustenta-me nos dias difíceis e ensina-me a oferecer cuidado e hospitalidade a outras pessoas. Amém."
   },
   {
-    "id":"estudo-parabolas-jesus","type":"estudo","title":"Como ler as parábolas de Jesus","description":"Um método simples para observar personagens, conflitos, surpresas e ensinamentos nas parábolas.","reference":"Lucas 10:25–37; Lucas 15:11–32; Mateus 13:1–9","readingMinutes":7,
-    "intro":"As parábolas são histórias usadas por Jesus para provocar reflexão e comunicar ensinamentos. Interpretá-las com cuidado exige observar o contexto, os ouvintes e a pergunta ou situação que motivou a narrativa.",
-    "sections":[{"heading":"1. Leia a história inteira","body":"Antes de tirar uma lição, leia a passagem completa e os versículos ao redor. Em Lucas 10, por exemplo, a parábola do samaritano responde a uma pergunta sobre quem deve ser considerado próximo."},{"heading":"2. Observe a surpresa","body":"Pergunte quem age de maneira inesperada, quem recebe atenção e quais expectativas são questionadas. Nem todo detalhe precisa representar um símbolo secreto; priorize o sentido sustentado pelo contexto."},{"heading":"3. Transforme observação em prática","body":"Depois de resumir a ideia central com suas próprias palavras, pergunte que atitude ou visão de mundo o texto desafia. A aplicação deve nascer da passagem, não ser imposta a ela."}],
-    "questions":["Que pergunta ou conflito antecede a parábola escolhida?","Que personagem surpreende o leitor?","Qual aplicação respeita melhor a ideia central da narrativa?"],
-    "prayer":"Senhor, dá-me atenção para compreender teus ensinamentos e humildade para colocá-los em prática. Amém."
+    "id": "estudo-parabolas-jesus",
+    "type": "estudo",
+    "title": "Como ler as parábolas de Jesus",
+    "description": "Um método simples para observar personagens, conflitos, surpresas e ensinamentos nas parábolas.",
+    "reference": "Lucas 10:25–37; Lucas 15:11–32; Mateus 13:1–9",
+    "readingMinutes": 7,
+    "intro": "As parábolas são histórias usadas por Jesus para provocar reflexão e comunicar ensinamentos. Interpretá-las com cuidado exige observar o contexto, os ouvintes e a pergunta ou situação que motivou a narrativa.",
+    "sections": [
+      {
+        "heading": "1. Leia a história inteira",
+        "body": "Antes de tirar uma lição, leia a passagem completa e os versículos ao redor. Em Lucas 10, por exemplo, a parábola do samaritano responde a uma pergunta sobre quem deve ser considerado próximo."
+      },
+      {
+        "heading": "2. Observe a surpresa",
+        "body": "Pergunte quem age de maneira inesperada, quem recebe atenção e quais expectativas são questionadas. Nem todo detalhe precisa representar um símbolo secreto; priorize o sentido sustentado pelo contexto."
+      },
+      {
+        "heading": "3. Transforme observação em prática",
+        "body": "Depois de resumir a ideia central com suas próprias palavras, pergunte que atitude ou visão de mundo o texto desafia. A aplicação deve nascer da passagem, não ser imposta a ela."
+      }
+    ],
+    "questions": [
+      "Que pergunta ou conflito antecede a parábola escolhida?",
+      "Que personagem surpreende o leitor?",
+      "Qual aplicação respeita melhor a ideia central da narrativa?"
+    ],
+    "prayer": "Senhor, dá-me atenção para compreender teus ensinamentos e humildade para colocá-los em prática. Amém."
   },
   {
-    "id":"esboco-esperanca","type":"esboco","title":"Esperança que atravessa a tribulação","description":"Esboço de estudo em Romanos sobre perseverança, caráter e esperança.","reference":"Romanos 5:1–5","readingMinutes":8,
-    "intro":"Objetivo: estudar como Paulo relaciona a esperança cristã à reconciliação com Deus e à perseverança. Leia Romanos 5:1–5 integralmente antes de ensinar ou compartilhar esta estrutura.",
-    "sections":[{"heading":"Introdução — leia o contexto","body":"Observe a relação entre Romanos 4 e 5 e como Paulo desenvolve o tema da justificação pela fé. Evite apresentar sofrimento como algo simples ou afirmar que toda dor tem uma causa evidente."},{"heading":"Ponto 1 — uma nova relação com Deus","body":"Referência: Romanos 5:1–2. Explique como paz e acesso à graça aparecem no argumento do texto."},{"heading":"Ponto 2 — perseverança sem romantizar a dor","body":"Referência: Romanos 5:3–4. Paulo descreve uma sequência de perseverança, experiência e esperança. A aplicação pastoral deve acolher quem sofre e incentivar apoio concreto."},{"heading":"Ponto 3 — esperança fundamentada no amor","body":"Referência: Romanos 5:5. Leia a conclusão da passagem e mostre como ela fundamenta a esperança no amor de Deus."}],
-    "questions":["Como Romanos 5:1–5 se conecta ao argumento anterior da carta?","Como apoiar alguém em sofrimento sem minimizar sua experiência?","Qual prática comunitária pode demonstrar esperança de maneira concreta?"],
-    "prayer":"Deus, dá-nos esperança e compaixão para caminhar com quem sofre, oferecendo presença e ajuda prática. Amém."
+    "id": "esboco-esperanca",
+    "type": "esboco",
+    "title": "Esperança que atravessa a tribulação",
+    "description": "Esboço de estudo em Romanos sobre perseverança, caráter e esperança.",
+    "reference": "Romanos 5:1–5",
+    "readingMinutes": 8,
+    "intro": "Objetivo: estudar como Paulo relaciona a esperança cristã à reconciliação com Deus e à perseverança. Leia Romanos 5:1–5 integralmente antes de ensinar ou compartilhar esta estrutura.",
+    "sections": [
+      {
+        "heading": "Introdução — leia o contexto",
+        "body": "Observe a relação entre Romanos 4 e 5 e como Paulo desenvolve o tema da justificação pela fé. Evite apresentar sofrimento como algo simples ou afirmar que toda dor tem uma causa evidente."
+      },
+      {
+        "heading": "Ponto 1 — uma nova relação com Deus",
+        "body": "Referência: Romanos 5:1–2. Explique como paz e acesso à graça aparecem no argumento do texto."
+      },
+      {
+        "heading": "Ponto 2 — perseverança sem romantizar a dor",
+        "body": "Referência: Romanos 5:3–4. Paulo descreve uma sequência de perseverança, experiência e esperança. A aplicação pastoral deve acolher quem sofre e incentivar apoio concreto."
+      },
+      {
+        "heading": "Ponto 3 — esperança fundamentada no amor",
+        "body": "Referência: Romanos 5:5. Leia a conclusão da passagem e mostre como ela fundamenta a esperança no amor de Deus."
+      }
+    ],
+    "questions": [
+      "Como Romanos 5:1–5 se conecta ao argumento anterior da carta?",
+      "Como apoiar alguém em sofrimento sem minimizar sua experiência?",
+      "Qual prática comunitária pode demonstrar esperança de maneira concreta?"
+    ],
+    "prayer": "Deus, dá-nos esperança e compaixão para caminhar com quem sofre, oferecendo presença e ajuda prática. Amém."
   },
   {
-    "id":"esboco-sabedoria","type":"esboco","title":"A sabedoria começa com disposição para aprender","description":"Esboço expositivo introdutório a partir de Provérbios 2.","reference":"Provérbios 2:1–6","readingMinutes":7,
-    "intro":"Objetivo: observar como Provérbios descreve a busca pela sabedoria. Leia o capítulo e considere o gênero de literatura sapiencial antes de formular aplicações.",
-    "sections":[{"heading":"Introdução — sabedoria é mais que informação","body":"Provérbios conecta conhecimento, discernimento e vida prática. Apresente a passagem como convite à formação do caráter, não como garantia de sucesso material."},{"heading":"Ponto 1 — acolher a instrução","body":"Referência: Provérbios 2:1–2. Observe os verbos que descrevem atenção e disposição para aprender."},{"heading":"Ponto 2 — buscar entendimento com dedicação","body":"Referência: Provérbios 2:3–4. A comparação com procurar tesouros comunica esforço e prioridade."},{"heading":"Ponto 3 — reconhecer a fonte da sabedoria","body":"Referência: Provérbios 2:5–6. Explique como o texto relaciona reverência ao Senhor e conhecimento."}],
-    "questions":["Que hábito ajuda você a ouvir antes de responder?","Como distinguir sabedoria de mera esperteza?","Que decisão pede mais pesquisa, conselho e humildade?"],
-    "prayer":"Senhor, ensina-me a ouvir, aprender e tomar decisões com justiça, humildade e discernimento. Amém."
+    "id": "esboco-sabedoria",
+    "type": "esboco",
+    "title": "A sabedoria começa com disposição para aprender",
+    "description": "Esboço expositivo introdutório a partir de Provérbios 2.",
+    "reference": "Provérbios 2:1–6",
+    "readingMinutes": 7,
+    "intro": "Objetivo: observar como Provérbios descreve a busca pela sabedoria. Leia o capítulo e considere o gênero de literatura sapiencial antes de formular aplicações.",
+    "sections": [
+      {
+        "heading": "Introdução — sabedoria é mais que informação",
+        "body": "Provérbios conecta conhecimento, discernimento e vida prática. Apresente a passagem como convite à formação do caráter, não como garantia de sucesso material."
+      },
+      {
+        "heading": "Ponto 1 — acolher a instrução",
+        "body": "Referência: Provérbios 2:1–2. Observe os verbos que descrevem atenção e disposição para aprender."
+      },
+      {
+        "heading": "Ponto 2 — buscar entendimento com dedicação",
+        "body": "Referência: Provérbios 2:3–4. A comparação com procurar tesouros comunica esforço e prioridade."
+      },
+      {
+        "heading": "Ponto 3 — reconhecer a fonte da sabedoria",
+        "body": "Referência: Provérbios 2:5–6. Explique como o texto relaciona reverência ao Senhor e conhecimento."
+      }
+    ],
+    "questions": [
+      "Que hábito ajuda você a ouvir antes de responder?",
+      "Como distinguir sabedoria de mera esperteza?",
+      "Que decisão pede mais pesquisa, conselho e humildade?"
+    ],
+    "prayer": "Senhor, ensina-me a ouvir, aprender e tomar decisões com justiça, humildade e discernimento. Amém."
   },
   {
-    "id":"historia-noe","type":"historia","title":"Noé e a arca: uma história sobre confiança e cuidado","description":"Uma narrativa infantil original baseada no relato de Noé, com perguntas para conversar em família.","reference":"Gênesis 6–9","readingMinutes":4,
-    "intro":"Esta é uma recontagem infantil resumida. Um adulto pode ler Gênesis 6–9 com a criança para conhecer a narrativa bíblica completa e conversar sobre suas partes difíceis com sensibilidade.",
-    "sections":[{"heading":"Uma tarefa muito grande","body":"A narrativa bíblica conta que Noé recebeu instruções para construir uma arca. Era um trabalho enorme, que exigia tempo, esforço e atenção. Noé preparou a embarcação conforme as instruções recebidas."},{"heading":"A arca e os animais","body":"Quando veio o dilúvio descrito no relato, Noé, sua família e os animais que estavam com eles ficaram na arca. A história fala de um período difícil e de proteção durante a tempestade."},{"heading":"Um sinal no céu","body":"Depois das águas, o relato apresenta o arco-íris como sinal da aliança de Deus com a terra. A imagem pode ajudar a criança a conversar sobre promessas, responsabilidade e cuidado com a criação."}],
-    "questions":["Que tarefa difícil você já precisou fazer com paciência?","Como podemos cuidar dos animais e do ambiente?","Leia Gênesis 9:12–17 com um adulto: qual sinal aparece no relato?"],
-    "prayer":"Deus, ajuda nossa família a agir com responsabilidade, cuidar da criação e lembrar de tratar os outros com bondade. Amém."
+    "id": "historia-noe",
+    "type": "historia",
+    "title": "Noé e a arca: uma história sobre confiança e cuidado",
+    "description": "Uma narrativa infantil original baseada no relato de Noé, com perguntas para conversar em família.",
+    "reference": "Gênesis 6–9",
+    "readingMinutes": 4,
+    "intro": "Esta é uma recontagem infantil resumida. Um adulto pode ler Gênesis 6–9 com a criança para conhecer a narrativa bíblica completa e conversar sobre suas partes difíceis com sensibilidade.",
+    "sections": [
+      {
+        "heading": "Uma tarefa muito grande",
+        "body": "A narrativa bíblica conta que Noé recebeu instruções para construir uma arca. Era um trabalho enorme, que exigia tempo, esforço e atenção. Noé preparou a embarcação conforme as instruções recebidas."
+      },
+      {
+        "heading": "A arca e os animais",
+        "body": "Quando veio o dilúvio descrito no relato, Noé, sua família e os animais que estavam com eles ficaram na arca. A história fala de um período difícil e de proteção durante a tempestade."
+      },
+      {
+        "heading": "Um sinal no céu",
+        "body": "Depois das águas, o relato apresenta o arco-íris como sinal da aliança de Deus com a terra. A imagem pode ajudar a criança a conversar sobre promessas, responsabilidade e cuidado com a criação."
+      }
+    ],
+    "questions": [
+      "Que tarefa difícil você já precisou fazer com paciência?",
+      "Como podemos cuidar dos animais e do ambiente?",
+      "Leia Gênesis 9:12–17 com um adulto: qual sinal aparece no relato?"
+    ],
+    "prayer": "Deus, ajuda nossa família a agir com responsabilidade, cuidar da criação e lembrar de tratar os outros com bondade. Amém."
   },
   {
-    "id":"historia-davi-golias","type":"historia","title":"Davi e Golias: coragem com responsabilidade","description":"História bíblica infantil sobre Davi, coragem e confiança, com perguntas para responsáveis.","reference":"1 Samuel 17","readingMinutes":4,
-    "intro":"Esta recontagem resumida acompanha 1 Samuel 17. Leia a passagem completa com um adulto e converse sobre o contexto, sem ensinar que crianças devam enfrentar perigos físicos sozinhas.",
-    "sections":[{"heading":"Um desafio assustador","body":"O texto bíblico conta que Golias desafiava o exército de Israel e que muitos soldados estavam com medo. Davi, um jovem pastor que havia ido levar mantimentos aos irmãos, ouviu o desafio."},{"heading":"Davi decide agir","body":"Davi confiava em Deus e se ofereceu para enfrentar o guerreiro. Ele recusou uma armadura que não estava acostumado a usar e foi ao encontro de Golias com sua funda e pedras."},{"heading":"Coragem não é agir sem cuidado","body":"A história mostra Davi agindo com coragem dentro daquele relato bíblico. Hoje, quando uma criança enfrenta uma situação perigosa, a atitude sábia é procurar um adulto de confiança e pedir ajuda."}],
-    "questions":["O que deixou os soldados com medo?","Quem são os adultos de confiança a quem podemos pedir ajuda?","Como diferenciar coragem de se colocar em perigo sem necessidade?"],
-    "prayer":"Deus, ajuda-me a agir com coragem e sabedoria, e a pedir ajuda quando precisar. Amém."
+    "id": "historia-davi-golias",
+    "type": "historia",
+    "title": "Davi e Golias: coragem com responsabilidade",
+    "description": "História bíblica infantil sobre Davi, coragem e confiança, com perguntas para responsáveis.",
+    "reference": "1 Samuel 17",
+    "readingMinutes": 4,
+    "intro": "Esta recontagem resumida acompanha 1 Samuel 17. Leia a passagem completa com um adulto e converse sobre o contexto, sem ensinar que crianças devam enfrentar perigos físicos sozinhas.",
+    "sections": [
+      {
+        "heading": "Um desafio assustador",
+        "body": "O texto bíblico conta que Golias desafiava o exército de Israel e que muitos soldados estavam com medo. Davi, um jovem pastor que havia ido levar mantimentos aos irmãos, ouviu o desafio."
+      },
+      {
+        "heading": "Davi decide agir",
+        "body": "Davi confiava em Deus e se ofereceu para enfrentar o guerreiro. Ele recusou uma armadura que não estava acostumado a usar e foi ao encontro de Golias com sua funda e pedras."
+      },
+      {
+        "heading": "Coragem não é agir sem cuidado",
+        "body": "A história mostra Davi agindo com coragem dentro daquele relato bíblico. Hoje, quando uma criança enfrenta uma situação perigosa, a atitude sábia é procurar um adulto de confiança e pedir ajuda."
+      }
+    ],
+    "questions": [
+      "O que deixou os soldados com medo?",
+      "Quem são os adultos de confiança a quem podemos pedir ajuda?",
+      "Como diferenciar coragem de se colocar em perigo sem necessidade?"
+    ],
+    "prayer": "Deus, ajuda-me a agir com coragem e sabedoria, e a pedir ajuda quando precisar. Amém."
   },
   {
-    "id":"historia-bom-samaritano","type":"historia","title":"O bom samaritano: quem escolhe ajudar","description":"Reconto infantil da parábola de Jesus sobre compaixão e cuidado com o próximo.","reference":"Lucas 10:25–37","readingMinutes":4,
-    "intro":"Jesus contou esta parábola para responder a uma pergunta sobre quem é o próximo. Leia Lucas 10:25–37 para conhecer a conversa e a narrativa em seu contexto.",
-    "sections":[{"heading":"Um viajante precisa de ajuda","body":"Na história contada por Jesus, um homem viajava e foi ferido por assaltantes. Ele ficou à beira do caminho, precisando de cuidado."},{"heading":"Pessoas passam, alguém para","body":"Algumas pessoas passaram sem ajudá-lo. Depois, um samaritano viu o homem, aproximou-se, cuidou dos ferimentos e providenciou um lugar seguro para ele se recuperar."},{"heading":"Amor que vira atitude","body":"Jesus termina levando o ouvinte a pensar em quem agiu como próximo. A compaixão não ficou apenas em palavras: o samaritano tomou atitudes para ajudar."}],
-    "questions":["Que ações concretas o samaritano realizou?","Como ajudar alguém com segurança, procurando um adulto quando necessário?","Quem na comunidade pode precisar de apoio nesta semana?"],
-    "prayer":"Senhor, ajuda-nos a perceber quem precisa de cuidado e a agir com compaixão e responsabilidade. Amém."
+    "id": "historia-bom-samaritano",
+    "type": "historia",
+    "title": "O bom samaritano: quem escolhe ajudar",
+    "description": "Reconto infantil da parábola de Jesus sobre compaixão e cuidado com o próximo.",
+    "reference": "Lucas 10:25–37",
+    "readingMinutes": 4,
+    "intro": "Jesus contou esta parábola para responder a uma pergunta sobre quem é o próximo. Leia Lucas 10:25–37 para conhecer a conversa e a narrativa em seu contexto.",
+    "sections": [
+      {
+        "heading": "Um viajante precisa de ajuda",
+        "body": "Na história contada por Jesus, um homem viajava e foi ferido por assaltantes. Ele ficou à beira do caminho, precisando de cuidado."
+      },
+      {
+        "heading": "Pessoas passam, alguém para",
+        "body": "Algumas pessoas passaram sem ajudá-lo. Depois, um samaritano viu o homem, aproximou-se, cuidou dos ferimentos e providenciou um lugar seguro para ele se recuperar."
+      },
+      {
+        "heading": "Amor que vira atitude",
+        "body": "Jesus termina levando o ouvinte a pensar em quem agiu como próximo. A compaixão não ficou apenas em palavras: o samaritano tomou atitudes para ajudar."
+      }
+    ],
+    "questions": [
+      "Que ações concretas o samaritano realizou?",
+      "Como ajudar alguém com segurança, procurando um adulto quando necessário?",
+      "Quem na comunidade pode precisar de apoio nesta semana?"
+    ],
+    "prayer": "Senhor, ajuda-nos a perceber quem precisa de cuidado e a agir com compaixão e responsabilidade. Amém."
   },
   {
-    "id":"quadrinho-jonas","type":"quadrinho","title":"Jonas: uma fuga, uma tempestade e uma segunda chance","description":"Roteiro original de quadrinhos em seis cenas baseado no livro de Jonas.","reference":"Jonas 1–4","readingMinutes":5,
-    "intro":"Roteiro em seis quadros para leitura em família ou adaptação para desenho. É uma adaptação resumida do livro bíblico; leia Jonas 1–4 para conhecer o relato completo.",
-    "sections":[{"heading":"Quadro 1 — Uma missão","body":"Narração: Jonas recebe uma missão para ir a Nínive. Jonas pensa: “Não quero ir para lá!”"},{"heading":"Quadro 2 — O caminho contrário","body":"Narração: Em vez de seguir a missão, Jonas embarca para outro lugar. O navio parte, mas uma grande tempestade surge."},{"heading":"Quadro 3 — No mar","body":"Narração: A tripulação fica assustada e Jonas reconhece que está fugindo. A história descreve Jonas sendo lançado ao mar."},{"heading":"Quadro 4 — Um peixe enorme","body":"Narração: Jonas passa um período dentro de um grande peixe e ora. Depois, é levado de volta à terra."},{"heading":"Quadro 5 — Jonas vai a Nínive","body":"Narração: Desta vez, Jonas vai à cidade e transmite a mensagem que recebeu."},{"heading":"Quadro 6 — Uma lição sobre misericórdia","body":"Narração: O livro termina com Deus ensinando Jonas a pensar na compaixão. Pergunta: por que é difícil desejar misericórdia para pessoas de quem não gostamos?"}],
-    "questions":["Em que momento Jonas muda de direção?","O que a história mostra sobre misericórdia?","Como podemos tratar com justiça alguém de quem discordamos?"],
-    "prayer":"Deus, ajuda-me a ouvir, aprender com meus erros e tratar as pessoas com misericórdia. Amém."
+    "id": "quadrinho-jonas",
+    "type": "quadrinho",
+    "title": "Jonas: uma fuga, uma tempestade e uma segunda chance",
+    "description": "Roteiro original de quadrinhos em seis cenas baseado no livro de Jonas.",
+    "reference": "Jonas 1–4",
+    "readingMinutes": 5,
+    "intro": "Roteiro em seis quadros para leitura em família ou adaptação para desenho. É uma adaptação resumida do livro bíblico; leia Jonas 1–4 para conhecer o relato completo.",
+    "sections": [
+      {
+        "heading": "Quadro 1 — Uma missão",
+        "body": "Narração: Jonas recebe uma missão para ir a Nínive. Jonas pensa: “Não quero ir para lá!”"
+      },
+      {
+        "heading": "Quadro 2 — O caminho contrário",
+        "body": "Narração: Em vez de seguir a missão, Jonas embarca para outro lugar. O navio parte, mas uma grande tempestade surge."
+      },
+      {
+        "heading": "Quadro 3 — No mar",
+        "body": "Narração: A tripulação fica assustada e Jonas reconhece que está fugindo. A história descreve Jonas sendo lançado ao mar."
+      },
+      {
+        "heading": "Quadro 4 — Um peixe enorme",
+        "body": "Narração: Jonas passa um período dentro de um grande peixe e ora. Depois, é levado de volta à terra."
+      },
+      {
+        "heading": "Quadro 5 — Jonas vai a Nínive",
+        "body": "Narração: Desta vez, Jonas vai à cidade e transmite a mensagem que recebeu."
+      },
+      {
+        "heading": "Quadro 6 — Uma lição sobre misericórdia",
+        "body": "Narração: O livro termina com Deus ensinando Jonas a pensar na compaixão. Pergunta: por que é difícil desejar misericórdia para pessoas de quem não gostamos?"
+      }
+    ],
+    "questions": [
+      "Em que momento Jonas muda de direção?",
+      "O que a história mostra sobre misericórdia?",
+      "Como podemos tratar com justiça alguém de quem discordamos?"
+    ],
+    "prayer": "Deus, ajuda-me a ouvir, aprender com meus erros e tratar as pessoas com misericórdia. Amém."
   },
   {
-    "id":"desenho-criacao","type":"colorir","title":"Desenho para colorir: a criação e a natureza","description":"Ilustração original em preto e branco para imprimir, acompanhada de leitura e atividade familiar.","reference":"Gênesis 1:1–25","readingMinutes":3,
-    "intro":"Imprima a ilustração original, use lápis de cor e leia Gênesis 1 com um adulto. A atividade incentiva observação, criatividade e conversa sobre cuidado com a natureza.",
-    "sections":[{"heading":"Atividade","body":"Escolha cores para o céu, o sol, as montanhas e as árvores. Depois, desenhe no espaço livre um animal ou uma planta que você gostaria de proteger."},{"heading":"Converse depois de colorir","body":"Quais partes da criação são mencionadas na passagem que vocês leram? Que atitude concreta ajuda a cuidar do ambiente em casa, na escola ou na comunidade?"}],
-    "questions":["Qual elemento da natureza você mais gosta de observar?","Como podemos evitar desperdício de água e cuidar das plantas?","Que outra coisa da criação você desenharia?"],
-    "prayer":"Obrigado, Deus, pelo mundo que podemos observar. Ajuda-nos a cuidar dele com responsabilidade."
+    "id": "desenho-criacao",
+    "type": "colorir",
+    "title": "Desenho para colorir: a criação e a natureza",
+    "description": "Ilustração original em preto e branco para imprimir, acompanhada de leitura e atividade familiar.",
+    "reference": "Gênesis 1:1–25",
+    "readingMinutes": 3,
+    "intro": "Imprima a ilustração original, use lápis de cor e leia Gênesis 1 com um adulto. A atividade incentiva observação, criatividade e conversa sobre cuidado com a natureza.",
+    "sections": [
+      {
+        "heading": "Atividade",
+        "body": "Escolha cores para o céu, o sol, as montanhas e as árvores. Depois, desenhe no espaço livre um animal ou uma planta que você gostaria de proteger."
+      },
+      {
+        "heading": "Converse depois de colorir",
+        "body": "Quais partes da criação são mencionadas na passagem que vocês leram? Que atitude concreta ajuda a cuidar do ambiente em casa, na escola ou na comunidade?"
+      }
+    ],
+    "questions": [
+      "Qual elemento da natureza você mais gosta de observar?",
+      "Como podemos evitar desperdício de água e cuidar das plantas?",
+      "Que outra coisa da criação você desenharia?"
+    ],
+    "prayer": "Obrigado, Deus, pelo mundo que podemos observar. Ajuda-nos a cuidar dele com responsabilidade."
   },
   {
-    "id":"desenho-jonas","type":"colorir","title":"Desenho para colorir: Jonas e o grande peixe","description":"Desenho original em traços simples para colorir, inspirado no livro de Jonas.","reference":"Jonas 1–2","readingMinutes":3,
-    "intro":"Use esta ilustração original como atividade artística. Leia Jonas 1–2 com um adulto e explique que a imagem é uma representação criativa, não uma reprodução literal de todos os detalhes do texto.",
-    "sections":[{"heading":"Atividade de colorir","body":"Pinte o mar, o barco e o grande peixe. Depois, crie um fundo com ondas, nuvens e peixes pequenos."},{"heading":"Pense na história","body":"Jonas tentou fugir da missão que recebeu. Leia o trecho bíblico e converse sobre como podemos reconhecer um erro, pedir ajuda e fazer uma escolha melhor."}],
-    "questions":["O que Jonas tentou fazer no começo da narrativa?","O que significa reconhecer que precisamos mudar de atitude?","Quem pode ajudar você quando precisa resolver um problema?"],
-    "prayer":"Deus, ajuda-me a aprender com meus erros e a buscar orientação quando precisar."
+    "id": "desenho-jonas",
+    "type": "colorir",
+    "title": "Desenho para colorir: Jonas e o grande peixe",
+    "description": "Desenho original em traços simples para colorir, inspirado no livro de Jonas.",
+    "reference": "Jonas 1–2",
+    "readingMinutes": 3,
+    "intro": "Use esta ilustração original como atividade artística. Leia Jonas 1–2 com um adulto e explique que a imagem é uma representação criativa, não uma reprodução literal de todos os detalhes do texto.",
+    "sections": [
+      {
+        "heading": "Atividade de colorir",
+        "body": "Pinte o mar, o barco e o grande peixe. Depois, crie um fundo com ondas, nuvens e peixes pequenos."
+      },
+      {
+        "heading": "Pense na história",
+        "body": "Jonas tentou fugir da missão que recebeu. Leia o trecho bíblico e converse sobre como podemos reconhecer um erro, pedir ajuda e fazer uma escolha melhor."
+      }
+    ],
+    "questions": [
+      "O que Jonas tentou fazer no começo da narrativa?",
+      "O que significa reconhecer que precisamos mudar de atitude?",
+      "Quem pode ajudar você quando precisa resolver um problema?"
+    ],
+    "prayer": "Deus, ajuda-me a aprender com meus erros e a buscar orientação quando precisar."
   },
   {
-    "id":"estudo-perdao","type":"estudo","title":"Perdão e reconciliação: lendo com cuidado","description":"Estudo bíblico introdutório sobre perdão, limites e reconciliação responsável.","reference":"Mateus 18:21–35; Romanos 12:18; Efésios 4:31–32","readingMinutes":7,
-    "intro":"A Bíblia trata o perdão como tema importante, mas isso não deve ser usado para obrigar alguém a permanecer em uma situação de violência ou perigo. Reconciliação, confiança e segurança são questões relacionadas, mas não idênticas.",
-    "sections":[{"heading":"1. Observe o ensino de Jesus","body":"Leia Mateus 18:21–35 e observe a parábola em seu contexto. Considere o peso da misericórdia e a responsabilidade de não reproduzir crueldade."},{"heading":"2. Faça o que depende de você","body":"Romanos 12:18 inclui a expressão “se possível” e “quanto depender de vós”. Leia o versículo integral e reflita sobre a responsabilidade pessoal sem presumir que toda reconciliação depende de uma única pessoa."},{"heading":"3. Perdão não elimina limites de segurança","body":"Uma pessoa pode trabalhar o perdão e, ao mesmo tempo, estabelecer limites, procurar apoio e denunciar abuso. Não se deve pressionar vítimas a voltar para uma situação insegura. Em caso de risco, procure ajuda local e serviços de proteção."}],
-    "questions":["Qual diferença existe entre perdão, confiança e reconciliação?","O que Romanos 12:18 diz sobre responsabilidade e limites?","Que apoio seguro pode ser necessário quando houve dano grave?"],
-    "prayer":"Deus, dá-nos sabedoria para buscar paz, agir com justiça e proteger quem está em situação de risco."
+    "id": "estudo-perdao",
+    "type": "estudo",
+    "title": "Perdão e reconciliação: lendo com cuidado",
+    "description": "Estudo bíblico introdutório sobre perdão, limites e reconciliação responsável.",
+    "reference": "Mateus 18:21–35; Romanos 12:18; Efésios 4:31–32",
+    "readingMinutes": 7,
+    "intro": "A Bíblia trata o perdão como tema importante, mas isso não deve ser usado para obrigar alguém a permanecer em uma situação de violência ou perigo. Reconciliação, confiança e segurança são questões relacionadas, mas não idênticas.",
+    "sections": [
+      {
+        "heading": "1. Observe o ensino de Jesus",
+        "body": "Leia Mateus 18:21–35 e observe a parábola em seu contexto. Considere o peso da misericórdia e a responsabilidade de não reproduzir crueldade."
+      },
+      {
+        "heading": "2. Faça o que depende de você",
+        "body": "Romanos 12:18 inclui a expressão “se possível” e “quanto depender de vós”. Leia o versículo integral e reflita sobre a responsabilidade pessoal sem presumir que toda reconciliação depende de uma única pessoa."
+      },
+      {
+        "heading": "3. Perdão não elimina limites de segurança",
+        "body": "Uma pessoa pode trabalhar o perdão e, ao mesmo tempo, estabelecer limites, procurar apoio e denunciar abuso. Não se deve pressionar vítimas a voltar para uma situação insegura. Em caso de risco, procure ajuda local e serviços de proteção."
+      }
+    ],
+    "questions": [
+      "Qual diferença existe entre perdão, confiança e reconciliação?",
+      "O que Romanos 12:18 diz sobre responsabilidade e limites?",
+      "Que apoio seguro pode ser necessário quando houve dano grave?"
+    ],
+    "prayer": "Deus, dá-nos sabedoria para buscar paz, agir com justiça e proteger quem está em situação de risco."
+  },
+  {
+    "id": "devocional-gratidao-no-cotidiano",
+    "type": "devocional",
+    "title": "Devocional: praticar a gratidão no cotidiano",
+    "description": "Reflexão prática sobre gratidão, contentamento e cuidado no dia a dia.",
+    "reference": "1 Tessalonicenses 5:16–18; Salmo 103:1–5",
+    "readingMinutes": 5,
+    "intro": "A gratidão bíblica não significa ignorar a dor ou fingir que tudo está bem. Ela nos convida a reconhecer o bem recebido e responder com generosidade mesmo quando a vida permanece imperfeita.",
+    "sections": [
+      {
+        "heading": "Leia e observe",
+        "body": "Leia 1 Tessalonicenses 5:16–18 e Salmo 103:1–5. Observe que a gratidão aparece como prática de fé, e não como obrigação de esconder sentimentos difíceis. Reflita sobre como a memória pode nos ajudar a reconhecer cuidado e sustento."
+      },
+      {
+        "heading": "Aplique hoje",
+        "body": "Anote três coisas pelas quais você pode agradecer, incluindo uma pequena atitude de alguém. Se estiver atravessando um momento difícil, seja honesto sobre ele e procure também uma pessoa de confiança para conversar. Gratidão e pedido de ajuda podem caminhar juntos."
+      },
+      {
+        "heading": "Transforme gratidão em ação",
+        "body": "Escolha uma forma concreta de demonstrar reconhecimento: envie uma mensagem, ofereça ajuda, compartilhe algo de que dispõe ou escute alguém com atenção. A gratidão ganha expressão quando influencia nossa maneira de tratar as pessoas."
+      }
+    ],
+    "questions": [
+      "O que você costuma esquecer de reconhecer no dia a dia?",
+      "Como praticar gratidão sem negar uma dificuldade real?",
+      "Que gesto de reconhecimento você fará hoje?"
+    ],
+    "prayer": "Deus, ajuda-me a perceber o bem, a falar com sinceridade sobre minhas dificuldades e a demonstrar gratidão por meio de atitudes de amor. Amém."
+  },
+  {
+    "id": "atividade-fruto-do-espirito",
+    "type": "atividade",
+    "title": "Atividade infantil: atitudes que demonstram amor",
+    "description": "Atividade para conversar com crianças sobre amor, bondade e paciência.",
+    "reference": "Gálatas 5:22–23",
+    "readingMinutes": 10,
+    "intro": "Esta atividade ajuda crianças e responsáveis a conversar sobre atitudes que constroem relações respeitosas. Leia a passagem bíblica junto com a criança e adapte a conversa à idade e à experiência dela.",
+    "sections": [
+      {
+        "heading": "1. Leia em conjunto",
+        "body": "Leia Gálatas 5:22–23 em uma tradução adequada e autorizada. Explique com palavras simples que essas qualidades podem aparecer nas escolhas diárias, como compartilhar, ouvir, pedir desculpas e esperar a vez."
+      },
+      {
+        "heading": "2. Desenhe uma atitude",
+        "body": "Convide a criança a desenhar uma situação em que alguém demonstra bondade ou paciência. Ela pode desenhar pessoas ajudando, dividindo materiais ou acolhendo um colega. O objetivo não é a perfeição do desenho, mas a conversa."
+      },
+      {
+        "heading": "3. Escolha uma prática",
+        "body": "Peça que a criança escolha uma atitude para praticar hoje e conte depois como foi. Um adulto deve acompanhar a atividade, acolher as dúvidas e evitar usar o tema para envergonhar ou comparar crianças."
+      }
+    ],
+    "questions": [
+      "Como podemos demonstrar bondade na escola ou em casa?",
+      "O que podemos fazer quando ficamos impacientes?",
+      "Qual atitude você quer praticar hoje?"
+    ],
+    "prayer": "Deus, ensina-nos a tratar as pessoas com amor, paciência e bondade. Amém."
+  },
+  {
+    "id": "quiz-personagens-biblicos",
+    "type": "quiz",
+    "title": "Quiz bíblico: relembre personagens e passagens",
+    "description": "Perguntas para revisar histórias bíblicas e incentivar a leitura das passagens indicadas.",
+    "reference": "Gênesis 6–9; 1 Samuel 17; Lucas 10:25–37",
+    "readingMinutes": 7,
+    "intro": "Use estas perguntas como ponto de partida para estudar. Consulte as referências na Bíblia e converse sobre o contexto antes de considerar uma resposta definitiva.",
+    "sections": [
+      {
+        "heading": "Pergunta 1 — A arca",
+        "body": "Quem, segundo a narrativa de Gênesis 6–9, construiu a arca? Resposta: Noé. Leia a narrativa completa para observar o contexto da família, dos animais e da aliança."
+      },
+      {
+        "heading": "Pergunta 2 — Davi e Golias",
+        "body": "Qual jovem enfrentou Golias na narrativa de 1 Samuel 17? Resposta: Davi. Leia o capítulo e observe também a confiança, a preparação e os riscos presentes na história."
+      },
+      {
+        "heading": "Pergunta 3 — O próximo",
+        "body": "Na parábola de Lucas 10:25–37, quem demonstra cuidado pelo homem ferido? Resposta: o samaritano. Leia o trecho e reflita sobre como a história questiona limites sociais e chama à compaixão."
+      }
+    ],
+    "questions": [
+      "Qual dessas passagens você gostaria de ler novamente?",
+      "Por que é importante conferir a resposta no texto bíblico?",
+      "Que ensinamento prático você percebe em uma das narrativas?"
+    ],
+    "prayer": "Deus, dá-nos disposição para aprender com as Escrituras e sabedoria para praticar a compaixão no dia a dia. Amém."
   }
 ]
