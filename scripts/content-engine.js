@@ -101,29 +101,80 @@ function createLocalItem(existing) {
   const type = typeCycle[existing.length % typeCycle.length];
   const typeTitles = {
     estudo: 'Estudo bíblico: ', devocional: 'Devocional: ', esboco: 'Esboço: ',
-    atividade: 'Atividade bíblica: ', historia: 'Reflexão bíblica para crianças: ',
+    atividade: 'Atividade bíblica: ', historia: 'História e conversa bíblica: ',
     quiz: 'Quiz bíblico: ', quadrinho: 'Roteiro de quadrinhos: ', colorir: 'Desenho para colorir: '
   };
-  const titleOut = typeTitles[type] + title;
-  const sections = [
-    {heading:'1. Leia a passagem com atenção',body:core+' Leia integralmente as referências indicadas, observe o contexto e anote palavras ou ideias que se repetem. Diferencie o que o texto afirma das suas próprias aplicações.'},
-    {heading:'2. Compreenda a ideia central',body:'A ideia principal deste material é refletir sobre '+title.toLowerCase()+'. Compare a sua observação com o contexto da passagem e considere como diferentes pessoas podem vivenciar o tema. Evite transformar o texto em promessa automática ou regra fora de contexto.'},
-    {heading:'3. Leve o aprendizado à prática',body:practice+' Ao aplicar a passagem, respeite a realidade das pessoas envolvidas e procure ajuda qualificada quando a situação exigir. Uma aplicação responsável deve produzir cuidado, honestidade e ações concretas.'},
-    {heading:'4. Converse, desenhe ou compartilhe',body:'Releia a referência bíblica e explique a ideia central com suas próprias palavras. Para grupos, convide cada pessoa a participar sem pressão. Para crianças, leia o texto com um adulto, adapte a conversa à idade e deixe espaço para perguntas.'}
+  const sectionsByType = {
+    estudo: [
+      {heading:'1. Contexto da passagem',body:core+' Leia as referências completas na sua Bíblia. Observe quem participa da cena, o que acontece antes e depois e qual era a situação original. Anote o que o texto diz explicitamente, sem confundir observação com opinião.'},
+      {heading:'2. Ideia central e interpretação',body:'Ao estudar '+title.toLowerCase()+', compare as passagens indicadas e procure o tema que elas realmente compartilham. Considere o gênero literário e o contexto histórico. Evite transformar uma frase isolada em promessa universal ou regra que o texto não apresenta.'},
+      {heading:'3. Aplicação responsável',body:practice+' Escreva uma aplicação específica, realista e segura para esta semana. Explique como ela se relaciona com o texto e quais limites precisam ser respeitados.'},
+      {heading:'4. Revisão pessoal',body:'Resuma em duas ou três frases o que aprendeu, o que ainda não compreendeu e qual fonte confiável pode ajudar no aprofundamento. Uma boa interpretação permanece aberta a perguntas e à correção.'}
+    ],
+    devocional: [
+      {heading:'Leia e observe',body:core+' Separe alguns minutos para ler integralmente as referências. Respire com calma e escolha uma frase ou ideia do texto que mereça atenção hoje.'},
+      {heading:'Medite com sinceridade',body:'A reflexão sobre '+title.toLowerCase()+' não exige esconder sentimentos ou fingir que todas as dificuldades desapareceram. Pergunte o que a passagem revela sobre sabedoria, cuidado, responsabilidade ou esperança, levando em conta o contexto.'},
+      {heading:'Uma prática para hoje',body:practice+' Escolha apenas um passo que seja possível cumprir e reveja no fim do dia o que aprendeu com a experiência.'},
+      {heading:'Oração e encerramento',body:'Fale com Deus com sinceridade, agradecendo, apresentando suas dúvidas e pedindo discernimento. A oração sugerida é um ponto de partida; você pode usar suas próprias palavras.'}
+    ],
+    esboco: [
+      {heading:'Tema e texto-base',body:'Tema: '+title+'. Texto-base: '+reference+'. Leia cada referência por inteiro e explique à congregação o contexto antes de apresentar aplicações. A ideia central deve nascer do texto, não ser imposta a ele.'},
+      {heading:'Ponto 1 — Compreender a Palavra',body:core+' Desenvolva este ponto mostrando o que a passagem diz, a quem se dirige e como se conecta ao argumento do livro bíblico. Use exemplos claros sem apresentar interpretações pessoais como se fossem citações bíblicas.'},
+      {heading:'Ponto 2 — Viver o ensinamento',body:practice+' Convide o público a pensar em atitudes concretas. Reconheça que as circunstâncias variam e evite culpar pessoas por situações que exigem proteção, assistência ou apoio especializado.'},
+      {heading:'Conclusão e perguntas',body:'Retome a ideia central em uma frase, proponha uma ação prática e abra espaço para perguntas. Confirme todas as referências antes de ensinar e adapte o tempo ao público.'}
+    ],
+    atividade: [
+      {heading:'Objetivo da atividade',body:'Objetivo: conversar sobre '+title.toLowerCase()+' a partir da referência '+reference+'. Um adulto deve ler a passagem, explicar palavras difíceis e adaptar a proposta à idade e às necessidades de cada participante.'},
+      {heading:'Mãos à obra',body:'Materiais opcionais: papel, lápis e lápis de cor. Desenhe uma situação que represente o tema e escreva uma palavra que resuma o aprendizado. Não é necessário comprar materiais nem concluir tudo de uma vez.'},
+      {heading:'Converse sobre o que aprendeu',body:core+' Pergunte o que a pessoa percebeu no texto, sem exigir uma resposta decorada. Valorize perguntas e permita que cada participante explique o desenho à sua maneira.'},
+      {heading:'Desafio para a semana',body:practice+' Combine uma ação simples e segura para praticar em casa ou na comunidade. A participação deve ser voluntária e respeitosa.'}
+    ],
+    historia: [
+      {heading:'Uma conversa para começar',body:'Hoje vamos conversar sobre '+title.toLowerCase()+'. Um adulto pode ler '+reference+' na Bíblia e perguntar à criança o que chamou sua atenção. Não é preciso saber todas as respostas; aprender também envolve fazer perguntas.'},
+      {heading:'O que a passagem nos ensina',body:core+' Explique a ideia usando palavras adequadas à idade. Diferencie o relato bíblico de detalhes imaginados para tornar a conversa mais fácil, deixando claro quando um exemplo é apenas ilustrativo.'},
+      {heading:'Como viver isso',body:practice+' Convide a criança a sugerir uma atitude que seja segura e possível. Nunca pressione a criança a contar experiências pessoais que a deixem desconfortável.'},
+      {heading:'Pergunta final e oração',body:'Pergunte: “O que você gostaria de lembrar desta conversa?” Termine com uma oração breve, caso a criança queira participar, e agradeça sua curiosidade.'}
+    ],
+    quiz: [
+      {heading:'Pergunta 1 — Observe o texto',body:'Leia '+reference+' e escolha a resposta mais fiel ao contexto: o que a passagem destaca principalmente sobre '+title.toLowerCase()+'? A) Uma atitude ou princípio presente no texto. B) Uma promessa de sucesso automático. C) Uma regra inventada sem apoio na passagem. Resposta esperada: A; explique usando o trecho lido.'},
+      {heading:'Pergunta 2 — Aplique com cuidado',body:'Qual é uma forma responsável de colocar o ensinamento em prática? A) Agir sem considerar as consequências. B) '+practice+' C) Pressionar outras pessoas a concordar. Resposta esperada: B, considerando a realidade e a segurança de todos.'},
+      {heading:'Pergunta 3 — Confira o contexto',body:'Por que é importante ler o capítulo ou parágrafo completo? Porque o contexto ajuda a entender quem fala, a situação e o sentido da passagem, evitando interpretações baseadas em frases isoladas.'},
+      {heading:'Desafio de revisão',body:'Volte às referências bíblicas, confirme as respostas e escreva uma dúvida que gostaria de pesquisar. Este quiz é um recurso educativo e não substitui a leitura da Bíblia.'}
+    ],
+    quadrinho: [
+      {heading:'Quadro 1 — A pergunta',body:'Cena: uma pessoa pergunta como compreender '+title.toLowerCase()+'. Narrador: “Vamos conferir o que a Bíblia realmente diz antes de tirar conclusões”. Leia '+reference+'.'},
+      {heading:'Quadro 2 — A leitura',body:'Cena: o grupo abre a Bíblia e lê a passagem completa. Narrador: “O contexto nos ajuda a perceber a ideia central”. '+core},
+      {heading:'Quadro 3 — A decisão',body:'Cena: o grupo conversa sobre uma atitude concreta. Personagem: “Qual é um passo respeitoso e possível?” Narrador: '+practice},
+      {heading:'Quadro 4 — A prática',body:'Cena: os personagens escolhem uma pequena ação e combinam conversar novamente. Mensagem final: estudar, perguntar e praticar com responsabilidade faz parte do aprendizado.'}
+    ],
+    colorir: [
+      {heading:'Desenhe e pinte',body:'Use a ilustração em preto e branco para criar sua própria cena inspirada no tema '+title.toLowerCase()+'. Acrescente cores, paisagens e detalhes que ajudem a contar a ideia. A imagem é uma atividade artística original, não uma reprodução literal de uma cena bíblica.'},
+      {heading:'Leia, converse e lembre',body:'Referência para leitura: '+reference+'. '+core+' Depois de colorir, conte com suas palavras o que aprendeu e faça uma pergunta sobre a passagem.'},
+      {heading:'Uma atitude para praticar',body:practice+' Se fizer a atividade em grupo, respeite as interpretações e os desenhos dos outros participantes.'}
+    ]
+  };
+  const sections = sectionsByType[type];
+  const questions = type === 'quiz' ? [
+    'Qual é a ideia principal apresentada na primeira pergunta e como você a confirma lendo a referência?',
+    'Qual atitude prática foi sugerida e que cuidado é necessário ao aplicá-la?',
+    'Que dúvida você ainda tem sobre o contexto bíblico deste tema?'
+  ] : type === 'historia' || type === 'atividade' || type === 'colorir' ? [
+    'O que mais chamou sua atenção na passagem '+reference+'?',
+    'Como você explicaria este aprendizado com suas próprias palavras?',
+    'Que atitude simples e segura pode praticar nesta semana?'
+  ] : [
+    'O que o contexto da passagem ensina sobre '+title.toLowerCase()+'?',
+    'Que atitude concreta pode colocar esse aprendizado em prática?',
+    'Que dúvida ou ponto merece ser estudado com mais profundidade?'
   ];
   const item = {
-    id:'guia-'+key, topicKey:key, type, title:titleOut,
-    description:(type==='colorir'?'Proposta de desenho bíblico e conversa para colorir e refletir sobre ':type==='quadrinho'?'Roteiro educativo para quadrinhos sobre ':type==='atividade'?'Atividade prática para conversar sobre ':type==='historia'?'Material de conversa infantil sobre ':type==='quiz'?'Perguntas para revisar o tema ':type==='esboco'?'Estrutura para compartilhar uma reflexão sobre ':type==='devocional'?'Leitura breve e aplicação diária sobre ':'Estudo guiado sobre ')+title.toLowerCase()+'.',
-    reference, readingMinutes:5,
-    intro:core+' Este material é um guia de estudo e reflexão, não substitui a leitura integral da passagem bíblica.',
-    sections,
-    questions:[
-      'O que o contexto da passagem ensina sobre '+title.toLowerCase()+'?',
-      'Que atitude concreta pode colocar esse aprendizado em prática?',
-      'Que dúvida ou ponto merece ser estudado com mais profundidade?'
-    ],
+    id:'guia-'+key, topicKey:key, type, title:typeTitles[type]+title,
+    description:(type==='colorir'?'Atividade ilustrada para imprimir, colorir e conversar sobre ':type==='quadrinho'?'Roteiro original de quatro quadros sobre ':type==='atividade'?'Atividade prática com conversa e aplicação sobre ':type==='historia'?'Proposta de conversa bíblica infantil sobre ':type==='quiz'?'Quiz com perguntas explicadas sobre ':type==='esboco'?'Esboço para ensino e reflexão sobre ':type==='devocional'?'Leitura devocional com reflexão e prática sobre ':'Estudo bíblico guiado com contexto e aplicação sobre ')+title.toLowerCase()+'.',
+    reference, readingMinutes:type==='esboco'?8:5,
+    intro:core+' Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.',
+    sections, questions,
     prayer:'Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.',
-    generatedBy:'local-editorial-bank'
+    generatedBy:'local-editorial-bank-v2'
   };
   if (!validate(item)) throw new Error('Material do banco local não passou na validação: '+item.id);
   item.publishedAt = new Date().toISOString().slice(0,10);
