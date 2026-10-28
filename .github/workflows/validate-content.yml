@@ -17,6 +17,7 @@ jobs:
         run: |
           node --check server.js
           node --check scripts/content-engine.js
+          node --check scripts/import-bible.js
           node -e "JSON.parse(require('fs').readFileSync('data/content-library.json','utf8'))"
       - name: Gerar biblioteca completa em ambiente de teste
         run: |
@@ -33,3 +34,5 @@ jobs:
           test -f public/conteudo/guia-amizade-e-lealdade/index.html
           grep -q 'guia-amizade-e-lealdade' public/sitemap.xml
           ! grep -q 'api.openai.com' scripts/content-engine.js
+          ! grep -q 'bible-api.com' app.js
+          grep -q '/biblia/pt/' app.js
