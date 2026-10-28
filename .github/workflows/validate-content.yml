@@ -27,3 +27,9 @@ jobs:
           test -f public/sitemap.xml
           test -f public/robots.txt
           test -d public/assets/arte
+      - name: Verificar publicação diária sem API
+        run: |
+          SITE_URL=https://example.test npm run content:publish
+          test -f public/conteudo/guia-amizade-e-lealdade/index.html
+          grep -q 'guia-amizade-e-lealdade' public/sitemap.xml
+          ! grep -q 'api.openai.com' scripts/content-engine.js
