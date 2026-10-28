@@ -1,35 +1,54 @@
 # Bíblia Online — preparação para VPS
 
+## O que está incluído
+- Site responsivo e páginas institucionais
+- Biblioteca inicial com 12 materiais originais: estudos, esboços, histórias bíblicas infantis, um roteiro de quadrinhos e desenhos para colorir
+- Gerador de páginas estáticas, ilustrações SVG originais e sitemap
+- Servidor Node.js sem dependências externas
+- Serviço e timer systemd para execução diária
+- Geração assistida por IA opcional, com validação básica e detecção de duplicidade
+
 ## Requisitos
 - Ubuntu/Debian com Node.js 20 ou superior
-- Nginx ou outro proxy reverso com HTTPS
+- Nginx ou proxy reverso com HTTPS
 - Domínio apontado para o VPS
-- Opcional: chave da API de geração de conteúdo para ampliar a biblioteca após esgotar os itens iniciais
+- Opcional: chave da API para ampliar a biblioteca depois de publicar os materiais iniciais
 
 ## Instalação
-1. Copie o projeto para o VPS e entre na pasta.
-2. Copie `.env.example` para `.env` e preencha `SITE_URL` com o domínio real.
-3. Se usar geração assistida por IA, configure `OPENAI_API_KEY` somente no VPS. Nunca comite a chave no Git.
-4. Execute `npm run content:publish` para publicar o primeiro item e construir o sitemap.
-5. Execute `npm start` para servir os arquivos de `public/` localmente em 127.0.0.1:8080.
-6. Configure Nginx + HTTPS para encaminhar o domínio para 127.0.0.1:8080.
+1. Clone o repositório para `/opt/bibliaonline`.
+2. Crie a configuração local: `cp .env.example .env`.
+3. Edite `.env`: configure `SITE_URL` com o domínio real. Nunca publique o arquivo `.env` nem uma chave de API no GitHub.
+4. Para geração assistida por IA, configure `OPENAI_API_KEY` no VPS. A API pode gerar custos conforme uso e modelo.
+5. Gere a primeira biblioteca completa: `npm run content:build`.
+6. Verifique se `public/index.html`, `public/conteudo/`, `public/assets/arte/`, `public/robots.txt` e `public/sitemap.xml` foram criados.
+7. Teste localmente: `npm start`. O servidor escuta em `127.0.0.1:8080`; configure Nginx e HTTPS para encaminhar o domínio a essa porta.
 
-## Atualização automática diária
-Instale o arquivo `deploy/bibliaonline-content.service` e o timer correspondente em `deploy/` em `/etc/systemd/system/`, ajuste o caminho do projeto no serviço e execute:
+## Atualização diária
+O timer chama `node scripts/content-engine.js` uma vez por dia e tenta publicar um item novo, atualizar o índice e reconstruir o sitemap.
+
+Para instalar o agendamento:
 ```bash
+sudo cp deploy/bibliaonline-content.service /etc/systemd/system/
+sudo cp deploy/bibliaonline-content.timer /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable --now bibliaonline-content.timer
 systemctl list-timers bibliaonline-content.timer
+journalctl -u bibliaonline-content.service -n 100 --no-pager
 ```
-O timer publica um item por execução, atualiza a biblioteca e reconstrói o sitemap. Sem chave de IA, ele usa apenas a biblioteca editorial existente e para de criar itens quando ela se esgota. Com chave, tenta redigir um novo item, valida campos e duplicidade e só então publica. Isso não substitui revisão humana, verificação teológica, direitos autorais ou políticas de publicidade.
 
-## Estrutura
-- `data/content-library.json`: materiais originais iniciais
-- `scripts/content-engine.js`: gerador de páginas, arte SVG, índice e sitemap
-- `public/conteudo/`: páginas estáticas geradas
-- `public/assets/arte/`: ilustrações originais SVG
-- `server.js`: servidor HTTP simples para uso atrás de Nginx
-- `deploy/`: unidades systemd para execução agendada
+O arquivo de serviço usa `/opt/bibliaonline` e o usuário `www-data`. Ajuste o caminho e garanta que esse usuário possa escrever em `data/` e `public/`. Exemplo, após conferir o caminho correto:
+```bash
+sudo chown -R www-data:www-data /opt/bibliaonline/data /opt/bibliaonline/public
+```
 
-## Publicidade e indexação
-Os espaços de publicidade são marcadores visuais, não anúncios ativos. Insira o código oficial do AdSense apenas após aprovação/configuração da conta, seguindo as políticas. O sitemap informa URLs ao buscador, mas não garante indexação. Confirme os dados estruturados e URLs canônicas no domínio real antes da publicação.
+## Como funciona a automação
+- Na primeira instalação, `npm run content:build` publica os 12 materiais iniciais.
+- A rotina diária publica o próximo item da biblioteca que ainda não foi publicado.
+- Quando os itens iniciais acabam, o sistema tenta criar um novo rascunho com a API se `OPENAI_API_KEY` estiver configurada.
+- Se não houver chave ou a geração falhar na validação, o sistema registra o problema e não publica uma página nova de baixa qualidade só para aumentar a quantidade.
+- A geração de quadrinhos e desenhos usa SVGs originais simples; são ilustrações-base que podem ser aprimoradas editorialmente.
+
+## Revisão editorial e AdSense
+A validação automática confere campos, estrutura mínima e duplicidade, mas não substitui revisão humana de precisão bíblica, teologia, linguagem, direitos autorais ou segurança infantil. Os textos bíblicos são indicados por referência; não são reproduzidos extensamente de traduções protegidas. Confirme a licença de qualquer tradução usada no leitor bíblico.
+
+Os espaços de publicidade são apenas marcadores visuais, não anúncios ativos. Configure os códigos oficiais apenas conforme a conta e as políticas aplicáveis. A geração de sitemap ajuda os buscadores a descobrir URLs, mas não garante indexação nem aprovação para monetização.
