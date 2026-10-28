@@ -1,0 +1,20 @@
+[Unit]
+Description=Bíblia Online - servidor web Node.js
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/bibliaonline
+EnvironmentFile=-/opt/bibliaonline/.env
+ExecStart=/usr/bin/node /opt/bibliaonline/server.js
+Restart=always
+RestartSec=5
+User=www-data
+Group=www-data
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target
