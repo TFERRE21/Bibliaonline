@@ -282,7 +282,7 @@ function buildAll(items) {
   // GitHub Pages project sites live under /<repo>/; VPS/custom domains use the root path.
   // Rewrite only root-relative HTML href/src attributes, leaving external URLs untouched.
   if (BASE_PATH) {
-    const prefixRootPath = html => html.replace(/(href|src)=(["'])\\/(?!\\/)/g, (match, attr, quote) => attr+'='+quote+BASE_PATH+'/');
+    const prefixRootPath = html => html.replace(/(href|src)=(["'])\/(?!\/)/g, (match, attr, quote) => attr+'='+quote+BASE_PATH+'/');
     for (const dir of [PUBLIC_DIR, CONTENT_DIR]) {
       const walk = current => {
         for (const entry of fs.readdirSync(current, {withFileTypes:true})) {
