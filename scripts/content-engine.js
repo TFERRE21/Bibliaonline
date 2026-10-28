@@ -53,7 +53,8 @@ function artSvg(item) {
 function renderItem(item) {
   const chunks = (item.sections || []).map(section => `<section class="feature-card" style="margin:20px 0"><h2>${ESCAPE(section.heading)}</h2><p>${ESCAPE(section.body)}</p></section>`).join('');
   const questions = (item.questions || []).map(q=>`<li>${ESCAPE(q)}</li>`).join('');
-  const art = ['quadrinho','colorir'].includes(item.type) ? `<figure class="feature-card"><img src="/assets/arte/${ESCAPE(item.id)}.svg" alt="Ilustração original de ${ESCAPE(item.title)}" style="width:100%;height:auto"><figcaption>${item.type==='colorir'?'Ilustração original para imprimir e colorir':'Roteiro ilustrado em quadros'} · ${ESCAPE(item.reference)}</figcaption>${item.type==='colorir'?'<button class="btn btn-primary" onclick="window.print()">Imprimir desenho</button>':''}</figure>` : '';
+  const imageExt = fs.existsSync(path.join(PUBLIC_DIR,'assets','arte',item.id+'.png')) ? 'png' : 'svg';
+  const art = ['quadrinho','colorir','atividade'].includes(item.type) ? `<figure class="feature-card"><img src="/assets/arte/${ESCAPE(item.id)}.${imageExt}" alt="Ilustração original de ${ESCAPE(item.title)}" style="width:100%;height:auto"><figcaption>${item.type==='colorir'?'Ilustração original para imprimir e colorir':'Roteiro ilustrado em quadros'} · ${ESCAPE(item.reference)}</figcaption>${item.type==='colorir'?'<button class="btn btn-primary" onclick="window.print()">Imprimir desenho</button>':''}</figure>` : '';
   return wrap(item.title, item.description, BASE_URL+'/conteudo/'+item.id+'/', `<p><strong>Referência bíblica:</strong> ${ESCAPE(item.reference)} · ${Number(item.readingMinutes)||5} min de leitura</p><p>${ESCAPE(item.intro)}</p>${art}${chunks}<section class="feature-card" style="margin:20px 0"><h2>Para refletir e conversar</h2><ul>${questions}</ul></section><section class="feature-card" style="margin:20px 0"><h2>Oração sugerida</h2><p>${ESCAPE(item.prayer || 'Reserve um momento para refletir sobre a passagem e orar com suas próprias palavras.')}</p></section>`);
 }
 function renderHub(items) {
@@ -87,6 +88,21 @@ async function createAiItem(existing) {
   item.publishedAt = new Date().toISOString().slice(0,10);
   item.generatedBy = 'ai-draft-validated';
   return item;
+}
+async function generateAiIllustration(item) {
+  if (!API_KEY || !GENERATE_AI_IMAGES || !['quadrinho','colorir','atividade'].includes(item.type)) return false;
+  const out = path.join(PUBLIC_DIR,'assets','arte',item.id+'.png');
+  if (fs.existsSync(out)) return true;
+  const prompt = item.type === 'colorir' || item.type === 'atividade'
+    ? 'Crie uma página de atividade infantil bíblica original para impressão, preto e branco, contornos grossos e limpos, sem texto legível, sem marcas. Tema: '+item.title+'. Adequada para crianças, sem violência, composição simples com bastante espaço em branco, página vertical.'
+    : 'Crie uma ilustração original em estilo de quadrinhos infantis bíblicos, amigável e educativa, personagens genéricos originais, sem texto, sem marcas. Tema: '+item.title+'.';
+  const response = await fetch('https://api.openai.com/v1/images/generations',{method:'POST',headers:{'Authorization':'Bearer '+API_KEY,'Content-Type':'application/json'},body:JSON.stringify({model:'gpt-image-1',prompt,size:'1024x1024',quality:'low',output_format:'png'})});
+  if (!response.ok) throw new Error('A geração de imagem retornou HTTP '+response.status);
+  const data = await response.json();
+  const b64 = data.data && data.data[0] && data.data[0].b64_json;
+  if (!b64) throw new Error('A geração de imagem não retornou arquivo PNG');
+  fs.mkdirSync(path.dirname(out),{recursive:true}); fs.writeFileSync(out,Buffer.from(b64,'base64'));
+  return true;
 }
 async function main() {
   fs.mkdirSync(CONTENT_DIR,{recursive:true});
@@ -127,6 +143,7 @@ async function main() {
     return;
   }
   if (!validate(item, source !== 'biblioteca editorial')) throw new Error('Item editorial inválido: '+item.id);
+  try { await generateAiIllustration(item); } catch(error) { console.warn('[editorial] Ilustração IA não criada; usando SVG de reserva:',error.message); }
   item.publishedAt = item.publishedAt || new Date().toISOString().slice(0,10);
   const target = path.join(CONTENT_DIR,item.id,'index.html');
   if (!fs.existsSync(target)) {
