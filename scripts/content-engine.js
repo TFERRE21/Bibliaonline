@@ -135,11 +135,25 @@ async function main() {
   let item = library.find(x=>!publishedIds.has(x.id));
   let source = 'biblioteca editorial';
   if (!item && API_KEY) {
-    try { item = await createAiItem(library); if(item){library.push(item);writeJson(DATA_FILE,library);source='geração assistida por IA';} }
-    catch(error) { console.error('[editorial] IA indisponível ou conteúdo rejeitado:',error.message); }
+    // Faz novas tentativas para que uma resposta duplicada/inválida não interrompa
+    // permanentemente a publicação diária. Conteúdo existente nunca é removido.
+    const maxAttempts = 3;
+    for (let attempt = 1; attempt <= maxAttempts && !item; attempt++) {
+      try {
+        item = await createAiItem(library);
+        if (item) {
+          library.push(item);
+          writeJson(DATA_FILE, library);
+          source = 'geração assistida por IA';
+        }
+      } catch (error) {
+        console.error('[editorial] Tentativa IA ' + attempt + '/' + maxAttempts + ' falhou:', error.message);
+      }
+    }
   }
   if (!item) {
-    console.log('[editorial] Nenhum novo item seguro disponível. Adicione materiais revisados à biblioteca ou configure OPENAI_API_KEY.');
+    if (!API_KEY) console.error('[editorial] Publicação diária de novos materiais exige OPENAI_API_KEY no .env do VPS. Os conteúdos existentes serão preservados.');
+    else console.error('[editorial] Não foi possível gerar um novo conteúdo válido após as tentativas. Os conteúdos existentes serão preservados e haverá nova tentativa no próximo agendamento.');
     buildAll(library);
     return;
   }
