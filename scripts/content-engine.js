@@ -169,7 +169,7 @@ async function main() {
 function buildAll(items) {
   fs.mkdirSync(CONTENT_DIR,{recursive:true});
   // Copia os arquivos estáticos existentes para que o VPS sirva o site completo.
-  for (const name of ['index.html','styles.css','app.js','estudos.html','esbocos.html','infantil.html','sobre.html','privacidade.html','termos.html','contato.html']) {
+  for (const name of ['index.html','styles.css','app.js','estudos.html','esbocos.html','infantil.html','ferramentas.html','sobre.html','privacidade.html','termos.html','contato.html']) {
     const source = path.join(ROOT, name);
     if (fs.existsSync(source)) {
       let content = fs.readFileSync(source, 'utf8').replaceAll('https://tferre21.github.io/Bibliaonline', BASE_URL);
@@ -186,7 +186,7 @@ function buildAll(items) {
   const sitemap = [];
   const add = (loc,priority) => sitemap.push(`  <url><loc>${ESCAPE(loc)}</loc><lastmod>${new Date().toISOString().slice(0,10)}</lastmod><priority>${priority}</priority></url>`);
   add(BASE_URL+'/', '1.0');
-  for(const p of ['estudos.html','esbocos.html','infantil.html','sobre.html','privacidade.html','termos.html','contato.html']) add(BASE_URL+'/'+p,p==='privacidade.html'||p==='termos.html'?'0.3':'0.6');
+  for(const p of ['estudos.html','esbocos.html','infantil.html','ferramentas.html','sobre.html','privacidade.html','termos.html','contato.html']) add(BASE_URL+'/'+p,p==='privacidade.html'||p==='termos.html'?'0.3':'0.6');
   add(BASE_URL+'/conteudo/','0.9');
   for(const item of items) if(fs.existsSync(path.join(CONTENT_DIR,item.id,'index.html'))) add(BASE_URL+'/conteudo/'+item.id+'/','0.7');
   fs.writeFileSync(path.join(PUBLIC_DIR,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+sitemap.join('\n')+'\n</urlset>\n','utf8');
