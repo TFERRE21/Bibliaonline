@@ -6,8 +6,10 @@
   "type": "commonjs",
   "scripts": {
     "content:publish": "node scripts/content-engine.js",
-    "content:build": "node scripts/content-engine.js",
+    "content:build": "node scripts/content-engine.js --all",
     "start": "node server.js"
   },
-  "engines": { "node": ">=20" }
+  "engines": {
+    "node": ">=20"
+  }
 }
