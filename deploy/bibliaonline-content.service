@@ -1,0 +1,16 @@
+[Unit]
+Description=Bíblia Online - publicar um novo conteúdo e atualizar sitemap
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/bibliaonline
+EnvironmentFile=-/opt/bibliaonline/.env
+ExecStart=/usr/bin/node /opt/bibliaonline/scripts/content-engine.js
+User=www-data
+Group=www-data
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ReadWritePaths=/opt/bibliaonline/data /opt/bibliaonline/public
