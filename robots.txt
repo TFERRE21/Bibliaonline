@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tferre21.github.io/Bibliaonline/sitemap.xml
