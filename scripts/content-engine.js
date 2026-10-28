@@ -56,12 +56,12 @@ function renderItem(item) {
   return wrap(item.title, item.description, BASE_URL+'/conteudo/'+item.id+'/', `<p><strong>Referência bíblica:</strong> ${ESCAPE(item.reference)} · ${Number(item.readingMinutes)||5} min de leitura</p><p>${ESCAPE(item.intro)}</p>${art}${chunks}<section class="feature-card" style="margin:20px 0"><h2>Para refletir e conversar</h2><ul>${questions}</ul></section><section class="feature-card" style="margin:20px 0"><h2>Oração sugerida</h2><p>${ESCAPE(item.prayer || 'Reserve um momento para refletir sobre a passagem e orar com suas próprias palavras.')}</p></section>`);
 }
 function renderHub(items) {
-  const cards = items.slice().sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt)).map(item=>`<a class="feature-card" href="/conteudo/${ESCAPE(item.id)}/"><span class="card-kicker">${ESCAPE(LABELS[item.type]||'Conteúdo bíblico')} · ${ESCAPE(item.reference)}</span><h2>${ESCAPE(item.title)}</h2><p>${ESCAPE(item.description)}</p><span class="card-arrow">Ler conteúdo ↗</span></a>`).join('');
+  const cards = items.slice().sort((a,b)=>(b.publishedAt||'').localeCompare(a.publishedAt||'')).map(item=>`<a class="feature-card" href="/conteudo/${ESCAPE(item.id)}/"><span class="card-kicker">${ESCAPE(LABELS[item.type]||'Conteúdo bíblico')} · ${ESCAPE(item.reference)}</span><h2>${ESCAPE(item.title)}</h2><p>${ESCAPE(item.description)}</p><span class="card-arrow">Ler conteúdo ↗</span></a>`).join('');
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Biblioteca de estudos bíblicos, esboços, histórias para crianças, quadrinhos e desenhos para colorir."><meta name="robots" content="index,follow"><link rel="canonical" href="${BASE_URL}/conteudo/"><link rel="stylesheet" href="/styles.css"><title>Biblioteca de conteúdo bíblico | Bíblia Online</title></head><body><header class="site-header"><div class="container header-inner"><a class="brand" href="/"><span class="brand-mark">✦</span><span>Bíblia<span class="brand-light">Online</span><small>PALAVRA • ESTUDO • FÉ</small></span></a><a href="/" class="section-link">Página inicial ↗</a></div></header><main class="container section"><span class="eyebrow">BIBLIOTECA EM CRESCIMENTO</span><h1 style="color:var(--green);font-size:clamp(35px,5vw,52px)">Conteúdo para estudar, ensinar e criar.</h1><p>Materiais com referências para leitura bíblica, perguntas de reflexão e atividades originais. Novos conteúdos são preparados pelo mecanismo editorial conforme a biblioteca disponível.</p><div class="feature-grid" style="margin:30px 0">${cards}</div><p>Quantidade de materiais publicados: <strong>${items.length}</strong>.</p></main><footer class="site-footer"><div class="container footer-bottom"><span>© ${new Date().getFullYear()} Bíblia Online</span><span><a href="/privacidade.html">Privacidade</a> · <a href="/contato.html">Contato</a></span></div></footer></body></html>`;
 }
-function validate(item) {
+function validate(item, strict = true) {
   if (!item || !TYPES.includes(item.type) || !item.title || !item.description || !item.reference || !item.intro || !Array.isArray(item.sections) || item.sections.length < 3) return false;
-  if (item.title.length > 100 || item.description.length > 180 || item.sections.some(s=>!s.heading || !s.body || s.body.length < 80)) return false;
+  if (item.title.length > 100 || item.description.length > 180 || item.sections.some(s=>!s.heading || !s.body || (strict && s.body.length < 80))) return false;
   if (!item.questions || item.questions.length < 2) return false;
   item.id = slugify(item.id || item.title);
   return /^[a-z0-9-]+$/.test(item.id) && item.id.length > 3;
@@ -90,6 +90,28 @@ async function main() {
   const library = readJson(DATA_FILE, []);
   const state = readJson(STATE_FILE, {publishedIds:[], lastPublishedAt:null});
   const publishedIds = new Set(state.publishedIds || []);
+  if (process.argv.includes('--all')) {
+    for (const entry of library) {
+      if (!validate(entry, false)) { console.warn('[editorial] Item ignorado por campos ausentes:', entry.id); continue; }
+      entry.publishedAt = entry.publishedAt || new Date().toISOString().slice(0,10);
+      const target = path.join(CONTENT_DIR, entry.id, 'index.html');
+      fs.mkdirSync(path.dirname(target), {recursive:true});
+      if (!fs.existsSync(target)) fs.writeFileSync(target, renderItem(entry), 'utf8');
+      if (['quadrinho','colorir'].includes(entry.type)) {
+        const artPath=path.join(PUBLIC_DIR,'assets','arte',entry.id+'.svg');
+        fs.mkdirSync(path.dirname(artPath),{recursive:true});
+        if(!fs.existsSync(artPath)) fs.writeFileSync(artPath, artSvg(entry), 'utf8');
+      }
+      publishedIds.add(entry.id);
+    }
+    state.publishedIds=[...publishedIds];
+    state.lastPublishedAt=new Date().toISOString();
+    writeJson(STATE_FILE,state);
+    writeJson(DATA_FILE,library);
+    buildAll(library);
+    console.log('[editorial] Biblioteca inicial publicada:', publishedIds.size, 'itens');
+    return;
+  }
   let item = library.find(x=>!publishedIds.has(x.id));
   let source = 'biblioteca editorial';
   if (!item && API_KEY) {
@@ -101,7 +123,7 @@ async function main() {
     buildAll(library);
     return;
   }
-  if (!validate(item)) throw new Error('Item editorial inválido: '+item.id);
+  if (!validate(item, source !== 'biblioteca editorial')) throw new Error('Item editorial inválido: '+item.id);
   item.publishedAt = item.publishedAt || new Date().toISOString().slice(0,10);
   const target = path.join(CONTENT_DIR,item.id,'index.html');
   if (!fs.existsSync(target)) {
@@ -126,6 +148,20 @@ async function main() {
 }
 function buildAll(items) {
   fs.mkdirSync(CONTENT_DIR,{recursive:true});
+  // Copia os arquivos estáticos existentes para que o VPS sirva o site completo.
+  for (const name of ['index.html','styles.css','app.js','estudos.html','esbocos.html','infantil.html','sobre.html','privacidade.html','termos.html','contato.html']) {
+    const source = path.join(ROOT, name);
+    if (fs.existsSync(source)) {
+      let content = fs.readFileSync(source, 'utf8').replaceAll('https://tferre21.github.io/Bibliaonline', BASE_URL);
+      fs.writeFileSync(path.join(PUBLIC_DIR, name), content, 'utf8');
+    }
+  }
+  const favicon = path.join(ROOT, 'assets', 'favicon.svg');
+  if (fs.existsSync(favicon)) {
+    fs.mkdirSync(path.join(PUBLIC_DIR, 'assets'), {recursive:true});
+    fs.copyFileSync(favicon, path.join(PUBLIC_DIR, 'assets', 'favicon.svg'));
+  }
+  fs.writeFileSync(path.join(PUBLIC_DIR, 'robots.txt'), 'User-agent: *\\nAllow: /\\nSitemap: '+BASE_URL+'/sitemap.xml\\n', 'utf8');
   fs.writeFileSync(path.join(CONTENT_DIR,'index.html'),renderHub(items.filter(x=>fs.existsSync(path.join(CONTENT_DIR,x.id,'index.html')))),'utf8');
   const sitemap = [];
   const add = (loc,priority) => sitemap.push(`  <url><loc>${ESCAPE(loc)}</loc><lastmod>${new Date().toISOString().slice(0,10)}</lastmod><priority>${priority}</priority></url>`);
