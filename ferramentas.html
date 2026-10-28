@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Ferramentas bíblicas gratuitas: quiz para testar conhecimentos e plano de leitura de 7 dias para criar uma rotina na Palavra.">
+<meta name="robots" content="index,follow"><link rel="canonical" href="https://tferre21.github.io/Bibliaonline/ferramentas.html">
+<link rel="stylesheet" href="styles.css"><title>Ferramentas bíblicas gratuitas | Bíblia Online</title>
+</head>
+<body>
+<a class="skip-link" href="#main">Pular para o conteúdo</a>
+<header class="site-header"><div class="container header-inner"><a class="brand" href="./"><span class="brand-mark">✦</span><span>Bíblia<span class="brand-light">Online</span><small>PALAVRA • ESTUDO • FÉ</small></span></a><nav class="main-nav" style="display:flex"><a href="./">Início</a><a href="estudos.html">Estudos</a><a href="infantil.html">Infantil</a><a href="conteudo/">Biblioteca</a></nav></div></header>
+<main id="main" class="container section">
+<span class="eyebrow">APRENDA E PRATIQUE</span><h1 style="color:var(--green);font-size:clamp(35px,5vw,52px)">Ferramentas bíblicas</h1>
+<p>Recursos simples para estudar as Escrituras, revisar conhecimentos e organizar sua leitura pessoal.</p>
+<section class="feature-card" style="margin:28px 0;min-height:0">
+<span class="card-kicker">QUIZ BÍBLICO</span><h2>Teste seus conhecimentos</h2><p>Responda às perguntas e veja sua pontuação. O quiz é educativo e pode ser usado em família ou em grupos.</p>
+<form id="quizForm">
+<div class="quiz-question"><p><strong>1. Quem construiu a arca, segundo Gênesis?</strong></p><label><input type="radio" name="q1" value="a" required> Abraão</label><br><label><input type="radio" name="q1" value="b"> Noé</label><br><label><input type="radio" name="q1" value="c"> Moisés</label></div>
+<div class="quiz-question"><p><strong>2. Em qual cidade Jesus nasceu, conforme os Evangelhos?</strong></p><label><input type="radio" name="q2" value="a" required> Belém</label><br><label><input type="radio" name="q2" value="b"> Nazaré</label><br><label><input type="radio" name="q2" value="c"> Jericó</label></div>
+<div class="quiz-question"><p><strong>3. Qual personagem é conhecido por enfrentar Golias?</strong></p><label><input type="radio" name="q3" value="a" required> Davi</label><br><label><input type="radio" name="q3" value="b"> Elias</label><br><label><input type="radio" name="q3" value="c"> Josué</label></div>
+<div class="quiz-question"><p><strong>4. Qual livro abre a Bíblia?</strong></p><label><input type="radio" name="q4" value="a" required> Êxodo</label><br><label><input type="radio" name="q4" value="b"> Salmos</label><br><label><input type="radio" name="q4" value="c"> Gênesis</label></div>
+<div class="quiz-question"><p><strong>5. Na parábola contada por Jesus, quem ajudou o homem ferido na estrada?</strong></p><label><input type="radio" name="q5" value="a" required> O bom samaritano</label><br><label><input type="radio" name="q5" value="b"> O soldado romano</label><br><label><input type="radio" name="q5" value="c"> O comerciante</label></div>
+<button class="btn btn-primary" type="submit">Ver resultado</button><p id="quizResult" role="status" aria-live="polite"></p>
+</form></section>
+<section class="feature-card" style="margin:28px 0;min-height:0"><span class="card-kicker">PLANO DE LEITURA</span><h2>7 dias com a Palavra</h2><p>Marque cada leitura ao concluir. As marcações ficam salvas neste dispositivo.</p>
+<div id="readingPlan">
+<label class="plan-item"><input type="checkbox" data-day="1"> Dia 1 — Salmo 23: confiança e cuidado</label>
+<label class="plan-item"><input type="checkbox" data-day="2"> Dia 2 — Mateus 5:1–12: as bem-aventuranças</label>
+<label class="plan-item"><input type="checkbox" data-day="3"> Dia 3 — Lucas 10:25–37: o bom samaritano</label>
+<label class="plan-item"><input type="checkbox" data-day="4"> Dia 4 — Filipenses 4:4–9: oração e pensamento</label>
+<label class="plan-item"><input type="checkbox" data-day="5"> Dia 5 — Marcos 4:35–41: Jesus acalma a tempestade</label>
+<label class="plan-item"><input type="checkbox" data-day="6"> Dia 6 — João 15:1–11: permanecer em Cristo</label>
+<label class="plan-item"><input type="checkbox" data-day="7"> Dia 7 — Romanos 12:9–18: amor em prática</label>
+</div><p id="planProgress" role="status" aria-live="polite"></p><button class="btn btn-ghost" type="button" id="resetPlan" style="color:var(--green);border-color:var(--line)">Reiniciar plano</button></section>
+<section class="ad-slot" aria-label="Espaço reservado para publicidade"><span>PUBLICIDADE</span><div>Espaço reservado para anúncio</div></section>
+<p>Continue aprendendo na <a class="section-link" href="conteudo/">biblioteca de estudos, esboços e atividades ↗</a>.</p>
+</main>
+<footer class="site-footer"><div class="container footer-bottom"><span>© Bíblia Online</span><span><a href="sobre.html">Sobre</a> · <a href="privacidade.html">Privacidade</a> · <a href="contato.html">Contato</a></span></div></footer>
+<style>.quiz-question{padding:15px 0;border-bottom:1px solid var(--line)}.quiz-question label{display:inline-block;margin:4px 0;font-size:14px}.plan-item{display:block;padding:12px 0;border-bottom:1px solid var(--line);font-size:14px}.plan-item input{margin-right:10px}#quizResult,#planProgress{font-weight:700;color:var(--green);margin-top:15px}</style>
+<script>
+const form=document.getElementById('quizForm');form.addEventListener('submit',e=>{e.preventDefault();const answers={q1:'b',q2:'a',q3:'a',q4:'c',q5:'a'};let score=0;for(const [key,value] of Object.entries(answers)){if(new FormData(form).get(key)===value)score++}document.getElementById('quizResult').textContent='Você acertou '+score+' de 5 perguntas. '+(score===5?'Excelente! Continue estudando.':score>=3?'Bom trabalho! Releia as passagens e tente novamente.':'Vale a pena consultar as histórias bíblicas e tentar outra vez.');});
+const checks=[...document.querySelectorAll('#readingPlan input')];function progress(){let n=0;checks.forEach(c=>{c.checked=localStorage.getItem('biblia-plano-'+c.dataset.day)==='1';if(c.checked)n++});document.getElementById('planProgress').textContent=n+' de 7 leituras concluídas.'}checks.forEach(c=>c.addEventListener('change',()=>{localStorage.setItem('biblia-plano-'+c.dataset.day,c.checked?'1':'0');progress()}));document.getElementById('resetPlan').addEventListener('click',()=>{checks.forEach(c=>localStorage.removeItem('biblia-plano-'+c.dataset.day));progress()});progress();
+</script></body></html>
