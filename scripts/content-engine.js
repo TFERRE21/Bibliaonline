@@ -49,7 +49,7 @@ function artSvg(item) {
 function renderItem(item) {
   const chunks = (item.sections || []).map(section => `<section class="feature-card" style="margin:20px 0"><h2>${ESCAPE(section.heading)}</h2><p>${ESCAPE(section.body)}</p></section>`).join('');
   const questions = (item.questions || []).map(q=>`<li>${ESCAPE(q)}</li>`).join('');
-  const imageExt = fs.existsSync(path.join(PUBLIC_DIR,'assets','arte',item.id+'.png')) ? 'png' : 'svg';
+  const imageExt = 'svg';
   const art = ['quadrinho','colorir','atividade'].includes(item.type) ? `<figure class="feature-card"><img src="/assets/arte/${ESCAPE(item.id)}.${imageExt}" alt="Ilustração original de ${ESCAPE(item.title)}" style="width:100%;height:auto"><figcaption>${item.type==='colorir'?'Ilustração original para imprimir e colorir':item.type==='atividade'?'Atividade ilustrada para imprimir':'Roteiro ilustrado em quadros'} · ${ESCAPE(item.reference)}</figcaption>${['colorir','atividade'].includes(item.type)?'<button class="btn btn-primary" onclick="window.print()">Imprimir atividade</button>':''}</figure>` : '';
   return wrap(item.title, item.description, BASE_URL+'/conteudo/'+item.id+'/', `<p><strong>Referência bíblica:</strong> ${ESCAPE(item.reference)} · ${Number(item.readingMinutes)||5} min de leitura</p><p>${ESCAPE(item.intro)}</p>${art}${chunks}<section class="feature-card" style="margin:20px 0"><h2>Para refletir e conversar</h2><ul>${questions}</ul></section><section class="feature-card" style="margin:20px 0"><h2>Oração sugerida</h2><p>${ESCAPE(item.prayer || 'Reserve um momento para refletir sobre a passagem e orar com suas próprias palavras.')}</p></section>`);
 }
@@ -138,25 +138,6 @@ function validate(item, strict = true) {
   if (!item.questions || item.questions.length < 2) return false;
   item.id = slugify(item.id || item.title);
   return /^[a-z0-9-]+$/.test(item.id) && item.id.length > 3;
-}
-async function createAiItem(existing) {
-  if (!API_KEY) return null;
-  const wanted = TYPES[Math.floor(Date.now() / 86400000) % TYPES.length];
-  const avoid = existing.map(x=>x.title).slice(-100);
-  const prompt = `Crie um conteúdo bíblico ORIGINAL em português brasileiro para um site de leitura e estudo. Tipo obrigatório: ${wanted}. Evite estes títulos já usados: ${JSON.stringify(avoid)}. Use paráfrase própria, não reproduza versículos ou traduções bíblicas protegidas por direitos autorais. Não invente referências: escolha uma passagem bíblica conhecida e indique apenas a referência. Conteúdo respeitoso, claro e útil, sem promessas de cura/riqueza nem alegações históricas duvidosas. Para histórias infantis, linguagem adequada e inclua orientação para ler a passagem com um adulto. Para desenhos/quadrinhos/atividades, descreva cenas e instruções originais. Para devocional, inclua aplicação prática do dia; para quiz, crie perguntas educativas com respostas explicadas dentro de sections; para atividade, inclua instruções adequadas à idade. Responda SOMENTE JSON com chaves id,type,title,description,reference,readingMinutes,intro,sections (array de {heading,body}, pelo menos 3 itens e cada body com 80+ caracteres),questions (3 strings),prayer. Para tipo quadrinho, sections devem ser seis quadros. Para colorir, inclua instruções de atividade em sections. Não crie texto genérico repetitivo.`;
-  const response = await fetch('https://api.openai.com/v1/responses', {method:'POST',headers:{'Authorization':'Bearer '+API_KEY,'Content-Type':'application/json'},body:JSON.stringify({model:MODEL,input:prompt})});
-  if (!response.ok) throw new Error('A API de geração retornou HTTP '+response.status);
-  const data = await response.json();
-  let output = data.output_text;
-  if (!output && Array.isArray(data.output)) output = data.output.flatMap(x=>x.content||[]).filter(x=>x.type==='output_text').map(x=>x.text).join('\n');
-  if (!output) throw new Error('Resposta de geração vazia');
-  const clean = output.replace(/^\s*```(?:json)?/i,'').replace(/```\s*$/,'').trim();
-  const item = JSON.parse(clean);
-  if (!validate(item)) throw new Error('Conteúdo gerado não passou na validação editorial mínima');
-  if (existing.some(x=>x.id===item.id || x.title.toLowerCase()===item.title.toLowerCase())) throw new Error('Conteúdo duplicado detectado');
-  item.publishedAt = new Date().toISOString().slice(0,10);
-  item.generatedBy = 'ai-draft-validated';
-  return item;
 }
 async function main() {
   fs.mkdirSync(CONTENT_DIR,{recursive:true});
