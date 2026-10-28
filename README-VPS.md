@@ -2,8 +2,8 @@
 
 ## O que está incluído
 - Site responsivo e páginas institucionais
-- Biblioteca inicial com 15 materiais originais: estudos, esboços, histórias bíblicas infantis, um roteiro de quadrinhos e desenhos para colorir
-- Gerador de páginas estáticas, biblioteca com busca/filtros, ilustrações SVG originais e sitemap
+- Biblioteca inicial com 15 materiais originais: estudos, esboços, histórias bíblicas infantis, quadrinhos, desenhos para colorir, devocional, atividade e quiz
+- Gerador de páginas estáticas, biblioteca com busca/filtros, página de ferramentas com quiz interativo e plano de leitura de 7 dias, ilustrações SVG originais e sitemap
 - Servidor Node.js sem dependências externas
 - Serviço e timer systemd para execução diária
 - Geração assistida por IA opcional, com validação básica e detecção de duplicidade
