@@ -22,6 +22,7 @@ jobs:
         run: |
           SITE_URL=https://example.test npm run content:build
           test -f public/index.html
+          test -f public/ferramentas.html
           test -f public/conteudo/index.html
           test -f public/sitemap.xml
           test -f public/robots.txt
