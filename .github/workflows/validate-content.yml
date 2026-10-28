@@ -1,0 +1,28 @@
+name: Validar motor editorial
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Verificar sintaxe
+        run: |
+          node --check server.js
+          node --check scripts/content-engine.js
+          node -e "JSON.parse(require('fs').readFileSync('data/content-library.json','utf8'))"
+      - name: Gerar biblioteca completa em ambiente de teste
+        run: |
+          SITE_URL=https://example.test npm run content:build
+          test -f public/index.html
+          test -f public/conteudo/index.html
+          test -f public/sitemap.xml
+          test -f public/robots.txt
+          test -d public/assets/arte
