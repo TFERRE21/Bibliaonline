@@ -99,3 +99,22 @@ body.dark .reader-tools .font-tools button{background:#20392d;color:#e7eee8;bord
 .translation-catalog-note a{color:var(--green2);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 .translation-catalog-note a:hover{color:var(--gold)}
 body.dark .translation-catalog-note a{color:#b9d9c6}
+
+/* Recursos próprios do leitor: favoritos, compartilhamento, comparação e áudio sincronizado */
+.bible-verse{position:relative;padding:7px 38px 7px 4px;border-radius:6px;transition:background .18s}
+.bible-verse.is-speaking{background:#f3e8c9;box-shadow:inset 3px 0 #b48a3b}
+.verse-text{white-space:normal}
+.verse-actions{position:absolute;right:2px;top:5px;display:inline-flex;gap:3px;opacity:.35;transition:opacity .15s}
+.bible-verse:hover .verse-actions,.bible-verse:focus-within .verse-actions{opacity:1}
+.verse-action{border:1px solid var(--line);background:var(--white);color:var(--green);border-radius:5px;min-width:25px;height:25px;padding:1px 5px;font-size:13px;line-height:1;cursor:pointer}
+.verse-action:hover{background:var(--green3)}
+.compare-results{margin-top:16px}
+.compare-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.compare-column{min-width:0;border:1px solid var(--line);border-radius:8px;padding:12px}
+.compare-column h4{font-size:13px;color:var(--green);margin:0 0 12px}
+.compare-column p{font-size:13px;color:var(--ink);padding:7px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+.compare-column sup{color:var(--green);font-weight:700}
+body.dark .bible-verse.is-speaking{background:#4b452e}
+body.dark .verse-action{background:#20392d;color:#e7eee8;border-color:#405548}
+body.dark .compare-column h4,body.dark .compare-column sup{color:#c9dfce}
+@media(max-width:700px){.compare-grid{grid-template-columns:1fr}.verse-actions{opacity:.8}.bible-verse{padding-right:64px}}
