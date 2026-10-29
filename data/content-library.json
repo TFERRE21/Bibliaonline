@@ -776,5 +776,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-29"
+  },
+  {
+    "id": "guia-integridade-no-dia-a-dia",
+    "topicKey": "integridade-no-dia-a-dia",
+    "type": "estudo",
+    "title": "Estudo bíblico: Integridade nas pequenas atitudes",
+    "description": "Estudo bíblico guiado com contexto e aplicação sobre integridade nas pequenas atitudes.",
+    "reference": "Provérbios 10:9; Lucas 16:10",
+    "readingMinutes": 5,
+    "intro": "Integridade é coerência entre valores e ações, inclusive quando ninguém está observando. A honestidade fortalece a confiança e exige reconhecer erros e reparar danos. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "1. Contexto da passagem",
+        "body": "Integridade é coerência entre valores e ações, inclusive quando ninguém está observando. A honestidade fortalece a confiança e exige reconhecer erros e reparar danos. Leia as referências completas na sua Bíblia. Observe quem participa da cena, o que acontece antes e depois e qual era a situação original. Anote o que o texto diz explicitamente, sem confundir observação com opinião."
+      },
+      {
+        "heading": "2. Ideia central e interpretação",
+        "body": "Ao estudar integridade nas pequenas atitudes, compare as passagens indicadas e procure o tema que elas realmente compartilham. Considere o gênero literário e o contexto histórico. Evite transformar uma frase isolada em promessa universal ou regra que o texto não apresenta."
+      },
+      {
+        "heading": "3. Aplicação responsável",
+        "body": "Escolha uma situação cotidiana em que possa ser mais transparente e corrija com responsabilidade algum erro pendente. Escreva uma aplicação específica, realista e segura para esta semana. Explique como ela se relaciona com o texto e quais limites precisam ser respeitados."
+      },
+      {
+        "heading": "4. Revisão pessoal",
+        "body": "Resuma em duas ou três frases o que aprendeu, o que ainda não compreendeu e qual fonte confiável pode ajudar no aprofundamento. Uma boa interpretação permanece aberta a perguntas e à correção."
+      }
+    ],
+    "questions": [
+      "O que o contexto da passagem ensina sobre integridade nas pequenas atitudes?",
+      "Que atitude concreta pode colocar esse aprendizado em prática?",
+      "Que dúvida ou ponto merece ser estudado com mais profundidade?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-29"
   }
 ]
