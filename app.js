@@ -14,7 +14,8 @@ function fillChapters() {
 }
 books.forEach((book,i)=>{const o=document.createElement("option");o.value=String(i);o.textContent=book[0];bookSelect.append(o)});
 bookSelect.value="0"; fillChapters();
-bookSelect.addEventListener("change",fillChapters);
+bookSelect.addEventListener("change",()=>{fillChapters();loadChapter();});
+chapterSelect.addEventListener("change",loadChapter);
 async function loadChapter() {
   const book=books[Number(bookSelect.value)], chapter=Number(chapterSelect.value);
   const versionSelect=$("versionSelect");
@@ -364,4 +365,6 @@ if(lastVersion && $("versionSelect")) {
   else localStorage.removeItem("bibleLastVersion");
 }
 if(lastBook!==null && books[Number(lastBook)]) {bookSelect.value=lastBook;fillChapters();if(lastChapter)chapterSelect.value=lastChapter;}
-if($("versionSelect")) $("versionSelect").addEventListener("change",()=>{if(loadedVerses.length)loadChapter();});
+if($("versionSelect")) $("versionSelect").addEventListener("change",loadChapter);
+// Deixa o capítulo selecionado pronto antes do clique no áudio, evitando perder a ativação do navegador.
+loadChapter();
