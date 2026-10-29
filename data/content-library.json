@@ -564,5 +564,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-29"
+  },
+  {
+    "id": "guia-gratidao-diaria",
+    "topicKey": "gratidao-diaria",
+    "type": "esboco",
+    "title": "Esboço: Gratidão no cotidiano",
+    "description": "Esboço para ensino e reflexão sobre gratidão no cotidiano.",
+    "reference": "Salmo 100; Colossenses 3:15–17",
+    "readingMinutes": 8,
+    "intro": "A gratidão bíblica é uma prática de reconhecimento, não uma obrigação de fingir que tudo está bem. Ela pode coexistir com lamento, dúvidas e a procura por ajuda. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "Tema e texto-base",
+        "body": "Tema: Gratidão no cotidiano. Texto-base: Salmo 100; Colossenses 3:15–17. Leia cada referência por inteiro e explique à congregação o contexto antes de apresentar aplicações. A ideia central deve nascer do texto, não ser imposta a ele."
+      },
+      {
+        "heading": "Ponto 1 — Compreender a Palavra",
+        "body": "A gratidão bíblica é uma prática de reconhecimento, não uma obrigação de fingir que tudo está bem. Ela pode coexistir com lamento, dúvidas e a procura por ajuda. Desenvolva este ponto mostrando o que a passagem diz, a quem se dirige e como se conecta ao argumento do livro bíblico. Use exemplos claros sem apresentar interpretações pessoais como se fossem citações bíblicas."
+      },
+      {
+        "heading": "Ponto 2 — Viver o ensinamento",
+        "body": "Anote três coisas pelas quais sente gratidão e uma dificuldade sobre a qual precisa conversar ou buscar apoio. Convide o público a pensar em atitudes concretas. Reconheça que as circunstâncias variam e evite culpar pessoas por situações que exigem proteção, assistência ou apoio especializado."
+      },
+      {
+        "heading": "Conclusão e perguntas",
+        "body": "Retome a ideia central em uma frase, proponha uma ação prática e abra espaço para perguntas. Confirme todas as referências antes de ensinar e adapte o tempo ao público."
+      }
+    ],
+    "questions": [
+      "O que o contexto da passagem ensina sobre gratidão no cotidiano?",
+      "Que atitude concreta pode colocar esse aprendizado em prática?",
+      "Que dúvida ou ponto merece ser estudado com mais profundidade?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-29"
   }
 ]
