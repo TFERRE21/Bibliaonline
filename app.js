@@ -21,6 +21,9 @@ async function loadChapter() {
     if(!res.ok) throw new Error("Capítulo ainda não importado");
     const data=await res.json();
     if(!Array.isArray(data.verses)||!data.verses.length) throw new Error("Conteúdo inválido");
+    loadedVerses=data.verses;
+    localStorage.setItem("bibleLastBook",bookSelect.value);
+    localStorage.setItem("bibleLastChapter",chapterSelect.value);
     status.textContent=book[0]+" "+chapter+" · "+data.verses.length+" versículos · Bíblia Portuguesa Mundial (BPM)";
     content.innerHTML="";
     data.verses.forEach(v=>{
@@ -134,18 +137,6 @@ function setReaderTab(name) {
   }
 }
 readerTabButtons.forEach(button=>button.addEventListener("click",()=>setReaderTab(button.dataset.readerTab)));
-const originalLoadChapter = loadChapter;
-loadChapter = async function() {
-  await originalLoadChapter();
-  const book=books[Number(bookSelect.value)];
-  try {
-    const res=await fetch("biblia/pt/"+book[3]+"/"+chapterSelect.value+".json");
-    if(res.ok){const data=await res.json();loadedVerses=Array.isArray(data.verses)?data.verses:[];}
-    else loadedVerses=[];
-  } catch { loadedVerses=[]; }
-  localStorage.setItem("bibleLastBook",bookSelect.value);
-  localStorage.setItem("bibleLastChapter",chapterSelect.value);
-};
 const audioReadButton=$("audioRead");
 if(audioReadButton) audioReadButton.addEventListener("click",()=>{
   if(!("speechSynthesis" in window)){status.textContent="A leitura em voz alta não é suportada neste navegador.";return;}
