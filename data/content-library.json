@@ -528,5 +528,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-29"
+  },
+  {
+    "id": "guia-sabedoria-nas-escolhas",
+    "topicKey": "sabedoria-nas-escolhas",
+    "type": "devocional",
+    "title": "Devocional: Sabedoria nas escolhas",
+    "description": "Leitura devocional com reflexão e prática sobre sabedoria nas escolhas.",
+    "reference": "Tiago 1:5; Provérbios 3:5–6",
+    "readingMinutes": 5,
+    "intro": "As Escrituras valorizam a busca de sabedoria, o discernimento e a disposição para ouvir bons conselhos. Decisões responsáveis consideram princípios, consequências e as pessoas afetadas. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "Leia e observe",
+        "body": "As Escrituras valorizam a busca de sabedoria, o discernimento e a disposição para ouvir bons conselhos. Decisões responsáveis consideram princípios, consequências e as pessoas afetadas. Separe alguns minutos para ler integralmente as referências. Respire com calma e escolha uma frase ou ideia do texto que mereça atenção hoje."
+      },
+      {
+        "heading": "Medite com sinceridade",
+        "body": "A reflexão sobre sabedoria nas escolhas não exige esconder sentimentos ou fingir que todas as dificuldades desapareceram. Pergunte o que a passagem revela sobre sabedoria, cuidado, responsabilidade ou esperança, levando em conta o contexto."
+      },
+      {
+        "heading": "Uma prática para hoje",
+        "body": "Antes de uma decisão, escreva as opções, procure informação confiável e converse com alguém experiente e de confiança. Escolha apenas um passo que seja possível cumprir e reveja no fim do dia o que aprendeu com a experiência."
+      },
+      {
+        "heading": "Oração e encerramento",
+        "body": "Fale com Deus com sinceridade, agradecendo, apresentando suas dúvidas e pedindo discernimento. A oração sugerida é um ponto de partida; você pode usar suas próprias palavras."
+      }
+    ],
+    "questions": [
+      "O que o contexto da passagem ensina sobre sabedoria nas escolhas?",
+      "Que atitude concreta pode colocar esse aprendizado em prática?",
+      "Que dúvida ou ponto merece ser estudado com mais profundidade?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-29"
   }
 ]
