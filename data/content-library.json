@@ -920,5 +920,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-29"
+  },
+  {
+    "id": "guia-humildade-para-aprender",
+    "topicKey": "humildade-para-aprender",
+    "type": "historia",
+    "title": "História e conversa bíblica: Humildade para aprender",
+    "description": "Proposta de conversa bíblica infantil sobre humildade para aprender.",
+    "reference": "Provérbios 9:9; Filipenses 2:3–4",
+    "readingMinutes": 5,
+    "intro": "Humildade não significa desprezar a própria dignidade; significa reconhecer limites, aprender com outras pessoas e considerar necessidades alheias sem buscar superioridade. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "Uma conversa para começar",
+        "body": "Hoje vamos conversar sobre humildade para aprender. Um adulto pode ler Provérbios 9:9; Filipenses 2:3–4 na Bíblia e perguntar à criança o que chamou sua atenção. Não é preciso saber todas as respostas; aprender também envolve fazer perguntas."
+      },
+      {
+        "heading": "O que a passagem nos ensina",
+        "body": "Humildade não significa desprezar a própria dignidade; significa reconhecer limites, aprender com outras pessoas e considerar necessidades alheias sem buscar superioridade. Explique a ideia usando palavras adequadas à idade. Diferencie o relato bíblico de detalhes imaginados para tornar a conversa mais fácil, deixando claro quando um exemplo é apenas ilustrativo."
+      },
+      {
+        "heading": "Como viver isso",
+        "body": "Peça feedback específico a alguém confiável e escolha uma sugestão que possa colocar em prática. Convide a criança a sugerir uma atitude que seja segura e possível. Nunca pressione a criança a contar experiências pessoais que a deixem desconfortável."
+      },
+      {
+        "heading": "Pergunta final e oração",
+        "body": "Pergunte: “O que você gostaria de lembrar desta conversa?” Termine com uma oração breve, caso a criança queira participar, e agradeça sua curiosidade."
+      }
+    ],
+    "questions": [
+      "O que mais chamou sua atenção na passagem Provérbios 9:9; Filipenses 2:3–4?",
+      "Como você explicaria este aprendizado com suas próprias palavras?",
+      "Que atitude simples e segura pode praticar nesta semana?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-29"
   }
 ]
