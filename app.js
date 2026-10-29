@@ -75,3 +75,88 @@ if (advancedSearchTab) advancedSearchTab.addEventListener("click", (event) => {
   status.textContent = "Busca por livro e capítulo: selecione o livro e o capítulo abaixo para abrir a leitura.";
   bookSelect.focus({ preventScroll: true });
 });
+
+/* Funcionalidades interativas das abas do leitor */
+const featurePanel = $("readerFeaturePanel");
+const readerTabButtons = [...document.querySelectorAll("[data-reader-tab]")];
+let loadedVerses = [];
+let currentSpeech = null;
+function setReaderTab(name) {
+  readerTabButtons.forEach(button => {
+    const active = button.dataset.readerTab === name;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-selected", String(active));
+  });
+  featurePanel.hidden = name === "read";
+  if (name === "read") { featurePanel.innerHTML = ""; return; }
+  if (name === "search") {
+    featurePanel.innerHTML = '<h3>Busca avançada na leitura</h3><p>Pesquise uma palavra ou expressão no capítulo aberto. Para pesquisar, carregue primeiro o capítulo desejado.</p><form id="chapterSearchForm" class="reader-feature-form"><label>Palavra ou expressão<input id="chapterSearchTerm" type="search" placeholder="Ex.: esperança, oração, amor" required></label><button class="btn btn-primary" type="submit">Pesquisar no capítulo</button></form><div id="chapterSearchResults" aria-live="polite"></div>';
+    $("chapterSearchForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const term = $("chapterSearchTerm").value.trim().toLocaleLowerCase("pt-BR");
+      const results = loadedVerses.filter(v => String(v.t).toLocaleLowerCase("pt-BR").includes(term));
+      const target = $("chapterSearchResults");
+      if (!loadedVerses.length) { target.textContent = "Carregue um capítulo antes de pesquisar."; return; }
+      if (!results.length) { target.textContent = "Nenhuma ocorrência encontrada neste capítulo."; return; }
+      target.innerHTML = "";
+      const heading = document.createElement("p"); heading.textContent = results.length + " versículo(s) encontrado(s):"; target.append(heading);
+      results.forEach(v => { const p=document.createElement("p"); p.textContent=v.v+". "+v.t; target.append(p); });
+    });
+  } else if (name === "plans") {
+    const plan = [
+      ["Dia 1","Salmos",23],["Dia 2","Provérbios",3],["Dia 3","Mateus",5],
+      ["Dia 4","Lucas",15],["Dia 5","João",15],["Dia 6","Romanos",8],["Dia 7","Filipenses",4]
+    ];
+    featurePanel.innerHTML = '<h3>Plano de leitura de 7 dias</h3><p>Uma semana de leituras para reflexão. Marque os dias concluídos; seu progresso fica salvo neste dispositivo.</p><div class="reading-plan-list" id="readingPlanList"></div>';
+    const list=$("readingPlanList");
+    plan.forEach(([day,bookName,chapter],i)=>{
+      const idx=books.findIndex(b=>b[0]===bookName);
+      const label=document.createElement("label");label.className="reading-plan-day";
+      const check=document.createElement("input");check.type="checkbox";check.checked=localStorage.getItem("biblePlanDay"+i)==="done";
+      check.addEventListener("change",()=>localStorage.setItem("biblePlanDay"+i,check.checked?"done":"todo"));
+      const link=document.createElement("button");link.type="button";link.textContent=day+" · "+bookName+" "+chapter+" — Abrir leitura";
+      link.addEventListener("click",()=>{bookSelect.value=String(idx);fillChapters();chapterSelect.value=String(chapter);setReaderTab("read");loadChapter();$("ler").scrollIntoView({behavior:"smooth",block:"start"});});
+      label.append(check,link);list.append(label);
+    });
+  } else if (name === "daily") {
+    featurePanel.innerHTML = '<h3>Versículo do dia</h3><p id="dailyVerseText">Carregando o texto bíblico local…</p><button class="btn btn-primary" id="openDailyVerse" type="button">Abrir capítulo</button>';
+    const dailyBooks=[18,19,42,42,42,42,50];
+    const dayIndex=Math.floor(Date.now()/86400000)%dailyBooks.length;
+    const bookIdx=dailyBooks[dayIndex], chapter=bookIdx===18?23:bookIdx===19?3:bookIdx===42?15:4;
+    const slug=books[bookIdx][3];
+    fetch("biblia/pt/"+slug+"/"+chapter+".json").then(r=>{if(!r.ok)throw Error();return r.json();}).then(data=>{
+      const verses=data.verses||[];const v=verses[(new Date().getDate()-1)%Math.max(verses.length,1)];
+      $("dailyVerseText").textContent=v? v.t+" — "+books[bookIdx][0]+" "+chapter+":"+v.v:"O capítulo está disponível, mas não foi possível selecionar um versículo.";
+      $("openDailyVerse").addEventListener("click",()=>{bookSelect.value=String(bookIdx);fillChapters();chapterSelect.value=String(chapter);setReaderTab("read");loadChapter();});
+    }).catch(()=>{$("dailyVerseText").textContent="O versículo do dia aparecerá assim que a biblioteca bíblica local estiver importada."; $("openDailyVerse").disabled=true;});
+  } else if (name === "compare") {
+    featurePanel.innerHTML = '<h3>Comparar traduções</h3><p>Esta instalação possui a Bíblia Portuguesa Mundial (BPM) configurada. Para não misturar textos ou atribuir traduções incorretas, a comparação ficará disponível quando outra versão com fonte e licença confirmadas for instalada.</p><p><strong>Versão atual:</strong> Bíblia Portuguesa Mundial (BPM), em revisão.</p><a href="https://ebible.org/porbrbsl/copyright.htm" target="_blank" rel="noopener noreferrer">Consultar fonte e licença da BPM ↗</a>';
+  }
+}
+readerTabButtons.forEach(button=>button.addEventListener("click",()=>setReaderTab(button.dataset.readerTab)));
+const originalLoadChapter = loadChapter;
+loadChapter = async function() {
+  await originalLoadChapter();
+  const book=books[Number(bookSelect.value)];
+  try {
+    const res=await fetch("biblia/pt/"+book[3]+"/"+chapterSelect.value+".json");
+    if(res.ok){const data=await res.json();loadedVerses=Array.isArray(data.verses)?data.verses:[];}
+    else loadedVerses=[];
+  } catch { loadedVerses=[]; }
+  localStorage.setItem("bibleLastBook",bookSelect.value);
+  localStorage.setItem("bibleLastChapter",chapterSelect.value);
+};
+const audioReadButton=$("audioRead");
+if(audioReadButton) audioReadButton.addEventListener("click",()=>{
+  if(!("speechSynthesis" in window)){status.textContent="A leitura em voz alta não é suportada neste navegador.";return;}
+  if(window.speechSynthesis.speaking){window.speechSynthesis.cancel();audioReadButton.textContent="▶ Ouvir capítulo";return;}
+  const text=[...content.querySelectorAll("p")].map(p=>p.innerText).join(" ");
+  if(!text.trim()){status.textContent="Carregue um capítulo antes de ouvir.";return;}
+  currentSpeech=new SpeechSynthesisUtterance(text);currentSpeech.lang="pt-BR";currentSpeech.rate=0.9;
+  currentSpeech.onend=()=>{audioReadButton.textContent="▶ Ouvir capítulo";};
+  audioReadButton.textContent="■ Parar áudio";window.speechSynthesis.speak(currentSpeech);
+});
+const audioShortcut=$("audioBibleShortcut");
+if(audioShortcut) audioShortcut.addEventListener("click",()=>{setReaderTab("read");setTimeout(()=>audioReadButton?.click(),500);});
+const lastBook=localStorage.getItem("bibleLastBook"),lastChapter=localStorage.getItem("bibleLastChapter");
+if(lastBook!==null && books[Number(lastBook)]) {bookSelect.value=lastBook;fillChapters();if(lastChapter)chapterSelect.value=lastChapter;}
