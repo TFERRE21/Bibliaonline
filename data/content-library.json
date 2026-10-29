@@ -1168,5 +1168,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-29"
+  },
+  {
+    "id": "guia-discernimento-e-verdade",
+    "topicKey": "discernimento-e-verdade",
+    "type": "atividade",
+    "title": "Atividade bíblica: Discernimento diante das informações",
+    "description": "Atividade prática com conversa e aplicação sobre discernimento diante das informações.",
+    "reference": "Atos 17:11; Provérbios 18:13",
+    "readingMinutes": 5,
+    "intro": "A sabedoria bíblica incentiva escuta atenta e exame cuidadoso. Compartilhar uma informação sem verificar pode causar dano; discernimento inclui conferir contexto e fontes confiáveis. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "Objetivo da atividade",
+        "body": "Objetivo: conversar sobre discernimento diante das informações a partir da referência Atos 17:11; Provérbios 18:13. Um adulto deve ler a passagem, explicar palavras difíceis e adaptar a proposta à idade e às necessidades de cada participante."
+      },
+      {
+        "heading": "Mãos à obra",
+        "body": "Materiais opcionais: papel, lápis e lápis de cor. Desenhe uma situação que represente o tema e escreva uma palavra que resuma o aprendizado. Não é necessário comprar materiais nem concluir tudo de uma vez."
+      },
+      {
+        "heading": "Converse sobre o que aprendeu",
+        "body": "A sabedoria bíblica incentiva escuta atenta e exame cuidadoso. Compartilhar uma informação sem verificar pode causar dano; discernimento inclui conferir contexto e fontes confiáveis. Pergunte o que a pessoa percebeu no texto, sem exigir uma resposta decorada. Valorize perguntas e permita que cada participante explique o desenho à sua maneira."
+      },
+      {
+        "heading": "Desafio para a semana",
+        "body": "Antes de repassar uma notícia, confira a origem, a data e se outras fontes confiáveis confirmam a informação. Combine uma ação simples e segura para praticar em casa ou na comunidade. A participação deve ser voluntária e respeitosa."
+      }
+    ],
+    "questions": [
+      "O que mais chamou sua atenção na passagem Atos 17:11; Provérbios 18:13?",
+      "Como você explicaria este aprendizado com suas próprias palavras?",
+      "Que atitude simples e segura pode praticar nesta semana?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-29"
   }
 ]
