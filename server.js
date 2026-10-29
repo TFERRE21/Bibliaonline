@@ -3,6 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.join(__dirname, 'public');
 const port = Number(process.env.PORT || 8080);
+const host = '0.0.0.0';
 const types = {'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.xml':'application/xml; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.txt':'text/plain; charset=utf-8'};
 http.createServer((req,res)=>{
   let pathname;
@@ -16,4 +17,4 @@ http.createServer((req,res)=>{
     res.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream','X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','X-Frame-Options':'SAMEORIGIN','Cache-Control':path.extname(file)==='.html'?'public, max-age=300':'public, max-age=86400'});
     res.end(body);
   } catch {res.writeHead(500);res.end('Erro interno');}
-}).listen(port,'127.0.0.1',()=>console.log('Bíblia Online ouvindo em 127.0.0.1:'+port));
+}).listen(port,host,()=>console.log('Bíblia Online ouvindo em '+host+':'+port));
