@@ -744,5 +744,37 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-29"
+  },
+  {
+    "id": "guia-ansiedade-e-cuidado",
+    "topicKey": "ansiedade-e-cuidado",
+    "type": "colorir",
+    "title": "Desenho para colorir: Preocupações e cuidado integral",
+    "description": "Atividade ilustrada para imprimir, colorir e conversar sobre preocupações e cuidado integral.",
+    "reference": "Filipenses 4:6–9; Salmo 46",
+    "readingMinutes": 5,
+    "intro": "A oração pode oferecer espaço para expressar preocupações e buscar paz, mas não substitui cuidados médicos, psicológicos ou ajuda prática quando necessários. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "Desenhe e pinte",
+        "body": "Use a ilustração em preto e branco para criar sua própria cena inspirada no tema preocupações e cuidado integral. Acrescente cores, paisagens e detalhes que ajudem a contar a ideia. A imagem é uma atividade artística original, não uma reprodução literal de uma cena bíblica."
+      },
+      {
+        "heading": "Leia, converse e lembre",
+        "body": "Referência para leitura: Filipenses 4:6–9; Salmo 46. A oração pode oferecer espaço para expressar preocupações e buscar paz, mas não substitui cuidados médicos, psicológicos ou ajuda prática quando necessários. Depois de colorir, conte com suas palavras o que aprendeu e faça uma pergunta sobre a passagem."
+      },
+      {
+        "heading": "Uma atitude para praticar",
+        "body": "Compartilhe uma preocupação com pessoa confiável, divida tarefas em etapas e procure apoio profissional se precisar. Se fizer a atividade em grupo, respeite as interpretações e os desenhos dos outros participantes."
+      }
+    ],
+    "questions": [
+      "O que mais chamou sua atenção na passagem Filipenses 4:6–9; Salmo 46?",
+      "Como você explicaria este aprendizado com suas próprias palavras?",
+      "Que atitude simples e segura pode praticar nesta semana?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-29"
   }
 ]
