@@ -36,7 +36,7 @@
             <a href="#ler"><span>▤</span>Bíblia<br>Completa</a>
             <a href="#estudos"><span>⌂</span>Estudos<br>Bíblicos</a>
             <a href="#esbocos"><span>▤</span>Esboços<br>e Sermões</a>
-            <a href="ferramentas.html"><span>♫</span>Áudio<br>Bíblia</a>
+            <a href="#ler" id="audioBibleShortcut"><span>♫</span>Áudio<br>Bíblia</a>
             <a href="#infantil"><span>♧</span>Conteúdo<br>Infantil</a>
             <a href="ferramentas.html"><span>⚒</span>Ferramentas<br>Práticas</a>
           </div>
@@ -48,13 +48,14 @@
     <section class="section container" id="ler">
       <div class="section-heading"><div><span class="eyebrow">EXPLORE A ESCRITURA</span><h2>Mais do que leitura,<br>um encontro com Deus.</h2><p>Encontre um livro, capítulo ou versículo para começar.</p></div><span class="section-symbol">✧</span></div>
       <div class="reader-panel">
-        <div class="reader-tabs" role="navigation" aria-label="Recursos bíblicos"><a class="active" href="#ler">▤ <span>Ler a Bíblia</span></a><a href="#buscaBiblica" id="advancedSearchTab">⌕ <span>Busca Avançada</span></a><a href="estudos.html">▦ <span>Planos de Leitura</span></a><a href="#versiculoDia">☼ <span>Versículo do Dia</span></a><a href="ferramentas.html">⇄ <span>Comparar Traduções</span></a></div><div class="reader-controls">
+        <div class="reader-tabs" role="tablist" aria-label="Recursos bíblicos"><button class="active" type="button" role="tab" aria-selected="true" data-reader-tab="read">▤ <span>Ler a Bíblia</span></button><button type="button" role="tab" aria-selected="false" data-reader-tab="search">⌕ <span>Busca Avançada</span></button><button type="button" role="tab" aria-selected="false" data-reader-tab="plans">▦ <span>Planos de Leitura</span></button><button type="button" role="tab" aria-selected="false" data-reader-tab="daily">☼ <span>Versículo do Dia</span></button><button type="button" role="tab" aria-selected="false" data-reader-tab="compare">⇄ <span>Comparar Traduções</span></button></div>
+        <section class="reader-feature-panel" id="readerFeaturePanel" hidden aria-live="polite"></section><div class="reader-controls">
           <label>Livro bíblico<select id="bookSelect" aria-label="Escolha um livro bíblico"></select></label>
           <label>Capítulo<select id="chapterSelect" aria-label="Escolha um capítulo"><option value="1">1</option></select></label>
           <label class="version-label">Versão bíblica<select id="versionSelect" aria-label="Versão bíblica"><option value="BPM">Bíblia Portuguesa Mundial (BPM)</option></select></label>
           <button class="btn btn-primary" id="readButton">▤ &nbsp; Ler Capítulo</button>
         </div>
-        <div class="reader-tools" id="buscaBiblica"><span id="readerStatus">Escolha um livro e capítulo para iniciar a leitura.</span><div class="font-tools" aria-label="Tamanho do texto"><button id="fontDown" aria-label="Diminuir letra">A−</button><button id="fontUp" aria-label="Aumentar letra">A+</button></div></div>
+        <div class="reader-tools" id="buscaBiblica"><span id="readerStatus">Escolha um livro e capítulo para iniciar a leitura.</span><div class="font-tools" aria-label="Tamanho do texto"><button id="audioRead" type="button">▶ Ouvir capítulo</button><button id="fontDown" aria-label="Diminuir letra">A−</button><button id="fontUp" aria-label="Aumentar letra">A+</button></div></div>
         <article id="chapterContent" class="chapter-content" aria-live="polite"><div class="reader-empty"><span>✦</span><h3>A Palavra está à sua espera</h3><p>Selecione um livro e capítulo para carregar o texto bíblico.</p></div></article>
         <p class="source-note">Versão disponível nesta instalação: Bíblia Portuguesa Mundial (BPM). Outras traduções só serão exibidas quando sua fonte e licença de uso estiverem confirmadas.</p>
       </div>
