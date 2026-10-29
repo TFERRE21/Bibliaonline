@@ -708,5 +708,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-29"
+  },
+  {
+    "id": "guia-familia-e-dialogo",
+    "topicKey": "familia-e-dialogo",
+    "type": "quadrinho",
+    "title": "Roteiro de quadrinhos: Diálogo e respeito na família",
+    "description": "Roteiro original de quatro quadros sobre diálogo e respeito na família.",
+    "reference": "Efésios 4:25–32; Colossenses 3:12–14",
+    "readingMinutes": 5,
+    "intro": "A comunicação respeitosa exige verdade, paciência e disposição para ouvir. Nenhum texto deve ser usado para justificar violência ou impedir alguém de procurar proteção. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "Quadro 1 — A pergunta",
+        "body": "Cena: uma pessoa pergunta como compreender diálogo e respeito na família. Narrador: “Vamos conferir o que a Bíblia realmente diz antes de tirar conclusões”. Leia Efésios 4:25–32; Colossenses 3:12–14."
+      },
+      {
+        "heading": "Quadro 2 — A leitura",
+        "body": "Cena: o grupo abre a Bíblia e lê a passagem completa. Narrador: “O contexto nos ajuda a perceber a ideia central”. A comunicação respeitosa exige verdade, paciência e disposição para ouvir. Nenhum texto deve ser usado para justificar violência ou impedir alguém de procurar proteção."
+      },
+      {
+        "heading": "Quadro 3 — A decisão",
+        "body": "Cena: o grupo conversa sobre uma atitude concreta. Personagem: “Qual é um passo respeitoso e possível?” Narrador: Pratique ouvir até o fim, falar sobre fatos sem insultos e combinar um momento tranquilo para conversar."
+      },
+      {
+        "heading": "Quadro 4 — A prática",
+        "body": "Cena: os personagens escolhem uma pequena ação e combinam conversar novamente. Mensagem final: estudar, perguntar e praticar com responsabilidade faz parte do aprendizado."
+      }
+    ],
+    "questions": [
+      "O que o contexto da passagem ensina sobre diálogo e respeito na família?",
+      "Que atitude concreta pode colocar esse aprendizado em prática?",
+      "Que dúvida ou ponto merece ser estudado com mais profundidade?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-29"
   }
 ]
