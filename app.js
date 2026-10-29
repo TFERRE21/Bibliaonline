@@ -10,7 +10,7 @@ function fillChapters() {
   for (let i=1;i<=book[1];i++) { const o=document.createElement("option"); o.value=String(i); o.textContent="Capítulo "+i; chapterSelect.append(o); }
 }
 books.forEach((book,i)=>{const o=document.createElement("option");o.value=String(i);o.textContent=book[0];bookSelect.append(o)});
-bookSelect.value="18"; fillChapters();
+bookSelect.value="0"; fillChapters();
 bookSelect.addEventListener("change",fillChapters);
 async function loadChapter() {
   const book=books[Number(bookSelect.value)], chapter=chapterSelect.value;
