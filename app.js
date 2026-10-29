@@ -21,12 +21,27 @@ async function loadChapter() {
   try {
     let verses=[], credit="";
     if(version==="BPM") {
-      const res=await fetch("biblia/pt/"+book[3]+"/"+chapter+".json");
-      if(!res.ok) throw new Error("O capítulo BPM ainda não está disponível no servidor.");
-      const data=await res.json();
-      if(!Array.isArray(data.verses)||!data.verses.length) throw new Error("O capítulo BPM está vazio.");
-      verses=data.verses.map(v=>({v:Number(v.v),t:String(v.t||"")}));
-      credit="Bíblia Portuguesa Mundial (BPM) — domínio público; tradução em revisão. Fonte: eBible.org.";
+      try {
+        const res=await fetch("biblia/pt/"+book[3]+"/"+chapter+".json");
+        if(!res.ok) throw new Error("Arquivo local indisponível");
+        const data=await res.json();
+        if(!Array.isArray(data.verses)||!data.verses.length) throw new Error("Arquivo local vazio");
+        verses=data.verses.map(v=>({v:Number(v.v),t:String(v.t||"")}));
+        credit="Bíblia Portuguesa Mundial (BPM) — domínio público; tradução em revisão. Fonte: eBible.org.";
+      } catch {
+        const cacheKey="bibleChapter:BPM:"+book[3]+":"+chapter;
+        let payload=null;
+        try { const cached=localStorage.getItem(cacheKey); if(cached) payload=JSON.parse(cached); } catch {}
+        if(!payload) {
+          const res=await fetch("https://api.midvash.com/v1/bpm/"+encodeURIComponent(book[3])+"/"+chapter);
+          if(!res.ok) throw new Error("Biblioteca local ausente e fonte BPM indisponível (HTTP "+res.status+").");
+          payload=await res.json();
+          if(!payload.data||!Array.isArray(payload.data.verses)) throw new Error("A fonte BPM devolveu um formato inesperado.");
+          try { localStorage.setItem(cacheKey,JSON.stringify(payload)); } catch {}
+        }
+        verses=payload.data.verses.map((v,i)=>({v:i+1,t:typeof v==="string"?v:String(v.text||v.t||"")}));
+        credit=(payload.meta&&payload.meta.copyright)||"Bíblia Portuguesa Mundial (BPM) — domínio público; tradução em revisão. Fonte: eBible.org.";
+      }
     } else {
       const slug=version==="ALM1911"?"alm1911":"almeida-livre";
       const url="https://api.midvash.com/v1/"+slug+"/"+encodeURIComponent(book[3])+"/"+chapter;
