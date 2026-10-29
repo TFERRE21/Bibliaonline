@@ -4,6 +4,7 @@
     const button = document.getElementById("audioRead");
     const status = document.getElementById("readerStatus");
     const content = document.getElementById("chapterContent");
+    const speedSelect = document.getElementById("audioSpeed");
     if (!button || !content || button.dataset.audioFallbackReady === "1") return;
     button.dataset.audioFallbackReady = "1";
 
@@ -12,6 +13,7 @@
     let verses = [];
     let index = 0;
     let observer = null;
+    let singleVerseMode = false;
 
     const setStatus = (message) => { if (status) status.textContent = message; };
     const setButton = (label) => { button.textContent = label; };
@@ -36,11 +38,11 @@
 
     function speakNext(token) {
       if (!playing || token !== runId) return;
-      if (index >= verses.length) { stop("Leitura em áudio concluída."); return; }
+      if (index >= verses.length) { stop(singleVerseMode ? "Versículo concluído." : "Leitura em áudio concluída."); return; }
       const item = verses[index++];
       const utterance = new SpeechSynthesisUtterance(item.text);
       utterance.lang = "pt-BR";
-      utterance.rate = 0.9;
+      utterance.rate = Number(speedSelect?.value || 0.9);
       const voices = window.speechSynthesis.getVoices();
       const voice = voices.find(v => /^pt[-_]BR$/i.test(v.lang)) || voices.find(v => /^pt[-_]/i.test(v.lang));
       if (voice) utterance.voice = voice;
@@ -96,11 +98,38 @@
       }
       if (playing || window.speechSynthesis.speaking) { stop(); return; }
       runId++;
+      singleVerseMode = false;
       playing = true;
       setButton("■ Parar áudio");
       setStatus("Preparando áudio…");
       startWhenReady(runId);
     }, true);
+
+
+    // Clicar no texto de um versículo lê somente aquele versículo.
+    content.addEventListener("click", (event) => {
+      if (event.target.closest(".verse-actions, .verse-action")) return;
+      const verseEl = event.target.closest(".bible-verse");
+      if (!verseEl) return;
+      if (!( "speechSynthesis" in window) || !( "SpeechSynthesisUtterance" in window)) {
+        setStatus("A leitura em voz alta não está disponível neste navegador.");
+        return;
+      }
+      const number = verseEl.querySelector(".verse-num")?.textContent?.trim();
+      const text = verseEl.querySelector(".verse-text")?.textContent?.trim();
+      if (!number || !text) return;
+      event.preventDefault();
+      runId++;
+      const token = runId;
+      playing = true;
+      singleVerseMode = true;
+      index = 0;
+      verses = [{number, text: "Versículo " + number + ". " + text}];
+      window.speechSynthesis.cancel();
+      setButton("■ Parar áudio");
+      setStatus("Lendo somente o versículo " + number + "…");
+      speakNext(token);
+    });
 
     setStatus(status?.textContent || "Selecione um capítulo para ouvir.");
   };
