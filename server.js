@@ -1,6 +1,7 @@
 const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
+const { spawn } = require('node:child_process');
 const root = path.join(__dirname, 'public');
 const port = Number(process.env.PORT || 8080);
 const host = '0.0.0.0';
@@ -17,4 +18,28 @@ http.createServer((req,res)=>{
     res.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream','X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','X-Frame-Options':'SAMEORIGIN','Cache-Control':path.extname(file)==='.html'?'public, max-age=300':'public, max-age=86400'});
     res.end(body);
   } catch {res.writeHead(500);res.end('Erro interno');}
-}).listen(port,host,()=>console.log('Bíblia Online ouvindo em '+host+':'+port));
+}).listen(port,host,()=>{
+  console.log('Bíblia Online ouvindo em '+host+':'+port);
+  // Importa o corpus bíblico em segundo plano para não atrasar a abertura do site.
+  // O importador preserva os capítulos já baixados e pode ser executado novamente.
+  const corpusRoot = path.join(root, 'biblia', 'pt');
+  const sourceFile = path.join(corpusRoot, 'source.json');
+  let needsImport = !fs.existsSync(sourceFile);
+  if (!needsImport) {
+    try {
+      const source = JSON.parse(fs.readFileSync(sourceFile, 'utf8'));
+      needsImport = Number(source.downloadedChapters) < Number(source.expectedChapters) ||
+        (Array.isArray(source.failedChapters) && source.failedChapters.length > 0);
+    } catch { needsImport = true; }
+  }
+  if (needsImport) {
+    console.log('[bible-import] Corpus ausente ou incompleto; iniciando importação em segundo plano.');
+    const importer = spawn(process.execPath, [path.join(__dirname, 'scripts', 'import-bible.js')], {
+      cwd: __dirname, stdio: 'inherit', env: process.env
+    });
+    importer.on('error', error => console.error('[bible-import] Não foi possível iniciar:', error.message));
+    importer.on('exit', code => console.log('[bible-import] Processo finalizado com código', code));
+  } else {
+    console.log('[bible-import] Corpus local completo:', sourceFile);
+  }
+});
