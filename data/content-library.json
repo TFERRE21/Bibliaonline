@@ -600,5 +600,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-29"
+  },
+  {
+    "id": "guia-servico-ao-proximo",
+    "topicKey": "servico-ao-proximo",
+    "type": "atividade",
+    "title": "Atividade bíblica: Servir ao próximo",
+    "description": "Atividade prática com conversa e aplicação sobre servir ao próximo.",
+    "reference": "Marcos 10:42–45; Gálatas 5:13",
+    "readingMinutes": 5,
+    "intro": "Jesus relaciona grandeza ao serviço e desafia o uso do poder para dominar. Servir significa respeitar a dignidade do outro, sem manipulação e sem abandonar limites saudáveis. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "Objetivo da atividade",
+        "body": "Objetivo: conversar sobre servir ao próximo a partir da referência Marcos 10:42–45; Gálatas 5:13. Um adulto deve ler a passagem, explicar palavras difíceis e adaptar a proposta à idade e às necessidades de cada participante."
+      },
+      {
+        "heading": "Mãos à obra",
+        "body": "Materiais opcionais: papel, lápis e lápis de cor. Desenhe uma situação que represente o tema e escreva uma palavra que resuma o aprendizado. Não é necessário comprar materiais nem concluir tudo de uma vez."
+      },
+      {
+        "heading": "Converse sobre o que aprendeu",
+        "body": "Jesus relaciona grandeza ao serviço e desafia o uso do poder para dominar. Servir significa respeitar a dignidade do outro, sem manipulação e sem abandonar limites saudáveis. Pergunte o que a pessoa percebeu no texto, sem exigir uma resposta decorada. Valorize perguntas e permita que cada participante explique o desenho à sua maneira."
+      },
+      {
+        "heading": "Desafio para a semana",
+        "body": "Escolha uma ação útil que respeite a necessidade real da pessoa: oferecer escuta, compartilhar uma tarefa ou apoiar uma iniciativa comunitária. Combine uma ação simples e segura para praticar em casa ou na comunidade. A participação deve ser voluntária e respeitosa."
+      }
+    ],
+    "questions": [
+      "O que mais chamou sua atenção na passagem Marcos 10:42–45; Gálatas 5:13?",
+      "Como você explicaria este aprendizado com suas próprias palavras?",
+      "Que atitude simples e segura pode praticar nesta semana?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-29"
   }
 ]
