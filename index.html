@@ -3,49 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#173d32">
+  <meta name="theme-color" content="#102b45">
   <meta name="description" content="Leia a Bíblia online, pesquise capítulos e versículos, encontre estudos bíblicos, esboços, devocionais e histórias bíblicas para crianças.">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="https://bibliaonline.vps11710.panel.icontainer.work/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
-  <title>Bíblia Online — Palavra, estudo e fé</title>
+  <title>Bíblia Online — Palavra que Transforma</title>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"WebSite","name":"Bíblia Online","url":"https://bibliaonline.vps11710.panel.icontainer.work/","inLanguage":"pt-BR","description":"Leitura bíblica, estudos, esboços e histórias bíblicas."}
   </script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="./" aria-label="Bíblia Online - início"><span class="brand-mark" aria-hidden="true">✦</span><span>Bíblia<span class="brand-light">Online</span><small>PALAVRA · ESTUDO · VIDA</small></span></a>
-      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mainNav">☰ <span class="sr-only">Abrir menu</span></button>
-      <nav id="mainNav" class="main-nav" aria-label="Navegação principal">
-        <a href="#ler">Ler a Bíblia</a><a href="#estudos">Estudos</a><a href="#esbocos">Esboços</a><a href="pregacoes.html">Pregações</a><a href="devocionais.html">Devocionais</a><a href="#infantil">Infantil</a><a href="conteudo/">Biblioteca</a><a href="ferramentas.html">Ferramentas</a>
-      </nav>
-      <button class="search-toggle" id="searchToggle" aria-label="Ir para busca bíblica">⌕</button><button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">☾</button><a class="my-bible" href="#ler">♡ <span>Minha Bíblia</span></a>
-    </div>
-  </header>
+  <header class="site-header"><div class="container header-inner"><a class="brand" href="./" aria-label="Bíblia Online - início"><span class="brand-mark" aria-hidden="true">📖</span><span>Bíblia Online<small>PALAVRA QUE TRANSFORMA</small></span></a><form class="top-search" id="topBibleSearch"><input id="topSearchInput" type="search" placeholder="Buscar na Bíblia..." aria-label="Buscar na Bíblia"><button type="submit" aria-label="Pesquisar">⌕</button></form><button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mainNav">☰ <span class="sr-only">Abrir menu</span></button><nav id="mainNav" class="main-nav" aria-label="Navegação principal"><a href="devocionais.html">♧ Devocionais</a><a href="pregacoes.html">♙ Pregações</a><a href="esbocos.html">▤ Esboços</a><a href="#planos">☑ Planos de Leitura</a><a href="#recursos">Mais⌄</a></nav><button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">☾</button></div></header>
   <main id="conteudo">
-    <section class="hero hero-photo">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <h1>A Palavra de Deus<br><em>ao seu alcance.</em></h1>
-          <p>Leia, estude e aprofunde sua fé com uma Bíblia completa, recursos de estudo e ferramentas para o seu dia a dia.</p>
-          <div class="hero-shortcuts">
-            <a href="#ler"><span>▤</span>Bíblia<br>Completa</a>
-            <a href="#estudos"><span>⌂</span>Estudos<br>Bíblicos</a>
-            <a href="#esbocos"><span>▤</span>Esboços<br>e Sermões</a>
-            <a href="#ler" id="audioBibleShortcut"><span>♫</span>Áudio<br>Bíblia</a>
-            <a href="#infantil"><span>♧</span>Conteúdo<br>Infantil</a>
-            <a href="ferramentas.html"><span>⚒</span>Ferramentas<br>Práticas</a>
-          </div>
-        </div>
-        <aside class="hero-verse" id="versiculoDia"><blockquote>“Lâmpada para os meus pés é tua palavra e luz para o meu caminho.”</blockquote><strong>Salmos 119:105</strong></aside>
-      </div>
-    </section>
-    <section class="ad-slot container" aria-label="Espaço reservado para publicidade"><span>PUBLICIDADE</span><div>Espaço reservado para anúncio</div></section>
-    <section class="section container" id="ler">
+    <section class="hero hero-photo"><div class="container hero-grid"><div class="hero-copy"><h1>A Palavra de <em>Deus</em><br>para o seu <em>dia</em></h1><p>Leia, ouça, estude e compartilhe a Bíblia Online.</p><div class="hero-actions"><a class="btn btn-primary" href="#ler">▣ Começar a Ler</a><a class="btn btn-ghost" href="#ler" id="heroListen">▷ Ouvir Bíblia</a></div></div><aside class="hero-verse" id="versiculoDia"><blockquote>“Lâmpada para os meus pés é a tua palavra, e luz para o meu caminho.”</blockquote><strong>Salmo 119:105</strong></aside></div></section>
+    <div class="reader-dashboard"><aside class="book-sidebar" aria-label="Livros da Bíblia"><h2>Livros da Bíblia</h2><div class="testament-switch"><button type="button" class="active" data-testament="old">Antigo Testamento</button><button type="button" data-testament="new">Novo Testamento</button></div><div class="sidebar-book-list" id="sidebarBookList"></div></aside><section class="section container" id="ler">
       <div class="section-heading"><div><span class="eyebrow">EXPLORE A ESCRITURA</span><h2>Mais do que leitura,<br>um encontro com Deus.</h2><p>Encontre um livro, capítulo ou versículo para começar.</p></div><span class="section-symbol">✧</span></div>
       <div class="reader-panel">
         <div class="reader-tabs" role="tablist" aria-label="Recursos bíblicos"><button class="active" type="button" role="tab" aria-selected="true" data-reader-tab="read">▤ <span>Ler a Bíblia</span></button><button type="button" role="tab" aria-selected="false" data-reader-tab="search">⌕ <span>Busca Avançada</span></button><button type="button" role="tab" aria-selected="false" data-reader-tab="plans">▦ <span>Planos de Leitura</span></button><button type="button" role="tab" aria-selected="false" data-reader-tab="daily">☼ <span>Versículo do Dia</span></button><button type="button" role="tab" aria-selected="false" data-reader-tab="compare">⇄ <span>Comparar Traduções</span></button></div>
@@ -69,7 +43,7 @@
         <p class="source-note">BPM: domínio público, rascunho em revisão, fonte eBible.org. Almeida 1911: domínio público. Bíblia Livre (Almeida 1819): licença de uso livre; crédito e termos exibidos junto ao texto.</p>
       </div>
     </section>
-    <section class="section container resources-section" id="recursos"><div class="section-heading"><div><span class="eyebrow">EXPLORE A ESCRITURA</span><h2>Mais do que leitura,<br>um encontro com Deus.</h2><p>A Bíblia é viva, eficaz e transforma vidas. Explore diferentes formas de estudo, descubra planos de leitura e encontre conteúdos que edificam sua jornada de fé.</p></div><a class="section-link" href="ferramentas.html">Ver todos os recursos ↗</a></div><div class="feature-grid resource-grid">
+    <aside class="reader-sidebar-right"><div class="audio-card"><h3>Ouvir este capítulo</h3><div class="audio-main"><button type="button" id="rightAudioPlay" aria-label="Ouvir capítulo">▶</button><span>Ouça a Palavra enquanto acompanha a leitura</span></div><div class="audio-speed-quick"><span>Velocidade:</span><button data-speed="0.75">0.75x</button><button class="active" data-speed="1">1x</button><button data-speed="1.25">1.25x</button><button data-speed="1.5">1.5x</button><button data-speed="2">2x</button></div></div><div class="quick-links"><a href="devocionais.html"><span class="quick-icon purple">▣</span><span><strong>Devocionais Diários</strong><small>Mensagem de fé para o seu dia</small></span><b>›</b></a><a href="pregacoes.html"><span class="quick-icon orange">♩</span><span><strong>Pregações</strong><small>Sermões e ministrações para edificar</small></span><b>›</b></a><a href="esbocos.html"><span class="quick-icon amber">▤</span><span><strong>Esboços de Pregação</strong><small>Estruturas prontas para ministrar</small></span><b>›</b></a><a href="#planos"><span class="quick-icon green">▦</span><span><strong>Planos de Leitura</strong><small>Leia a Bíblia em 30, 90 ou 365 dias</small></span><b>›</b></a><a href="mensagens.html"><span class="quick-icon blue">♫</span><span><strong>Louvores e Adoração</strong><small>Mensagens e recursos para adoração</small></span><b>›</b></a></div></aside></div><section class="section container resources-section" id="recursos"><div class="section-heading"><div><span class="eyebrow">EXPLORE A ESCRITURA</span><h2>Mais do que leitura,<br>um encontro com Deus.</h2><p>A Bíblia é viva, eficaz e transforma vidas. Explore diferentes formas de estudo, descubra planos de leitura e encontre conteúdos que edificam sua jornada de fé.</p></div><a class="section-link" href="ferramentas.html">Ver todos os recursos ↗</a></div><div class="feature-grid resource-grid">
       <a class="feature-card" href="#ler"><span class="feature-icon">▤</span><h3>Bíblia Completa</h3><p>Leia todos os livros e capítulos da Bíblia em diferentes versões disponíveis.</p><span class="card-arrow">Começar a ler ↗</span></a>
       <a class="feature-card" href="estudos.html"><span class="feature-icon">⌂</span><h3>Estudos Bíblicos</h3><p>Comentários, estudos temáticos e reflexões para crescer na fé.</p><span class="card-arrow">Explorar estudos ↗</span></a>
       <a class="feature-card" href="esbocos.html"><span class="feature-icon">▧</span><h3>Esboços e Sermões</h3><p>Esboços prontos para estudos e mensagens fundamentadas na Bíblia.</p><span class="card-arrow">Ver esboços ↗</span></a>
@@ -94,10 +68,10 @@
       </div>
     </section>
     <section class="kids-section" id="infantil"><div class="container kids-grid"><div><span class="eyebrow">PEQUENOS CORAÇÕES, GRANDES DESCOBERTAS</span><h2>A Bíblia também<br><em>é para os pequenos.</em></h2><p>Histórias, atividades e desenhos para ajudar as crianças a conhecer as narrativas bíblicas de maneira acolhedora e educativa.</p><a class="btn btn-light" href="infantil.html">Conhecer a área infantil ↗</a></div><div class="kids-art" aria-hidden="true"><div class="sun"></div><div class="hill hill-one"></div><div class="hill hill-two"></div><div class="storybook"><span>✦</span><strong>HISTÓRIAS<br>DA BÍBLIA</strong><small>APRENDER • COLORIR • DESCOBRIR</small></div></div></div></section>
-    <section class="section container"><div class="newsletter-panel"><div><span class="eyebrow">UM MOMENTO COM DEUS</span><h2>Reserve um tempo para a Palavra.</h2><p>Comece hoje com um capítulo, uma reflexão e uma oração.</p></div><a class="btn btn-primary" href="#ler">Ler agora ↗</a></div></section>
+    <section class="section container" id="planos"><div class="newsletter-panel"><div><span class="eyebrow">UM MOMENTO COM DEUS</span><h2>Reserve um tempo para a Palavra.</h2><p>Comece hoje com um capítulo, uma reflexão e uma oração.</p></div><a class="btn btn-primary" href="#ler">Ler agora ↗</a></div></section>
   </main>
   <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="./"><span class="brand-mark">✦</span><span>Bíblia<span class="brand-light">Online</span><small>PALAVRA • ESTUDO • FÉ</small></span></a><p>Um espaço digital para leitura, aprendizado e reflexão bíblica.</p></div><div><strong>Explorar</strong><a href="#ler">Ler a Bíblia</a><a href="estudos.html">Estudos bíblicos</a><a href="esbocos.html">Esboços</a><a href="pregacoes.html">Pregações</a><a href="mensagens.html">Mensagens</a><a href="devocionais.html">Devocionais</a><a href="infantil.html">Área infantil</a><a href="ferramentas.html">Ferramentas bíblicas</a><a href="conteudo/">Biblioteca completa</a></div><div><strong>Informações</strong><a href="sobre.html">Sobre o projeto</a><a href="privacidade.html">Privacidade</a><a href="termos.html">Termos de uso</a><a href="contato.html">Contato</a></div></div><div class="container footer-bottom"><span>© <span id="year"></span> Bíblia Online. Conteúdo sujeito a direitos autorais.</span><span>Feito para apoiar a leitura e o estudo bíblico.</span></div></footer>
-  <script src="app.js?v=audio-speed-verse-20261029" defer></script>
+  <script src="app.js?v=faithful-layout-20261029" defer></script><script src="layout-home.js?v=faithful-layout-20261029" defer></script>
   <script src="audio-fallback.js?v=audio-speed-verse-20261029" defer></script>
 </body>
 </html>
