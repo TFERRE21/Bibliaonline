@@ -848,5 +848,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-29"
+  },
+  {
+    "id": "guia-esperanca-e-paciencia",
+    "topicKey": "esperanca-e-paciencia",
+    "type": "esboco",
+    "title": "Esboço: Esperança e paciência",
+    "description": "Esboço para ensino e reflexão sobre esperança e paciência.",
+    "reference": "Romanos 12:12; Salmo 27:13–14",
+    "readingMinutes": 8,
+    "intro": "A esperança bíblica não apaga a realidade da espera nem oferece uma data garantida para a solução dos problemas. Ela pode sustentar perseverança e solidariedade durante processos longos. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "Tema e texto-base",
+        "body": "Tema: Esperança e paciência. Texto-base: Romanos 12:12; Salmo 27:13–14. Leia cada referência por inteiro e explique à congregação o contexto antes de apresentar aplicações. A ideia central deve nascer do texto, não ser imposta a ele."
+      },
+      {
+        "heading": "Ponto 1 — Compreender a Palavra",
+        "body": "A esperança bíblica não apaga a realidade da espera nem oferece uma data garantida para a solução dos problemas. Ela pode sustentar perseverança e solidariedade durante processos longos. Desenvolva este ponto mostrando o que a passagem diz, a quem se dirige e como se conecta ao argumento do livro bíblico. Use exemplos claros sem apresentar interpretações pessoais como se fossem citações bíblicas."
+      },
+      {
+        "heading": "Ponto 2 — Viver o ensinamento",
+        "body": "Defina um próximo passo possível e identifique quem pode caminhar ao seu lado enquanto você espera. Convide o público a pensar em atitudes concretas. Reconheça que as circunstâncias variam e evite culpar pessoas por situações que exigem proteção, assistência ou apoio especializado."
+      },
+      {
+        "heading": "Conclusão e perguntas",
+        "body": "Retome a ideia central em uma frase, proponha uma ação prática e abra espaço para perguntas. Confirme todas as referências antes de ensinar e adapte o tempo ao público."
+      }
+    ],
+    "questions": [
+      "O que o contexto da passagem ensina sobre esperança e paciência?",
+      "Que atitude concreta pode colocar esse aprendizado em prática?",
+      "Que dúvida ou ponto merece ser estudado com mais profundidade?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-29"
   }
 ]
