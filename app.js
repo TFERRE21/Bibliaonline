@@ -178,7 +178,7 @@ function setReaderTab(name) {
       $("openDailyVerse").addEventListener("click",()=>{bookSelect.value=String(bookIdx);fillChapters();chapterSelect.value=String(chapter);setReaderTab("read");loadChapter();});
     }).catch(()=>{$("dailyVerseText").textContent="O versículo do dia aparecerá assim que a biblioteca bíblica local estiver importada."; $("openDailyVerse").disabled=true;});
   } else if (name === "compare") {
-    featurePanel.innerHTML = '<h3>Comparar traduções</h3><p>Esta instalação possui a Bíblia Portuguesa Mundial (BPM) configurada. Para não misturar textos ou atribuir traduções incorretas, a comparação ficará disponível quando outra versão com fonte e licença confirmadas for instalada.</p><p><strong>Versão atual:</strong> Bíblia Portuguesa Mundial (BPM), em revisão.</p><a href="https://ebible.org/porbrbsl/copyright.htm" target="_blank" rel="noopener noreferrer">Consultar fonte e licença da BPM ↗</a>';
+    featurePanel.innerHTML = '<h3>Comparar traduções</h3><p>Agora há três versões disponíveis no leitor: Bíblia Portuguesa Mundial (BPM), Almeida 1911 (domínio público) e Bíblia Livre — Almeida 1819 (uso livre). Selecione uma versão no painel e carregue o capítulo para ler. A comparação lado a lado ficará para a próxima etapa.</p><a href="https://ebible.org/porbrbsl/copyright.htm" target="_blank" rel="noopener noreferrer">Consultar fonte e licença da BPM ↗</a>';
   }
 }
 readerTabButtons.forEach(button=>button.addEventListener("click",()=>setReaderTab(button.dataset.readerTab)));
