@@ -195,39 +195,86 @@ readerTabButtons.forEach(button=>button.addEventListener("click",()=>setReaderTa
 const audioReadButton=$("audioRead");
 let speechQueue=[];
 let speechBusy=false;
+let speechRunId=0;
 function stopBibleAudio(){
+  speechRunId++;
   if("speechSynthesis" in window) window.speechSynthesis.cancel();
   speechQueue=[];speechBusy=false;
   if(audioReadButton) audioReadButton.textContent="▶ Ouvir capítulo";
 }
-function speakNextChunk(){
-  if(!speechQueue.length){speechBusy=false;if(audioReadButton)audioReadButton.textContent="▶ Ouvir capítulo";return;}
+function speakNextChunk(runId){
+  if(runId!==speechRunId || !speechBusy) return;
+  if(!speechQueue.length){
+    speechBusy=false;
+    if(audioReadButton) audioReadButton.textContent="▶ Ouvir capítulo";
+    status.textContent="Leitura em áudio concluída.";
+    return;
+  }
   const chunk=speechQueue.shift();
   const utterance=new SpeechSynthesisUtterance(chunk);
   utterance.lang="pt-BR";utterance.rate=0.88;utterance.pitch=1;
   const voices=window.speechSynthesis.getVoices();
-  const voice=voices.find(v=>/^pt-BR$/i.test(v.lang))||voices.find(v=>/^pt/i.test(v.lang));
+  const voice=voices.find(v=>/^pt-BR$/i.test(v.lang))||voices.find(v=>/^pt[-_]/i.test(v.lang));
   if(voice) utterance.voice=voice;
-  utterance.onend=()=>{if(speechBusy)speakNextChunk();};
-  utterance.onerror=()=>{speechBusy=false;if(audioReadButton)audioReadButton.textContent="▶ Ouvir capítulo";status.textContent="O navegador interrompeu a leitura em voz alta. Tente novamente.";};
-  window.speechSynthesis.speak(utterance);
+  utterance.onend=()=>{if(runId===speechRunId && speechBusy)speakNextChunk(runId);};
+  utterance.onerror=(event)=>{
+    if(runId!==speechRunId)return;
+    speechBusy=false;
+    if(audioReadButton)audioReadButton.textContent="▶ Ouvir capítulo";
+    status.textContent=(event && event.error==="not-allowed")
+      ?"O navegador bloqueou o áudio. Clique em “Ouvir capítulo” novamente após carregar a leitura."
+      :"A leitura em voz alta foi interrompida. Verifique o volume e as vozes de português instaladas no navegador e tente novamente.";
+  };
+  try{
+    window.speechSynthesis.resume();
+    window.speechSynthesis.speak(utterance);
+  }catch(error){
+    speechBusy=false;
+    if(audioReadButton)audioReadButton.textContent="▶ Ouvir capítulo";
+    status.textContent="Não foi possível iniciar o áudio neste navegador.";
+  }
+}
+function splitSpeechText(text,maxLength=260){
+  const sentences=String(text).match(/[^.!?]+[.!?]*/g)||[String(text)];
+  const chunks=[];let current="";
+  sentences.forEach(sentence=>{
+    const part=sentence.trim();
+    if(!part)return;
+    if((current+" "+part).trim().length>maxLength && current){chunks.push(current.trim());current="";}
+    if(part.length>maxLength){
+      for(let i=0;i<part.length;i+=maxLength){
+        const slice=part.slice(i,i+maxLength).trim();
+        if(slice)chunks.push(slice);
+      }
+    }else current+=(current?" ":"")+part;
+  });
+  if(current.trim())chunks.push(current.trim());
+  return chunks;
 }
 async function playBibleAudio(){
-  if(!("speechSynthesis" in window)||!("SpeechSynthesisUtterance" in window)){status.textContent="Este navegador não oferece leitura em voz alta. Tente Chrome ou Edge atualizado.";return;}
+  if(!("speechSynthesis" in window)||!("SpeechSynthesisUtterance" in window)){
+    status.textContent="Este navegador não oferece leitura em voz alta. Abra o site no Chrome ou Edge atualizado.";
+    return;
+  }
   if(window.speechSynthesis.speaking||speechBusy){stopBibleAudio();return;}
-  if(!loadedVerses.length){await loadChapter();if(!loadedVerses.length){status.textContent="O áudio depende de o capítulo ter sido carregado com sucesso.";return;}}
-  const chunks=[];let current="";
-  loadedVerses.forEach(v=>{
-    const sentence="Versículo "+v.v+". "+v.t+". ";
-    if((current+sentence).length>900&&current){chunks.push(current);current="";}
-    current+=sentence;
-  });
-  if(current)chunks.push(current);
-  if(!chunks.length){status.textContent="Não há texto disponível para ouvir.";return;}
-  speechQueue=chunks;speechBusy=true;audioReadButton.textContent="■ Parar áudio";
+  if(!loadedVerses.length){
+    status.textContent="Carregando o capítulo antes de iniciar o áudio…";
+    await loadChapter();
+    if(!loadedVerses.length){
+      status.textContent="O áudio não iniciou porque o capítulo não foi carregado. Corrija a leitura e tente novamente.";
+      return;
+    }
+  }
+  const text=loadedVerses.map(v=>"Versículo "+v.v+". "+String(v.t||"")).join(" ");
+  speechQueue=splitSpeechText(text);
+  if(!speechQueue.length){status.textContent="Não há texto disponível para ouvir.";return;}
+  speechBusy=true;
+  const runId=++speechRunId;
+  audioReadButton.textContent="■ Parar áudio";
+  status.textContent="Reproduzindo leitura em voz alta…";
   window.speechSynthesis.cancel();
-  // Deixa o cancelamento terminar antes de enfileirar a primeira fala.
-  setTimeout(()=>{if(speechBusy)speakNextChunk();},120);
+  // Aguardar o cancelamento anterior sem enviar o capítulo inteiro como uma única fala.
+  window.setTimeout(()=>speakNextChunk(runId),150);
 }
 if(audioReadButton) audioReadButton.addEventListener("click",playBibleAudio);
 const audioShortcut=$("audioBibleShortcut");
@@ -235,7 +282,10 @@ if(audioShortcut) audioShortcut.addEventListener("click",async()=>{
   setReaderTab("read");
   $("ler").scrollIntoView({behavior:"smooth",block:"start"});
   if(!loadedVerses.length) await loadChapter();
-  if(loadedVerses.length) playBibleAudio();
+  if(loadedVerses.length){
+    status.textContent="Capítulo carregado. Toque em “Ouvir capítulo” para iniciar a leitura falada.";
+    audioReadButton.focus({preventScroll:true});
+  }
 });
 const lastBook=localStorage.getItem("bibleLastBook"),lastChapter=localStorage.getItem("bibleLastChapter"),lastVersion=localStorage.getItem("bibleLastVersion");
 if(lastVersion && $("versionSelect")) {
