@@ -51,7 +51,8 @@
     window.speechSynthesis.speak(utterance);
   }
 
-  button.addEventListener("click", () => {
+  button.addEventListener("click", (event) => {
+    event.stopImmediatePropagation();
     if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
       if (status) status.textContent = "Este navegador não oferece leitura em voz alta. Use o Chrome ou Edge atualizado.";
       return;
