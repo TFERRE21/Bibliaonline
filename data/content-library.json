@@ -1060,5 +1060,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-29"
+  },
+  {
+    "id": "guia-fe-e-atitudes",
+    "topicKey": "fé-e-atitudes",
+    "type": "estudo",
+    "title": "Estudo bíblico: Fé demonstrada em atitudes",
+    "description": "Estudo bíblico guiado com contexto e aplicação sobre fé demonstrada em atitudes.",
+    "reference": "Tiago 2:14–18; Mateus 7:24–27",
+    "readingMinutes": 5,
+    "intro": "Tiago relaciona fé e obras ao cuidado concreto, enquanto Jesus compara ouvir e praticar a construir sobre fundamento firme. A prática não é exibicionismo, mas coerência. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "1. Contexto da passagem",
+        "body": "Tiago relaciona fé e obras ao cuidado concreto, enquanto Jesus compara ouvir e praticar a construir sobre fundamento firme. A prática não é exibicionismo, mas coerência. Leia as referências completas na sua Bíblia. Observe quem participa da cena, o que acontece antes e depois e qual era a situação original. Anote o que o texto diz explicitamente, sem confundir observação com opinião."
+      },
+      {
+        "heading": "2. Ideia central e interpretação",
+        "body": "Ao estudar fé demonstrada em atitudes, compare as passagens indicadas e procure o tema que elas realmente compartilham. Considere o gênero literário e o contexto histórico. Evite transformar uma frase isolada em promessa universal ou regra que o texto não apresenta."
+      },
+      {
+        "heading": "3. Aplicação responsável",
+        "body": "Transforme uma convicção em ação observável e avalie com humildade se ela realmente ajudou alguém. Escreva uma aplicação específica, realista e segura para esta semana. Explique como ela se relaciona com o texto e quais limites precisam ser respeitados."
+      },
+      {
+        "heading": "4. Revisão pessoal",
+        "body": "Resuma em duas ou três frases o que aprendeu, o que ainda não compreendeu e qual fonte confiável pode ajudar no aprofundamento. Uma boa interpretação permanece aberta a perguntas e à correção."
+      }
+    ],
+    "questions": [
+      "O que o contexto da passagem ensina sobre fé demonstrada em atitudes?",
+      "Que atitude concreta pode colocar esse aprendizado em prática?",
+      "Que dúvida ou ponto merece ser estudado com mais profundidade?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-29"
   }
 ]
