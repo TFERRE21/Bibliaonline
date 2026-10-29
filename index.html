@@ -52,7 +52,43 @@
         <section class="reader-feature-panel" id="readerFeaturePanel" hidden aria-live="polite"></section><div class="reader-controls">
           <label>Livro bíblico<select id="bookSelect" aria-label="Escolha um livro bíblico"></select></label>
           <label>Capítulo<select id="chapterSelect" aria-label="Escolha um capítulo"><option value="1">1</option></select></label>
-          <label class="version-label">Versão bíblica<select id="versionSelect" aria-label="Versão bíblica"><option value="BPM">Bíblia Portuguesa Mundial (BPM)</option><option value="ALM1911">Almeida 1911 (domínio público)</option><option value="ALMEIDA_LIVRE">Bíblia Livre — Almeida 1819</option></select></label>
+          <label class="version-label">Versão bíblica<select id="versionSelect" aria-label="Versão bíblica">
+            <optgroup label="Disponíveis para leitura">
+              <option value="BPM">Bíblia Portuguesa Mundial (BPM)</option>
+              <option value="ALM1911">Almeida 1911 (domínio público)</option>
+              <option value="ALMEIDA_LIVRE">Bíblia Livre — Almeida 1819</option>
+              <option value="NVA">Bíblia Nova Versão de Acesso Livre (NVA)</option>
+              <option value="ONBV">Open Nova Bíblia Viva (ONBV)</option>
+              <option value="BLPT">Bíblia Livre Para Todos (Novo Testamento)</option>
+              <option value="TFT">Tradução para Tradutores (Novo Testamento)</option>
+            </optgroup>
+            <optgroup label="Traduções com direitos reservados — requerem autorização">
+              <option value="acf" disabled>Almeida Corrigida Fiel (ACF) — indisponível sem licença</option>
+              <option value="ara" disabled>Almeida Revista e Atualizada (ARA) — indisponível sem licença</option>
+              <option value="arc" disabled>Almeida Revista e Corrigida (ARC) — indisponível sem licença</option>
+              <option value="rc69" disabled>Almeida Revista e Corrigida 1969 (RC69) — indisponível sem licença</option>
+              <option value="a21" disabled>Almeida Século 21 (A21) — indisponível sem licença</option>
+              <option value="blt" disabled>Bíblia Livre Para Todos (BLT) — indisponível sem licença</option>
+              <option value="bpt09" disabled>Bíblia para Todos (BPT09) — indisponível sem licença</option>
+              <option value="avm" disabled>Bíblia Sagrada Ave-Maria — indisponível sem licença</option>
+              <option value="vfl" disabled>Bíblia Sagrada: Versão Fácil de Ler (VFL) — indisponível sem licença</option>
+              <option value="pastoral" disabled>Edição Pastoral — indisponível sem licença</option>
+              <option value="kja" disabled>King James Atualizada (KJA) — indisponível sem licença</option>
+              <option value="bkj" disabled>King James Fiel (BKJ) — indisponível sem licença</option>
+              <option value="naa" disabled>Nova Almeida Atualizada (NAA) — indisponível sem licença</option>
+              <option value="nbv" disabled>Nova Bíblia Viva 2007 (NBV) — indisponível sem licença</option>
+              <option value="nbvp" disabled>Nova Bíblia Viva Português (NBVP) — indisponível sem licença</option>
+              <option value="ntlh" disabled>Nova Tradução na Linguagem de Hoje (NTLH) — indisponível sem licença</option>
+              <option value="ntlhce" disabled>Nova Tradução na Linguagem de Hoje — Edição Católica — indisponível sem licença</option>
+              <option value="nvi" disabled>Nova Versão Internacional (NVI) — indisponível sem licença</option>
+              <option value="nvi2011" disabled>Nova Versão Internacional 2011 (NVI 2011) — indisponível sem licença</option>
+              <option value="mznvi" disabled>Nova Versão Internacional — Português de Moçambique — indisponível sem licença</option>
+              <option value="nvt" disabled>Nova Versão Transformadora (NVT) — indisponível sem licença</option>
+              <option value="ol" disabled>O Livro (OL) — indisponível sem licença</option>
+              <option value="tb" disabled>Tradução Brasileira (TB) — indisponível sem licença</option>
+              <option value="matos" disabled>Tradução do Pe. Matos Soares — indisponível sem licença</option>
+            </optgroup>
+          </select></label>
           <button class="btn btn-primary" id="readButton">▤ &nbsp; Ler Capítulo</button>
         </div>
         <div class="reader-tools" id="buscaBiblica"><span id="readerStatus">Escolha um livro e capítulo para iniciar a leitura.</span><div class="font-tools" aria-label="Tamanho do texto"><button id="audioRead" type="button">▶ Ouvir capítulo</button><button id="fontDown" aria-label="Diminuir letra">A−</button><button id="fontUp" aria-label="Aumentar letra">A+</button></div></div>
