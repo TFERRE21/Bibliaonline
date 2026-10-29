@@ -26,3 +26,41 @@ body.dark .reader-tabs a,body.dark .reader-controls label{color:#d3e0d5}body.dar
 @media(max-width:1000px){.brand{min-width:auto}.main-nav{gap:12px}.main-nav a{font-size:11px}.feature-grid{grid-template-columns:repeat(3,1fr)}.testament-card{grid-template-columns:40px 95px 1fr}.hero-shortcuts{gap:14px}}
 @media(max-width:700px){.site-header{height:66px}.header-inner{gap:9px}.brand{font-size:18px}.brand-mark{width:36px;height:36px}.brand small{font-size:7px}.menu-toggle{display:block;margin-left:auto}.main-nav{display:none;position:absolute;top:65px;left:0;right:0;background:white;padding:18px 22px;box-shadow:0 15px 20px #122d2010;flex-direction:column;align-items:flex-start;gap:18px}.main-nav.open{display:flex}.search-toggle{display:none}.my-bible{padding:10px 11px;font-size:0}.my-bible span{display:none}.hero-photo{background-position:58% center}.hero-photo .hero-grid{grid-template-columns:1fr;gap:22px;padding-top:44px;padding-bottom:165px;min-height:520px}.hero-photo h1{font-size:43px}.hero-photo .hero-copy>p{font-size:14px}.hero-shortcuts{gap:9px;justify-content:space-between;flex-wrap:wrap}.hero-shortcuts a{min-width:52px;font-size:9px}.hero-shortcuts a span{width:39px;height:39px;font-size:18px}.hero-verse{display:none}#ler.section{margin-top:-135px;padding-bottom:35px}.reader-panel{padding:12px;border-radius:10px}.reader-tabs{gap:16px}.reader-tabs a{font-size:11px}.reader-controls{grid-template-columns:1fr 1fr;display:grid}.reader-controls label:first-child{grid-column:1/-1}.reader-controls .btn-primary{grid-column:1/-1;min-height:48px}.feature-grid{grid-template-columns:1fr 1fr}.feature-card{padding:14px;min-height:0}.testament-grid{grid-template-columns:1fr}.testament-card{grid-template-columns:40px 100px 1fr}.book-explorer{padding:28px 0}.book-explorer .section-heading{align-items:flex-start}.book-explorer .section-link{font-size:10px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+
+/* Ajustes finos de fidelidade à imagem de referência */
+.hero-photo{background-image:linear-gradient(90deg,rgba(3,25,22,.76) 0%,rgba(3,25,22,.48) 39%,rgba(3,25,22,.04) 72%,rgba(3,25,22,.12) 100%),url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=2200&q=88');background-position:center 55%;background-size:cover}
+.hero-photo .hero-grid{min-height:515px;padding-top:49px;padding-bottom:150px;grid-template-columns:minmax(0,1fr) 245px;gap:30px}
+.hero-photo h1{font-size:clamp(48px,5vw,66px);line-height:.96;letter-spacing:-1.6px;margin:4px 0 12px}
+.hero-photo .hero-copy>p{max-width:565px;font-size:17px;line-height:1.42;margin-bottom:18px}
+.hero-shortcuts{gap:25px;margin-top:20px}
+.hero-shortcuts a{min-width:58px;font-size:11px}
+.hero-shortcuts a span{width:47px;height:47px;border-color:#cdbb7c88;color:#f3dca0;background:#061e1b66}
+.hero-verse{padding-top:4px;max-width:225px}
+#ler.section{margin-top:-150px;padding-bottom:32px}
+.reader-panel{padding:15px 32px 17px}
+.reader-tabs{gap:29px;padding-bottom:13px;margin-bottom:19px}
+.reader-tabs a{font-size:12px}
+.reader-controls{display:grid;grid-template-columns:1.05fr .8fr 1.05fr auto;gap:11px;align-items:end}
+.reader-controls label{min-width:0}
+.reader-controls select{height:56px;padding:13px 12px}
+.reader-controls .btn-primary{height:56px;min-width:210px}
+.reader-tools{display:none}
+.reader-panel .chapter-content,.reader-panel .source-note{margin-top:16px}
+.resources-section{padding-top:17px;padding-bottom:30px}
+.resources-section .section-heading{display:grid;grid-template-columns:1.05fr .95fr auto;align-items:center;gap:25px;margin-bottom:22px}
+.resources-section .section-heading>div{display:contents}
+.resources-section .section-heading .eyebrow{grid-column:1;grid-row:1}
+.resources-section .section-heading h2{grid-column:1;grid-row:2;margin:0;font-size:34px;line-height:1.02}
+.resources-section .section-heading p{grid-column:2;grid-row:1/3;font-size:13px;line-height:1.5;max-width:420px}
+.resources-section .section-link{grid-column:3;grid-row:1/3;border:1px solid #9bb3a4;border-radius:8px;padding:12px 17px;white-space:nowrap}
+.resource-grid .feature-card{min-height:106px;display:grid;grid-template-columns:48px 1fr 12px;grid-template-rows:auto auto;column-gap:13px;align-content:center;padding:13px 15px}
+.resource-grid .feature-icon{grid-column:1;grid-row:1/3;margin:0;width:44px;height:44px;border-radius:16px}
+.resource-grid .feature-card h3{grid-column:2;grid-row:1;margin:0 0 6px;font-size:12px}
+.resource-grid .feature-card p{grid-column:2;grid-row:2;margin:0;font-size:10px;line-height:1.45}
+.resource-grid .card-arrow{display:none}
+.resource-grid .feature-card:after{content:'›';grid-column:3;grid-row:1/3;align-self:center;font-size:22px;color:#153d2d}
+.book-explorer{padding-top:20px}
+.book-explorer .section-heading h2{font-size:29px}
+.book-explorer .section-heading p{font-size:12px}
+@media(max-width:1000px){.hero-photo .hero-grid{grid-template-columns:1fr 210px}.reader-controls{grid-template-columns:1fr 1fr}.reader-controls .btn-primary{min-width:0}.resources-section .section-heading{grid-template-columns:1fr auto}.resources-section .section-heading p{grid-column:1;grid-row:3}.resources-section .section-heading .section-link{grid-column:2;grid-row:1/4}.resource-grid .feature-card{grid-template-columns:42px 1fr 10px}}
+@media(max-width:700px){.hero-photo .hero-grid{grid-template-columns:1fr;min-height:520px;padding-top:42px;padding-bottom:160px}.hero-photo h1{font-size:43px}.hero-photo .hero-copy>p{font-size:14px}.hero-shortcuts{gap:9px}.hero-verse{display:none}.reader-panel{padding:12px}.reader-controls{grid-template-columns:1fr 1fr}.reader-controls label:first-child{grid-column:1/-1}.reader-controls .version-label{grid-column:1/-1}.reader-controls .btn-primary{grid-column:1/-1;min-height:48px;height:48px}.reader-tabs{gap:17px}.resources-section{padding-top:10px}.resources-section .section-heading{display:flex;flex-direction:column;align-items:flex-start;gap:10px}.resources-section .section-heading>div{display:block}.resources-section .section-heading h2{font-size:30px}.resources-section .section-heading p{font-size:12px}.resources-section .section-link{padding:9px 12px}.resource-grid .feature-card{display:grid;min-height:112px}.book-explorer .section-heading h2{font-size:27px}}
