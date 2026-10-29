@@ -64,7 +64,7 @@
           <button class="btn btn-primary" id="readButton">▤ &nbsp; Ler Capítulo</button>
         </div>
         <div class="translation-catalog-note"><span>Versões bíblicas disponíveis</span> Este é o catálogo do nosso próprio Bíblia Online. Estamos ampliando as traduções conforme as licenças de uso permitem.</div>
-        <div class="reader-tools" id="buscaBiblica"><span id="readerStatus">Escolha um livro e capítulo para iniciar a leitura.</span><div class="font-tools" aria-label="Tamanho do texto"><button id="audioRead" type="button">▶ Ouvir capítulo</button><button id="fontDown" aria-label="Diminuir letra">A−</button><button id="fontUp" aria-label="Aumentar letra">A+</button></div></div>
+        <div class="reader-tools" id="buscaBiblica"><span id="readerStatus">Escolha um livro e capítulo para iniciar a leitura.</span><div class="font-tools" aria-label="Tamanho do texto"><button id="audioRead" type="button">▶ Ouvir capítulo</button><label class="audio-speed-label" for="audioSpeed">Velocidade <select id="audioSpeed" aria-label="Velocidade da leitura"><option value="0.7">0,7×</option><option value="0.9" selected>0,9×</option><option value="1">1×</option><option value="1.2">1,2×</option><option value="1.5">1,5×</option><option value="1.8">1,8×</option></select></label><button id="fontDown" aria-label="Diminuir letra">A−</button><button id="fontUp" aria-label="Aumentar letra">A+</button></div></div>
         <article id="chapterContent" class="chapter-content" aria-live="polite"><div class="reader-empty"><span>✦</span><h3>A Palavra está à sua espera</h3><p>Selecione um livro e capítulo para carregar o texto bíblico.</p></div></article>
         <p class="source-note">BPM: domínio público, rascunho em revisão, fonte eBible.org. Almeida 1911: domínio público. Bíblia Livre (Almeida 1819): licença de uso livre; crédito e termos exibidos junto ao texto.</p>
       </div>
@@ -97,7 +97,7 @@
     <section class="section container"><div class="newsletter-panel"><div><span class="eyebrow">UM MOMENTO COM DEUS</span><h2>Reserve um tempo para a Palavra.</h2><p>Comece hoje com um capítulo, uma reflexão e uma oração.</p></div><a class="btn btn-primary" href="#ler">Ler agora ↗</a></div></section>
   </main>
   <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="./"><span class="brand-mark">✦</span><span>Bíblia<span class="brand-light">Online</span><small>PALAVRA • ESTUDO • FÉ</small></span></a><p>Um espaço digital para leitura, aprendizado e reflexão bíblica.</p></div><div><strong>Explorar</strong><a href="#ler">Ler a Bíblia</a><a href="estudos.html">Estudos bíblicos</a><a href="esbocos.html">Esboços</a><a href="infantil.html">Área infantil</a><a href="ferramentas.html">Ferramentas bíblicas</a><a href="conteudo/">Biblioteca completa</a></div><div><strong>Informações</strong><a href="sobre.html">Sobre o projeto</a><a href="privacidade.html">Privacidade</a><a href="termos.html">Termos de uso</a><a href="contato.html">Contato</a></div></div><div class="container footer-bottom"><span>© <span id="year"></span> Bíblia Online. Conteúdo sujeito a direitos autorais.</span><span>Feito para apoiar a leitura e o estudo bíblico.</span></div></footer>
-  <script src="app.js?v=audio-fix-20261029" defer></script>
-  <script src="audio-fallback.js?v=audio-fix-20261029" defer></script>
+  <script src="app.js?v=audio-speed-verse-20261029" defer></script>
+  <script src="audio-fallback.js?v=audio-speed-verse-20261029" defer></script>
 </body>
 </html>
