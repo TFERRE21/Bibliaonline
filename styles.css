@@ -125,3 +125,55 @@ body.dark .compare-column h4,body.dark .compare-column sup{color:#c9dfce}
 .chapter-content .bible-verse{cursor:pointer}
 .chapter-content .bible-verse .verse-actions,.chapter-content .bible-verse .verse-action{cursor:default}
 body.dark .reader-tools #audioSpeed{background:#20392d;color:#e7eee8;border-color:#405548}
+
+/* Homepage visual match: Bíblia Online reference */
+:root{--navy:#102b45;--navy2:#183b5a;--blue:#2583ef;--gold:#efbd68;--ink:#102b45;--muted:#617187;--line:#e4eaf0}
+body{background:#f5f7fa;color:#142b43}
+.site-header{height:78px;background:linear-gradient(105deg,#17344e,#102b45);border:0;color:#fff;box-shadow:0 2px 12px #07192c20}
+.header-inner{width:min(1480px,calc(100% - 48px));gap:20px}
+.brand{color:#fff;font-family:'Playfair Display',Georgia,serif;font-size:27px;white-space:nowrap}
+.brand-mark{background:transparent;color:#f2b955;border-radius:0;font-size:36px;width:46px;height:46px}
+.brand small{color:#d4dce5;font:700 8px 'DM Sans',sans-serif;letter-spacing:2px}
+.main-nav{gap:17px}.main-nav a{color:#f5f8fc;font-size:12px;white-space:nowrap}
+.theme-toggle{background:#071c30;border:0;color:white;width:45px;height:45px;font-size:21px;flex-shrink:0}
+.top-search{display:flex;flex:1;max-width:400px;height:44px;margin-left:auto;border-radius:14px;overflow:hidden;background:white}
+.top-search input{min-width:0;flex:1;border:0;outline:0;padding:0 18px;color:#21364c;font:14px 'DM Sans',sans-serif}
+.top-search button{width:49px;border:0;background:#2583ef;color:#fff;font-size:26px;cursor:pointer}
+.hero.hero-photo{background:#172e42 url('https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=2200&q=90') center 54%/cover no-repeat;min-height:244px}
+.hero.hero-photo:before{background:linear-gradient(90deg,#071b2bba 0%,#071b2b65 36%,#071b2b00 78%),linear-gradient(0deg,#071b2b35,transparent 60%)}
+.hero-grid{width:min(1380px,calc(100% - 64px));min-height:244px;padding:25px 0;grid-template-columns:1fr .55fr;gap:30px}
+.hero h1{font-size:clamp(34px,3.6vw,48px);line-height:.98;margin:6px 0 12px;color:#fff;font-weight:700;letter-spacing:-1.1px}
+.hero h1 em{color:#ffdc9b;font-style:normal}.hero-copy>p{color:#fff;font-size:16px;margin-bottom:13px}
+.hero-actions{display:flex;gap:10px;margin-top:12px}.hero .btn{border-radius:24px;padding:11px 24px;font-size:14px}
+.hero .btn-primary{background:#2583ef;color:#fff}.hero .btn-ghost{border:1px solid #fff;color:#fff;background:#071b2b30}
+.hero-verse{justify-self:end;align-self:start;max-width:265px;width:100%;margin-top:8px;background:transparent;color:#301e12;padding:0;box-shadow:none;transform:none}
+.hero-verse blockquote{font-size:18px;line-height:1.35;font-style:italic;margin:0 0 8px}.hero-verse strong{font-size:12px;color:#4c3b2b;font-weight:500}
+.reader-dashboard{width:min(1480px,calc(100% - 48px));margin:14px auto 0;display:grid;grid-template-columns:320px minmax(0,1fr) 345px;gap:14px;align-items:start}
+.book-sidebar,.reader-sidebar-right,.reader-panel{background:#fff;border:1px solid #e9eef3;border-radius:13px;box-shadow:0 2px 8px #19344b08}
+.book-sidebar{padding:16px 14px;max-height:670px;overflow:auto}.book-sidebar h2{font-size:20px;margin:0 0 10px;color:#102b45;letter-spacing:-.3px}
+.testament-switch{display:grid;grid-template-columns:1fr 1fr;border:1px solid #e0e7ef;border-radius:9px;overflow:hidden;margin-bottom:10px}
+.testament-switch button{background:#f6f8fa;border:0;padding:8px 5px;color:#102b45;font-size:12px;cursor:pointer}.testament-switch button.active{background:#163f66;color:white}
+.sidebar-book-list{display:flex;flex-direction:column;gap:2px}.sidebar-book-list button{display:flex;align-items:center;gap:12px;text-align:left;border:0;background:transparent;color:#233b53;padding:7px 9px;border-radius:7px;cursor:pointer;font-size:13px}
+.sidebar-book-list button:before{content:'♧';font-size:16px;color:#314c66}.sidebar-book-list button:after{content:'›';margin-left:auto;color:#8191a2;font-size:20px}
+.sidebar-book-list button.active{background:#2785ef;color:#fff;font-weight:700}.sidebar-book-list button.active:before,.sidebar-book-list button.active:after{color:#fff}
+#ler.section{padding:12px 0 0;min-width:0}#ler>.section-heading{display:none}.reader-panel{padding:15px 17px;min-width:0}.reader-tabs{display:none}
+.reader-controls{display:grid;grid-template-columns:minmax(0,1fr) 100px;gap:9px;align-items:end}.reader-controls label{font-size:12px;color:#63758a}
+.reader-controls .version-label{grid-column:1/-1}.reader-controls select{display:block;width:100%;height:38px;border:1px solid #d9e1ea;border-radius:8px;background:#fff;color:#233b53;padding:0 10px;font-size:12px}
+.reader-controls .btn{height:38px;padding:8px 12px;background:#2583ef;color:#fff;border-radius:8px;grid-column:1/-1}
+.translation-catalog-note,.source-note{font-size:10px;color:#8290a0}.reader-tools{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid #e9eef3;flex-wrap:wrap}
+#readerStatus{font-size:12px;color:#617187}.font-tools{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.font-tools button,.font-tools select{border:1px solid #e0e7ef;background:#f5f7f9;border-radius:8px;padding:6px 8px;font-size:11px;color:#203b55}
+#chapterContent{font-family:Georgia,'Times New Roman',serif;color:#172e46;font-size:18px;line-height:1.52;max-height:360px;overflow:auto;padding:14px 3px 4px}
+#chapterContent h2,#chapterContent h3{font-family:'Playfair Display',Georgia,serif;color:#102b45}.reader-empty{padding:30px 10px;text-align:center}
+.reader-sidebar-right{padding:0;overflow:hidden}.audio-card{padding:17px 18px 15px;border-bottom:1px solid #e8edf2}
+.audio-card h3{font:700 17px 'Playfair Display',Georgia,serif;margin:0 0 12px;color:#102b45}.audio-main{display:flex;align-items:center;gap:12px;background:#f4f7fa;border-radius:13px;padding:8px}
+.audio-main button{width:42px;height:42px;border-radius:50%;border:0;background:#2583ef;color:#fff;font-size:18px;cursor:pointer;flex-shrink:0}.audio-main span{font-size:11px;color:#596d83;line-height:1.3}
+.audio-speed-quick{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:12px;font-size:11px}.audio-speed-quick span{margin-right:2px}
+.audio-speed-quick button{border:0;border-radius:7px;background:#f0f3f6;color:#263f58;padding:6px 8px;font-size:10px;cursor:pointer}.audio-speed-quick button.active{background:#83b8f5;color:white}
+.quick-links a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-bottom:1px solid #e8edf2}.quick-links a:last-child{border-bottom:0}
+.quick-icon{display:grid;place-items:center;width:49px;height:49px;border-radius:12px;font-size:24px;flex-shrink:0}
+.quick-icon.purple{background:#f1e7fa;color:#8752b2}.quick-icon.orange{background:#fff0d8;color:#f3a000}.quick-icon.amber{background:#ffeadb;color:#e28b19}.quick-icon.green{background:#e2f5ed;color:#23a978}.quick-icon.blue{background:#e1f0ff;color:#2583ef}
+.quick-links strong{display:block;font:700 15px 'Playfair Display',Georgia,serif;color:#102b45;line-height:1.25}.quick-links small{display:block;color:#697c90;font-size:11px;line-height:1.4;margin-top:3px}
+.quick-links b{margin-left:auto;color:#1a344e;font-size:24px;font-weight:400}.feature-card{border:1px solid #e6ebf0;box-shadow:0 3px 12px #18364e09;border-radius:12px}.site-footer{background:#102b45}
+@media(max-width:1150px){.reader-dashboard{grid-template-columns:240px minmax(0,1fr)}.reader-sidebar-right{grid-column:1/-1;display:grid;grid-template-columns:1fr 1.5fr}.quick-links{display:grid;grid-template-columns:1fr 1fr}.quick-links a{border-right:1px solid #e8edf2}.main-nav{gap:12px}.main-nav a{font-size:11px}.top-search{max-width:260px}}
+@media(max-width:760px){.site-header{height:auto;min-height:70px}.header-inner{width:calc(100% - 28px);gap:10px;flex-wrap:wrap;padding:10px 0}.brand{font-size:22px}.brand-mark{width:34px;font-size:29px}.brand small{font-size:7px}.top-search{order:3;max-width:none;flex-basis:100%;height:40px}.menu-toggle{display:block;margin-left:auto}.main-nav{display:none;order:4;width:100%;flex-wrap:wrap;gap:12px;padding:8px 0}.main-nav.open{display:flex}.main-nav a{font-size:12px}.theme-toggle{width:37px;height:37px}.hero-grid{width:calc(100% - 32px);grid-template-columns:1fr;min-height:255px;padding:28px 0;gap:12px}.hero-verse{display:none}.hero h1{font-size:37px}.hero-copy>p{font-size:14px}.hero .btn{padding:10px 17px}.reader-dashboard{width:calc(100% - 22px);grid-template-columns:1fr;gap:10px;margin-top:10px}.book-sidebar{max-height:none;padding:12px}.sidebar-book-list{display:grid;grid-template-columns:1fr 1fr;max-height:205px;overflow:auto}.sidebar-book-list button{font-size:12px;padding:6px}.reader-sidebar-right{grid-column:auto;display:block}.quick-links{display:block}.quick-links a{border-right:0}.reader-controls{grid-template-columns:minmax(0,1fr) 90px}.reader-controls .version-label{grid-column:1/-1}#chapterContent{font-size:17px;max-height:420px}.section{padding-top:40px;padding-bottom:40px}.section-heading h2{font-size:29px}.feature-grid{grid-template-columns:1fr}.book-explorer .testament-grid{grid-template-columns:1fr}}
