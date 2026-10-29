@@ -92,3 +92,10 @@ body.dark .reader-feature-panel{border-color:#34483d}body.dark .reader-feature-p
 #readerStatus{flex:1;min-width:180px}
 body.dark .reader-tools{border-color:#34483d;color:#c7d5cb}
 body.dark .reader-tools .font-tools button{background:#20392d;color:#e7eee8;border-color:#405548}
+
+
+/* Catálogo de traduções: nota discreta e responsiva, sem opções bloqueadas no seletor. */
+.translation-catalog-note{display:flex;flex-wrap:wrap;align-items:center;gap:5px 8px;margin:0 0 12px;padding:0 2px;color:var(--muted);font-size:12px;line-height:1.6}
+.translation-catalog-note a{color:var(--green2);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.translation-catalog-note a:hover{color:var(--gold)}
+body.dark .translation-catalog-note a{color:#b9d9c6}
