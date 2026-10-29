@@ -18,6 +18,12 @@ async function loadChapter() {
   const book=books[Number(bookSelect.value)], chapter=Number(chapterSelect.value);
   const versionSelect=$("versionSelect");
   const version=versionSelect ? versionSelect.value : "BPM";
+  if((version==="BLPT"||version==="TFT") && Number(bookSelect.value)<39) {
+    status.textContent="Esta tradução está disponível apenas no Novo Testamento.";
+    content.innerHTML='<div class="reader-empty"><span>!</span><h3>Tradução disponível no Novo Testamento</h3><p>Selecione Mateus, Marcos, Lucas, João ou outro livro do Novo Testamento e tente novamente.</p></div>';
+    loadedVerses=[];
+    return;
+  }
   status.textContent="Carregando "+book[0]+" "+chapter+"…";
   content.innerHTML='<div class="reader-empty"><span>◌</span><h3>Carregando leitura</h3><p>Estamos buscando o capítulo da versão selecionada.</p></div>';
   try {
