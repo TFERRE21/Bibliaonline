@@ -43,3 +43,35 @@ $("menuToggle").addEventListener("click",()=>{const open=$("mainNav").classList.
 document.querySelectorAll("#mainNav a").forEach(a=>a.addEventListener("click",()=>{$("mainNav").classList.remove("open");$("menuToggle").setAttribute("aria-expanded","false")}));
 $("copyVerse").addEventListener("click",async()=>{const text="O Senhor é o meu pastor; nada me faltará. — Salmos 23:1";try{await navigator.clipboard.writeText(text);$("copyVerse").textContent="Versículo copiado ✓"}catch{$("copyVerse").textContent=text}});
 $("year").textContent=new Date().getFullYear();
+
+
+/* Navegação rápida pelos 66 livros e atalhos do cabeçalho */
+function renderBookChips(targetId, start, end) {
+  const target = $(targetId);
+  if (!target) return;
+  books.slice(start, end).forEach((book, offset) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = book[0];
+    button.addEventListener("click", () => {
+      bookSelect.value = String(start + offset);
+      fillChapters();
+      $("ler").scrollIntoView({ behavior: "smooth", block: "start" });
+      loadChapter();
+    });
+    target.append(button);
+  });
+}
+renderBookChips("oldTestamentBooks", 0, 39);
+renderBookChips("newTestamentBooks", 39, 66);
+const searchToggle = $("searchToggle");
+if (searchToggle) searchToggle.addEventListener("click", () => {
+  $("ler").scrollIntoView({ behavior: "smooth", block: "start" });
+  bookSelect.focus({ preventScroll: true });
+});
+const advancedSearchTab = $("advancedSearchTab");
+if (advancedSearchTab) advancedSearchTab.addEventListener("click", (event) => {
+  event.preventDefault();
+  status.textContent = "Busca por livro e capítulo: selecione o livro e o capítulo abaixo para abrir a leitura.";
+  bookSelect.focus({ preventScroll: true });
+});
