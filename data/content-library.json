@@ -956,5 +956,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-29"
+  },
+  {
+    "id": "guia-descanso-e-equilibrio",
+    "topicKey": "descanso-e-equilibrio",
+    "type": "quiz",
+    "title": "Quiz bíblico: Descanso e equilíbrio",
+    "description": "Quiz com perguntas explicadas sobre descanso e equilíbrio.",
+    "reference": "Marcos 6:30–32; Êxodo 20:8–10",
+    "readingMinutes": 5,
+    "intro": "As narrativas bíblicas reconhecem a importância de interromper atividades e recuperar forças. O descanso pode ser parte de uma vida responsável, não sinal de preguiça. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "Pergunta 1 — Observe o texto",
+        "body": "Leia Marcos 6:30–32; Êxodo 20:8–10 e escolha a resposta mais fiel ao contexto: o que a passagem destaca principalmente sobre descanso e equilíbrio? A) Uma atitude ou princípio presente no texto. B) Uma promessa de sucesso automático. C) Uma regra inventada sem apoio na passagem. Resposta esperada: A; explique usando o trecho lido."
+      },
+      {
+        "heading": "Pergunta 2 — Aplique com cuidado",
+        "body": "Qual é uma forma responsável de colocar o ensinamento em prática? A) Agir sem considerar as consequências. B) Revise sua rotina e reserve um período realista para descansar, dormir e estar presente com pessoas queridas. C) Pressionar outras pessoas a concordar. Resposta esperada: B, considerando a realidade e a segurança de todos."
+      },
+      {
+        "heading": "Pergunta 3 — Confira o contexto",
+        "body": "Por que é importante ler o capítulo ou parágrafo completo? Porque o contexto ajuda a entender quem fala, a situação e o sentido da passagem, evitando interpretações baseadas em frases isoladas."
+      },
+      {
+        "heading": "Desafio de revisão",
+        "body": "Volte às referências bíblicas, confirme as respostas e escreva uma dúvida que gostaria de pesquisar. Este quiz é um recurso educativo e não substitui a leitura da Bíblia."
+      }
+    ],
+    "questions": [
+      "Qual é a ideia principal apresentada na primeira pergunta e como você a confirma lendo a referência?",
+      "Qual atitude prática foi sugerida e que cuidado é necessário ao aplicá-la?",
+      "Que dúvida você ainda tem sobre o contexto bíblico deste tema?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-29"
   }
 ]
