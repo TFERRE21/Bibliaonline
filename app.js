@@ -3,6 +3,8 @@ const books = [
 ];
 const $ = (id) => document.getElementById(id);
 const bookSelect = $("bookSelect"), chapterSelect = $("chapterSelect"), content = $("chapterContent"), status = $("readerStatus");
+// Deve ser inicializado antes de qualquer função de leitura poder ser chamada.
+let loadedVerses = [];
 let fontSize = Number(localStorage.getItem("bibleFontSize")) || 18;
 function fillChapters() {
   const book = books[Number(bookSelect.value)];
@@ -43,7 +45,9 @@ async function loadChapter() {
         credit=(payload.meta&&payload.meta.copyright)||"Bíblia Portuguesa Mundial (BPM) — domínio público; tradução em revisão. Fonte: eBible.org.";
       }
     } else {
-      const slug=version==="ALM1911"?"alm1911":"almeida-livre";
+      const versionSlugs={ALM1911:"alm1911",ALMEIDA_LIVRE:"almeida-livre",NVA:"nva",ONBV:"onbv",BLPT:"blpt",TFT:"tft"};
+      const slug=versionSlugs[version];
+      if(!slug) throw new Error("Esta tradução ainda não está disponível para leitura neste site.");
       const url="https://api.midvash.com/v1/"+slug+"/"+encodeURIComponent(book[3])+"/"+chapter;
       const cacheKey="bibleChapter:"+version+":"+book[3]+":"+chapter;
       let payload=null;
@@ -56,14 +60,14 @@ async function loadChapter() {
         try { localStorage.setItem(cacheKey,JSON.stringify(payload)); } catch {}
       }
       verses=payload.data.verses.map((v,i)=>({v:i+1,t:typeof v==="string"?v:String(v.text||v.t||"")}));
-      credit=(payload.meta && payload.meta.copyright) || (version==="ALM1911"?"Almeida 1911 — domínio público.":"Bíblia Livre (Almeida 1819) — consulte os termos da licença.");
+      credit=(payload.meta && payload.meta.copyright) || ({ALM1911:"Almeida 1911 — domínio público.",ALMEIDA_LIVRE:"Bíblia Livre (Almeida 1819) — consulte os termos da licença.",NVA:"Bíblia Nova Versão de Acesso Livre — licença CC BY-SA 4.0.",ONBV:"Open Nova Bíblia Viva — licença CC BY-SA 4.0.",BLPT:"Bíblia Livre Para Todos — Novo Testamento; licença CC BY-SA 4.0.",TFT:"Tradução para Tradutores — Novo Testamento; licença CC BY-SA 4.0."}[version]||"Consulte os créditos e a licença da tradução.");
     }
     if(!verses.length) throw new Error("Não há versículos disponíveis neste capítulo.");
     loadedVerses=verses;
     localStorage.setItem("bibleLastBook",bookSelect.value);
     localStorage.setItem("bibleLastChapter",String(chapter));
     localStorage.setItem("bibleLastVersion",version);
-    status.textContent=book[0]+" "+chapter+" · "+verses.length+" versículos · "+(version==="BPM"?"Bíblia Portuguesa Mundial (BPM)":version==="ALM1911"?"Almeida 1911":"Bíblia Livre (Almeida 1819)");
+    status.textContent=book[0]+" "+chapter+" · "+verses.length+" versículos · "+({BPM:"Bíblia Portuguesa Mundial (BPM)",ALM1911:"Almeida 1911",ALMEIDA_LIVRE:"Bíblia Livre — Almeida 1819",NVA:"Bíblia Nova Versão de Acesso Livre",ONBV:"Open Nova Bíblia Viva",BLPT:"Bíblia Livre Para Todos",TFT:"Tradução para Tradutores"}[version]||version);
     content.innerHTML="";
     verses.forEach(v=>{
       const p=document.createElement("p"), n=document.createElement("sup");
@@ -127,7 +131,6 @@ if (advancedSearchTab) advancedSearchTab.addEventListener("click", (event) => {
 /* Funcionalidades interativas das abas do leitor */
 const featurePanel = $("readerFeaturePanel");
 const readerTabButtons = [...document.querySelectorAll("[data-reader-tab]")];
-let loadedVerses = [];
 let currentSpeech = null;
 function setReaderTab(name) {
   readerTabButtons.forEach(button => {
@@ -178,7 +181,7 @@ function setReaderTab(name) {
       $("openDailyVerse").addEventListener("click",()=>{bookSelect.value=String(bookIdx);fillChapters();chapterSelect.value=String(chapter);setReaderTab("read");loadChapter();});
     }).catch(()=>{$("dailyVerseText").textContent="O versículo do dia aparecerá assim que a biblioteca bíblica local estiver importada."; $("openDailyVerse").disabled=true;});
   } else if (name === "compare") {
-    featurePanel.innerHTML = '<h3>Comparar traduções</h3><p>Agora há três versões disponíveis no leitor: Bíblia Portuguesa Mundial (BPM), Almeida 1911 (domínio público) e Bíblia Livre — Almeida 1819 (uso livre). Selecione uma versão no painel e carregue o capítulo para ler. A comparação lado a lado ficará para a próxima etapa.</p><a href="https://ebible.org/porbrbsl/copyright.htm" target="_blank" rel="noopener noreferrer">Consultar fonte e licença da BPM ↗</a>';
+    featurePanel.innerHTML = '<h3>Comparar traduções</h3><p>O leitor disponibiliza traduções em domínio público ou com licença aberta. Algumas versões populares, como ACF, ARA, ARC, NVI, NAA, NTLH e NVT, têm direitos reservados e exigem autorização para redistribuição integral. As versões livres disponíveis aparecem no seletor. A comparação lado a lado ficará para uma próxima etapa.</p><a href="https://ebible.org/porbrbsl/copyright.htm" target="_blank" rel="noopener noreferrer">Consultar fonte e licença da BPM ↗</a>';
   }
 }
 readerTabButtons.forEach(button=>button.addEventListener("click",()=>setReaderTab(button.dataset.readerTab)));
