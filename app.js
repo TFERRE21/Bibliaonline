@@ -63,10 +63,11 @@ async function loadChapter() {
         if(!res.ok) throw new Error("A versão selecionada não conseguiu carregar este capítulo (HTTP "+res.status+").");
         payload=await res.json();
         if(!payload.data || !Array.isArray(payload.data.verses)) throw new Error("A fonte devolveu um formato inesperado.");
+        if(payload.data.version && payload.data.version !== slug) throw new Error("A fonte devolveu outra tradução ("+payload.data.version+"). A leitura foi interrompida para não misturar versões.");
         try { localStorage.setItem(cacheKey,JSON.stringify(payload)); } catch {}
       }
       verses=payload.data.verses.map((v,i)=>({v:i+1,t:typeof v==="string"?v:String(v.text||v.t||"")}));
-      credit=(payload.meta && payload.meta.copyright) || ({ALM1911:"Almeida 1911 — domínio público.",ALMEIDA_LIVRE:"Bíblia Livre (Almeida 1819) — consulte os termos da licença.",NVA:"Bíblia Nova Versão de Acesso Livre — licença CC BY-SA 4.0.",ONBV:"Open Nova Bíblia Viva — licença CC BY-SA 4.0.",BLPT:"Bíblia Livre Para Todos — Novo Testamento; licença CC BY-SA 4.0.",TFT:"Tradução para Tradutores — Novo Testamento; licença CC BY-SA 4.0."}[version]||"Consulte os créditos e a licença da tradução.");
+      credit=(payload.meta && (payload.meta.copyright || payload.meta.attribution)) || ({ALM1911:"Almeida 1911 — domínio público.",ALMEIDA_LIVRE:"Bíblia Livre (Almeida 1819) — consulte os termos da licença.",NVA:"Bíblia Nova Versão de Acesso Livre — licença CC BY-SA 4.0.",ONBV:"Open Nova Bíblia Viva — licença CC BY-SA 4.0.",BLPT:"Bíblia Livre Para Todos — Novo Testamento; licença CC BY-SA 4.0.",TFT:"Tradução para Tradutores — Novo Testamento; licença CC BY-SA 4.0."}[version]||"Consulte os créditos e a licença da tradução.");
     }
     if(!verses.length) throw new Error("Não há versículos disponíveis neste capítulo.");
     loadedVerses=verses;
@@ -237,6 +238,10 @@ if(audioShortcut) audioShortcut.addEventListener("click",async()=>{
   if(loadedVerses.length) playBibleAudio();
 });
 const lastBook=localStorage.getItem("bibleLastBook"),lastChapter=localStorage.getItem("bibleLastChapter"),lastVersion=localStorage.getItem("bibleLastVersion");
-if(lastVersion && $("versionSelect")) $("versionSelect").value=lastVersion;
+if(lastVersion && $("versionSelect")) {
+  const savedOption = [...$("versionSelect").options].find(option => option.value === lastVersion);
+  if(savedOption) $("versionSelect").value=lastVersion;
+  else localStorage.removeItem("bibleLastVersion");
+}
 if(lastBook!==null && books[Number(lastBook)]) {bookSelect.value=lastBook;fillChapters();if(lastChapter)chapterSelect.value=lastChapter;}
 if($("versionSelect")) $("versionSelect").addEventListener("change",()=>{if(loadedVerses.length)loadChapter();});
