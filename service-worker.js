@@ -1,5 +1,5 @@
-const CACHE_NAME = 'conecta-biblia-v2';
-const APP_SHELL = ["/","/index.html","/styles.css","/app.js","/layout-home.js","/audio-fallback.js","/account-client.js","/conta.html","/infantil.html","/estudos.html","/esbocos.html","/pregacoes.html","/mensagens.html","/devocionais.html","/ferramentas.html","/sobre.html","/privacidade.html","/termos.html","/contato.html","/manifest.webmanifest","/assets/pwa-icon-192.svg","/assets/pwa-icon-512.svg"];
+const CACHE_NAME = 'conecta-biblia-v3';
+const APP_SHELL = ["/","/index.html","/styles.css","/theme.js","/app.js","/layout-home.js","/audio-fallback.js","/account-client.js","/conta.html","/infantil.html","/estudos.html","/esbocos.html","/pregacoes.html","/mensagens.html","/devocionais.html","/ferramentas.html","/sobre.html","/privacidade.html","/termos.html","/contato.html","/manifest.webmanifest","/assets/pwa-icon-192.svg","/assets/pwa-icon-512.svg"];
 self.addEventListener("install",event=>{
  event.waitUntil((async()=>{
   const cache=await caches.open(CACHE_NAME);
