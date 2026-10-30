@@ -266,7 +266,7 @@ function buildAll(items) {
       fs.writeFileSync(path.join(PUBLIC_DIR, name), content, 'utf8');
     }
   }
-  for (const icon of ['pwa-icon-192.svg','pwa-icon-512.svg']) {
+  for (const icon of ['pwa-icon-192.svg','pwa-icon-512.svg','logo-biblia-online.svg']) {
     const source = path.join(ROOT, 'assets', icon);
     if (fs.existsSync(source)) {
       fs.mkdirSync(path.join(PUBLIC_DIR, 'assets'), {recursive:true});
