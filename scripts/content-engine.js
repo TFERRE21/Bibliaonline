@@ -12,7 +12,7 @@ const DATA_FILE = path.join(ROOT, 'data', 'content-library.json');
 const PUBLIC_DIR = path.join(ROOT, 'public');
 const CONTENT_DIR = path.join(PUBLIC_DIR, 'conteudo');
 const STATE_FILE = path.join(ROOT, 'data', 'publication-state.json');
-const BASE_URL = (process.env.SITE_URL || 'https://example.com').replace(/\/$/, '');
+const BASE_URL = (process.env.SITE_URL || 'https://bibliaonline.vps11710.panel.icontainer.work').replace(/\/$/, '');
 const BASE_PATH = (() => { try { return new URL(BASE_URL).pathname.replace(/\/$/, ''); } catch { return ''; } })();
 const TYPES = ['estudo', 'esboco', 'historia', 'quadrinho', 'colorir', 'devocional', 'atividade', 'quiz'];
 const LABELS = { estudo: 'Estudo bíblico', esboco: 'Esboço bíblico', historia: 'Historinha bíblica', quadrinho: 'Quadrinhos bíblicos', colorir: 'Desenho para colorir', devocional: 'Devocional diário', atividade: 'Atividade bíblica', quiz: 'Quiz bíblico' };
