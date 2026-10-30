@@ -1452,5 +1452,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-30"
+  },
+  {
+    "id": "guia-vocacao-e-dons",
+    "topicKey": "vocacao-e-dons",
+    "type": "atividade",
+    "title": "Atividade bíblica: Reconhecer dons e servir",
+    "description": "Atividade prática com conversa e aplicação sobre reconhecer dons e servir.",
+    "reference": "Romanos 12:4–8; 1 Coríntios 12:4–7",
+    "readingMinutes": 5,
+    "intro": "As passagens sobre dons descrevem diversidade de capacidades para o bem comum. Elas não precisam ser usadas para comparar pessoas ou pressioná-las a assumir tarefas além de seus limites. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "Objetivo da atividade",
+        "body": "Objetivo: conversar sobre reconhecer dons e servir a partir da referência Romanos 12:4–8; 1 Coríntios 12:4–7. Um adulto deve ler a passagem, explicar palavras difíceis e adaptar a proposta à idade e às necessidades de cada participante."
+      },
+      {
+        "heading": "Mãos à obra",
+        "body": "Materiais opcionais: papel, lápis e lápis de cor. Desenhe uma situação que represente o tema e escreva uma palavra que resuma o aprendizado. Não é necessário comprar materiais nem concluir tudo de uma vez."
+      },
+      {
+        "heading": "Converse sobre o que aprendeu",
+        "body": "As passagens sobre dons descrevem diversidade de capacidades para o bem comum. Elas não precisam ser usadas para comparar pessoas ou pressioná-las a assumir tarefas além de seus limites. Pergunte o que a pessoa percebeu no texto, sem exigir uma resposta decorada. Valorize perguntas e permita que cada participante explique o desenho à sua maneira."
+      },
+      {
+        "heading": "Desafio para a semana",
+        "body": "Liste algo que você faz bem e pergunte como pode usar essa habilidade para contribuir de forma equilibrada com outras pessoas. Combine uma ação simples e segura para praticar em casa ou na comunidade. A participação deve ser voluntária e respeitosa."
+      }
+    ],
+    "questions": [
+      "O que mais chamou sua atenção na passagem Romanos 12:4–8; 1 Coríntios 12:4–7?",
+      "Como você explicaria este aprendizado com suas próprias palavras?",
+      "Que atitude simples e segura pode praticar nesta semana?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-30"
   }
 ]
