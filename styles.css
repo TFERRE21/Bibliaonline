@@ -639,3 +639,13 @@ body.dark .site-header,body.dark .reader-panel,body.dark .feature-card,body.dark
 body.dark .section-soft,body.dark .reader-controls,body.dark .newsletter-panel{background:#223a53}
 body.dark .brand,body.dark .main-nav a{color:#edf2f7}
 @media(max-width:620px){.brand{font-size:21px}.brand-mark{width:46px;height:46px;flex-basis:46px;background-size:46px 46px}.brand small{font-size:7px}.main-nav{background:#fffefa}}
+
+/* Ajustes finais do cabeçalho e identidade — corrige cores antigas */
+.brand-mark{background-color:#203b5b!important;background-image:url('/assets/logo-biblia-online.svg')!important;background-position:center!important;background-repeat:no-repeat!important;background-size:cover!important;color:transparent!important;font-size:0!important}
+.header-account{background:#203b5b!important;color:#fff!important}
+.top-search button{background:#e9eef3!important;color:#203b5b!important;border-left:1px solid #e1e6eb!important}
+.install-app-button{color:#203b5b!important;background:#f7f2e6!important;border-color:#c49b58!important}
+.main-nav a:hover,.main-nav a:focus{color:#9a7138!important}
+.site-header .theme-toggle{color:#203b5b!important;background:#f1f3f5!important}
+.install-app-status{background:#eef2f6!important;color:#203b5b!important;border-color:#dce4ec!important}
+@media(max-width:760px){.brand-mark{background-size:cover!important}}
