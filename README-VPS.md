@@ -1,4 +1,4 @@
-# Bíblia Online — preparação para VPS
+# Conecta Bíblia — preparação para VPS
 
 ## O que está incluído
 - Site responsivo e páginas institucionais
