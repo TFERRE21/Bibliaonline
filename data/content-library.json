@@ -1240,5 +1240,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-29"
+  },
+  {
+    "id": "guia-ensinar-com-paciencia",
+    "topicKey": "ensinar-com-paciencia",
+    "type": "quiz",
+    "title": "Quiz bíblico: Ensinar com paciência",
+    "description": "Quiz com perguntas explicadas sobre ensinar com paciência.",
+    "reference": "Deuteronômio 6:6–7; 2 Timóteo 3:14–15",
+    "readingMinutes": 5,
+    "intro": "O ensino da fé acontece por palavras, exemplo e repetição cuidadosa. Com crianças, é importante adaptar a linguagem, acolher perguntas e respeitar o desenvolvimento de cada uma. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "Pergunta 1 — Observe o texto",
+        "body": "Leia Deuteronômio 6:6–7; 2 Timóteo 3:14–15 e escolha a resposta mais fiel ao contexto: o que a passagem destaca principalmente sobre ensinar com paciência? A) Uma atitude ou princípio presente no texto. B) Uma promessa de sucesso automático. C) Uma regra inventada sem apoio na passagem. Resposta esperada: A; explique usando o trecho lido."
+      },
+      {
+        "heading": "Pergunta 2 — Aplique com cuidado",
+        "body": "Qual é uma forma responsável de colocar o ensinamento em prática? A) Agir sem considerar as consequências. B) Leia uma pequena passagem com uma criança, pergunte o que ela entendeu e escute sem exigir respostas decoradas. C) Pressionar outras pessoas a concordar. Resposta esperada: B, considerando a realidade e a segurança de todos."
+      },
+      {
+        "heading": "Pergunta 3 — Confira o contexto",
+        "body": "Por que é importante ler o capítulo ou parágrafo completo? Porque o contexto ajuda a entender quem fala, a situação e o sentido da passagem, evitando interpretações baseadas em frases isoladas."
+      },
+      {
+        "heading": "Desafio de revisão",
+        "body": "Volte às referências bíblicas, confirme as respostas e escreva uma dúvida que gostaria de pesquisar. Este quiz é um recurso educativo e não substitui a leitura da Bíblia."
+      }
+    ],
+    "questions": [
+      "Qual é a ideia principal apresentada na primeira pergunta e como você a confirma lendo a referência?",
+      "Qual atitude prática foi sugerida e que cuidado é necessário ao aplicá-la?",
+      "Que dúvida você ainda tem sobre o contexto bíblico deste tema?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-30"
   }
 ]
