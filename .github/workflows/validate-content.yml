@@ -19,6 +19,7 @@ jobs:
           node --check scripts/content-engine.js
           node --check scripts/import-bible.js
           node --check scripts/generate-verse-pages.js
+          node --check theme.js
           node --check service-worker.js
           node --check app.js
           node -e "JSON.parse(require('fs').readFileSync('data/content-library.json','utf8'))"
