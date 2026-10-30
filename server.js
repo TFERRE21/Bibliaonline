@@ -19,7 +19,7 @@ http.createServer((req,res)=>{
     res.end(body);
   } catch {res.writeHead(500);res.end('Erro interno');}
 }).listen(port,host,()=>{
-  console.log('Bíblia Online ouvindo em '+host+':'+port);
+  console.log('Conecta Bíblia ouvindo em '+host+':'+port);
   // Importa o corpus bíblico em segundo plano para não atrasar a abertura do site.
   // O importador preserva os capítulos já baixados e pode ser executado novamente.
   const corpusRoot = path.join(root, 'biblia', 'pt');
