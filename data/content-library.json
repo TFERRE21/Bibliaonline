@@ -1344,5 +1344,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-30"
+  },
+  {
+    "id": "guia-hospitalidade-e-acolhimento",
+    "topicKey": "hospitalidade-e-acolhimento",
+    "type": "estudo",
+    "title": "Estudo bíblico: Hospitalidade e acolhimento",
+    "description": "Estudo bíblico guiado com contexto e aplicação sobre hospitalidade e acolhimento.",
+    "reference": "Romanos 12:13; Hebreus 13:1–2",
+    "readingMinutes": 5,
+    "intro": "A hospitalidade bíblica convida a acolher e compartilhar. O acolhimento respeitoso também considera segurança, consentimento, diferenças culturais e os limites de quem oferece ajuda. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "1. Contexto da passagem",
+        "body": "A hospitalidade bíblica convida a acolher e compartilhar. O acolhimento respeitoso também considera segurança, consentimento, diferenças culturais e os limites de quem oferece ajuda. Leia as referências completas na sua Bíblia. Observe quem participa da cena, o que acontece antes e depois e qual era a situação original. Anote o que o texto diz explicitamente, sem confundir observação com opinião."
+      },
+      {
+        "heading": "2. Ideia central e interpretação",
+        "body": "Ao estudar hospitalidade e acolhimento, compare as passagens indicadas e procure o tema que elas realmente compartilham. Considere o gênero literário e o contexto histórico. Evite transformar uma frase isolada em promessa universal ou regra que o texto não apresenta."
+      },
+      {
+        "heading": "3. Aplicação responsável",
+        "body": "Pense em uma forma de fazer alguém se sentir incluído, como convidar para uma conversa ou orientar quem está chegando a um grupo. Escreva uma aplicação específica, realista e segura para esta semana. Explique como ela se relaciona com o texto e quais limites precisam ser respeitados."
+      },
+      {
+        "heading": "4. Revisão pessoal",
+        "body": "Resuma em duas ou três frases o que aprendeu, o que ainda não compreendeu e qual fonte confiável pode ajudar no aprofundamento. Uma boa interpretação permanece aberta a perguntas e à correção."
+      }
+    ],
+    "questions": [
+      "O que o contexto da passagem ensina sobre hospitalidade e acolhimento?",
+      "Que atitude concreta pode colocar esse aprendizado em prática?",
+      "Que dúvida ou ponto merece ser estudado com mais profundidade?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-30"
   }
 ]
