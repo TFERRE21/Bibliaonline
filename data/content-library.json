@@ -1560,5 +1560,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-30"
+  },
+  {
+    "id": "guia-amizade-com-limites",
+    "topicKey": "amizade-com-limites",
+    "type": "quadrinho",
+    "title": "Roteiro de quadrinhos: Amizade, respeito e limites",
+    "description": "Roteiro original de quatro quadros sobre amizade, respeito e limites.",
+    "reference": "Provérbios 13:20; 1 Coríntios 15:33",
+    "readingMinutes": 5,
+    "intro": "Relacionamentos influenciam escolhas, mas limites saudáveis também são importantes. Uma amizade não deve exigir segredo perigoso, controle, humilhação ou abandono de convicções pessoais. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "Quadro 1 — A pergunta",
+        "body": "Cena: uma pessoa pergunta como compreender amizade, respeito e limites. Narrador: “Vamos conferir o que a Bíblia realmente diz antes de tirar conclusões”. Leia Provérbios 13:20; 1 Coríntios 15:33."
+      },
+      {
+        "heading": "Quadro 2 — A leitura",
+        "body": "Cena: o grupo abre a Bíblia e lê a passagem completa. Narrador: “O contexto nos ajuda a perceber a ideia central”. Relacionamentos influenciam escolhas, mas limites saudáveis também são importantes. Uma amizade não deve exigir segredo perigoso, controle, humilhação ou abandono de convicções pessoais."
+      },
+      {
+        "heading": "Quadro 3 — A decisão",
+        "body": "Cena: o grupo conversa sobre uma atitude concreta. Personagem: “Qual é um passo respeitoso e possível?” Narrador: Reflita se seus relacionamentos respeitam sua segurança e dignidade. Converse com alguém confiável se sentir pressão ou medo."
+      },
+      {
+        "heading": "Quadro 4 — A prática",
+        "body": "Cena: os personagens escolhem uma pequena ação e combinam conversar novamente. Mensagem final: estudar, perguntar e praticar com responsabilidade faz parte do aprendizado."
+      }
+    ],
+    "questions": [
+      "O que o contexto da passagem ensina sobre amizade, respeito e limites?",
+      "Que atitude concreta pode colocar esse aprendizado em prática?",
+      "Que dúvida ou ponto merece ser estudado com mais profundidade?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-30"
   }
 ]
