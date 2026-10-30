@@ -19,6 +19,7 @@ jobs:
           node --check scripts/content-engine.js
           node --check scripts/import-bible.js
           node --check scripts/generate-verse-pages.js
+          node --check service-worker.js
           node --check app.js
           node -e "JSON.parse(require('fs').readFileSync('data/content-library.json','utf8'))"
       - name: Gerar biblioteca completa em ambiente de teste
@@ -29,6 +30,9 @@ jobs:
           test -f public/conteudo/index.html
           test -f public/sitemap.xml
           test -f public/robots.txt
+          test -f public/404.html
+          grep -q 'noindex,nofollow' conta.html
+          ! grep -q 'bibliaonline.vps11710.panel.icontainer.work' account.js
           mkdir -p public/assets/arte
           test -d public/assets/arte
           grep -q "https://example.test/" public/sitemap.xml
