@@ -253,3 +253,115 @@ html,body{max-width:100%;overflow-x:hidden}
 .resources-section{width:min(1480px,calc(100% - 48px));max-width:none}
 @media(max-width:1150px){.site-header .header-inner{gap:10px}.site-header .brand{font-size:22px}.site-header .main-nav{gap:10px}.site-header .main-nav a{font-size:10px}.reader-dashboard{grid-template-columns:240px minmax(0,1fr)}.reader-dashboard>.reader-sidebar-right{grid-column:1/-1;display:grid;grid-template-columns:1fr 1.5fr}}
 @media(max-width:760px){.site-header{height:auto;min-height:70px}.site-header .header-inner{height:auto;min-height:70px;width:calc(100% - 28px);flex-wrap:wrap;padding:9px 0;gap:9px}.site-header .brand{font-size:21px}.site-header .brand-mark{width:34px;height:36px;font-size:29px}.top-search{order:4;flex:1 0 100%;max-width:none;height:40px;margin:0}.site-header .menu-toggle{display:block;margin-left:auto;width:38px;height:38px}.site-header .main-nav{display:none;order:5;flex:1 0 100%;flex-wrap:wrap;padding:7px 0}.site-header .main-nav.open{display:flex}.site-header .theme-toggle{width:38px;height:38px;flex-basis:38px}.hero-photo{height:auto;min-height:245px}.hero-photo .hero-grid{width:calc(100% - 32px);height:auto;min-height:245px;padding:27px 0;grid-template-columns:1fr}.hero-photo .hero-verse{display:none}.hero-photo h1{font-size:37px}.hero-photo .hero-copy>p{font-size:14px}.hero-photo .btn{padding:10px 16px}.reader-dashboard{width:calc(100% - 22px);grid-template-columns:minmax(0,1fr);gap:10px;margin-top:10px}.reader-dashboard>#ler.section.container{grid-column:1;grid-row:2}.reader-dashboard>.book-sidebar{grid-column:1;grid-row:1;max-height:none}.reader-dashboard>.reader-sidebar-right{grid-column:1;grid-row:3;display:block}.sidebar-book-list{display:grid;grid-template-columns:1fr 1fr;max-height:190px;overflow:auto}.reader-heading-row{align-items:flex-start;flex-direction:column}.reader-version-slot{width:100%;max-width:none}.reader-heading h2{font-size:26px}.chapter-pager button{flex-basis:33px;min-width:33px;height:33px}#ler .reader-panel{padding:12px}.reader-tools{align-items:flex-start;flex-direction:column}#chapterContent{font-size:17px;max-height:430px}.resources-section{width:calc(100% - 28px)}}
+
+/* MOBILE-FIRST FINISH — responsive layout and touch usability */
+img,svg,video,iframe{max-width:100%}
+button,a,select,input{touch-action:manipulation}
+button,a{ -webkit-tap-highlight-color:transparent }
+:focus-visible{outline:3px solid #5aa5f5;outline-offset:3px}
+@media(max-width:760px){
+ body{font-size:15px;line-height:1.6}
+ .container{width:calc(100% - 28px)}
+ .site-header{position:sticky;top:0}
+ .site-header .header-inner{width:calc(100% - 24px);gap:8px}
+ .site-header .brand{font-size:19px;letter-spacing:-.4px}
+ .site-header .brand-mark{font-size:27px;width:30px;height:34px}
+ .site-header .brand small{font-size:6px;letter-spacing:1.45px}
+ .site-header .menu-toggle{min-width:42px;height:42px;border-radius:10px;background:#183d5d;color:#fff;border:1px solid #ffffff30;font-size:18px}
+ .site-header .theme-toggle{min-width:40px;height:40px;border-radius:10px}
+ .site-header .main-nav{gap:8px 14px;border-top:1px solid #ffffff22;margin-top:4px}
+ .site-header .main-nav a{font-size:12px;padding:7px 0}
+ .top-search{border-radius:10px}
+ .top-search input{font-size:16px}
+ .hero-photo{min-height:230px}
+ .hero-photo .hero-grid{min-height:230px;padding:30px 0 26px}
+ .hero-photo h1{font-size:clamp(34px,9vw,42px);line-height:1.03;margin:3px 0 10px}
+ .hero-photo .hero-copy>p{font-size:14px;max-width:34ch;line-height:1.5}
+ .hero-photo .hero-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+ .hero-photo .btn{min-height:44px;padding:10px 8px;font-size:12px;gap:5px;text-align:center}
+ .reader-dashboard{width:calc(100% - 20px);gap:10px}
+ .book-sidebar,.reader-sidebar-right,#ler .reader-panel{border-radius:12px}
+ .book-sidebar{padding:12px}
+ .book-sidebar h2{font-size:17px;margin-bottom:9px}
+ .testament-switch{position:sticky;top:70px;z-index:3;background:#fff}
+ .testament-switch button{min-height:42px;font-size:12px}
+ .sidebar-book-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;max-height:170px;padding:2px;overscroll-behavior:contain}
+ .sidebar-book-list button{justify-content:center;text-align:center;padding:8px 4px;font-size:11px;min-height:38px;line-height:1.2}
+ .sidebar-book-list button:before{display:none}
+ .sidebar-book-list button:after{display:none}
+ #ler .reader-panel{padding:12px}
+ .reader-heading{padding:0 2px 8px}
+ .reader-heading h2{font-size:25px}
+ .reader-heading p{font-size:12px}
+ .reader-version-slot{width:100%;max-width:none;min-width:0}
+ .reader-version-slot .version-label{font-size:11px;gap:5px}
+ .reader-version-slot select{height:43px;font-size:14px}
+ .chapter-pager{gap:6px;padding:10px 0 8px;scrollbar-width:thin}
+ .chapter-pager button{flex:0 0 39px;min-width:39px;height:39px;font-size:13px}
+ .reader-tools{gap:10px;padding:10px 0}
+ .reader-tools #readerStatus{font-size:11px;line-height:1.4}
+ #ler .font-tools{width:100%;display:flex;flex-wrap:wrap;gap:7px}
+ #ler .font-tools button{min-height:40px;padding:8px 11px;font-size:12px}
+ #ler .audio-speed-label{margin-left:auto;font-size:11px}
+ #ler .audio-speed-label select{min-height:40px;padding:5px 8px;border:1px solid #dce3ea;border-radius:8px;background:#fff}
+ #chapterContent{font-size:18px;line-height:1.72;max-height:none;overflow:visible;padding:12px 2px 8px;overflow-wrap:anywhere}
+ #chapterContent p{margin-bottom:14px}
+ #ler .source-note{font-size:9px;line-height:1.5;padding:10px 2px 0}
+ .reader-sidebar-right{display:flex!important;flex-direction:column;gap:10px}
+ .audio-card{padding:14px}
+ .audio-card h3{font-size:16px}
+ .audio-main{padding:9px}
+ .audio-main button{width:46px;height:46px}
+ .audio-speed-quick{gap:7px}
+ .audio-speed-quick button{min-height:36px;padding:8px 10px;font-size:11px}
+ .quick-links{display:grid;grid-template-columns:1fr 1fr}
+ .quick-links a{min-height:74px;padding:10px 8px;gap:8px}
+ .quick-icon{width:36px;height:36px;font-size:18px;border-radius:9px}
+ .quick-links strong{font-size:12px}
+ .quick-links small{font-size:10px}
+ .quick-links b{font-size:18px}
+ .section{padding-top:38px;padding-bottom:38px}
+ .section-heading{gap:12px;margin-bottom:18px}
+ .section-heading h2{font-size:28px;line-height:1.18}
+ .section-heading p{font-size:12px;line-height:1.6}
+ .section-link{font-size:11px}
+ .feature-grid{grid-template-columns:1fr;gap:10px}
+ .feature-card{min-height:0;padding:18px}
+ .feature-card h3{font-size:19px}
+ .feature-card p{font-size:12px}
+ .book-explorer .container{width:calc(100% - 28px)}
+ .book-explorer .testament-grid{grid-template-columns:1fr;gap:12px}
+ .testament-card{min-width:0;padding:16px}
+ .book-chips{display:flex;flex-wrap:wrap;gap:6px}
+ .book-chips a,.book-chips button{min-height:35px;padding:7px 9px}
+ .outline-item{gap:10px;padding:15px 4px}
+ .outline-number{font-size:20px;width:25px}
+ .outline-item strong{font-size:15px}
+ .outline-item small{font-size:10px}
+ .kids-grid{padding-top:38px;padding-bottom:38px}
+ .kids-section h2{font-size:31px}
+ .kids-art{height:220px}
+ .newsletter-panel{padding:20px}
+ .footer-grid{grid-template-columns:1fr 1fr;gap:20px}
+ .footer-grid>div:first-child{grid-column:1/-1}
+ .footer-bottom{gap:8px;font-size:9px}
+ .ad-slot{min-height:60px;margin:18px 0;font-size:10px}
+}
+@media(max-width:390px){
+ .site-header .brand{font-size:17px}
+ .site-header .brand small{font-size:5.5px}
+ .hero-photo .hero-actions{grid-template-columns:1fr}
+ .hero-photo .btn{min-height:42px}
+ .sidebar-book-list{grid-template-columns:repeat(2,minmax(0,1fr));max-height:155px}
+ .quick-links{grid-template-columns:1fr}
+ .quick-links a{min-height:64px}
+ .reader-heading h2{font-size:23px}
+ .chapter-pager button{flex-basis:36px;min-width:36px}
+}
+@media(min-width:761px) and (max-width:1050px){
+ .reader-dashboard{grid-template-columns:220px minmax(0,1fr);width:calc(100% - 32px)}
+ .reader-dashboard>.reader-sidebar-right{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:10px}
+ .site-header .header-inner{width:calc(100% - 32px)}
+ .site-header .main-nav{gap:8px}
+ .site-header .main-nav a{font-size:10px}
+}
