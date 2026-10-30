@@ -8,7 +8,7 @@
     "content:publish": "node scripts/content-engine.js",
     "content:build": "node scripts/content-engine.js --all",
     "bible:import": "node scripts/import-bible.js",
-    "start": "npm run content:build && node server.js"
+    "start": "npm run bible:import || echo '[bible-import] Importação parcial; o site continuará com os capítulos disponíveis.'; npm run content:build && node server.js"
   },
   "engines": {
     "node": ">=20"
