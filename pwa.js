@@ -10,9 +10,9 @@
  if(installed()){button.hidden=true;return;}
  button.hidden=false;
  window.addEventListener("beforeinstallprompt",event=>{
-  event.preventDefault();deferredPrompt=event;button.textContent="⬇ Instalar Bíblia Online";button.dataset.ready="true";
+  event.preventDefault();deferredPrompt=event;button.textContent="⬇ Instalar Conecta Bíblia";button.dataset.ready="true";
  });
- window.addEventListener("appinstalled",()=>{deferredPrompt=null;button.hidden=true;show("Bíblia Online instalado! Você já pode abrir pelo ícone do seu dispositivo.");});
+ window.addEventListener("appinstalled",()=>{deferredPrompt=null;button.hidden=true;show("Conecta Bíblia instalado! Você já pode abrir pelo ícone do seu dispositivo.");});
  button.addEventListener("click",async()=>{
   if(deferredPrompt){
    deferredPrompt.prompt();
