@@ -89,14 +89,21 @@ async function loadChapter() {
       const favorites=JSON.parse(localStorage.getItem("bibleFavorites")||"[]");
       const isFavorite=favorites.some(item=>item.key===favoriteKey);
       favorite.textContent=isFavorite?"♥":"♡";favorite.title=isFavorite?"Remover dos favoritos":"Salvar nos favoritos";
-      favorite.addEventListener("click",()=>{
+      favorite.addEventListener("click",async()=>{
         const list=JSON.parse(localStorage.getItem("bibleFavorites")||"[]");
         const index=list.findIndex(item=>item.key===favoriteKey);
-        if(index>=0)list.splice(index,1);
-        else list.push({key:favoriteKey,book:book[0],chapter,verse:v.v,version,text:String(v.t||"").trim(),savedAt:new Date().toISOString()});
-        localStorage.setItem("bibleFavorites",JSON.stringify(list));
-        favorite.textContent=index>=0?"♡":"♥";favorite.title=index>=0?"Salvar nos favoritos":"Remover dos favoritos";
-        status.textContent=index>=0?"Versículo removido dos favoritos.":"Versículo salvo nos favoritos deste dispositivo.";
+        const item={key:favoriteKey,book:book[0],chapter,verse:v.v,version,text:String(v.t||"").trim(),savedAt:new Date().toISOString()};
+        if(index>=0){
+          list.splice(index,1);localStorage.setItem("bibleFavorites",JSON.stringify(list));
+          if(window.bibleAccount){await window.bibleAccount.removeItem("favorite_verse",favoriteKey);}
+          favorite.textContent="♡";favorite.title="Salvar nos favoritos";status.textContent="Versículo removido dos favoritos.";
+        }else{
+          if(!window.bibleAccount){status.textContent="Aguarde o carregamento da área de conta e tente novamente.";return;}
+          const result=await window.bibleAccount.saveItem({item_type:"favorite_verse",item_key:favoriteKey,title:book[0]+" "+chapter+":"+v.v,reference_label:book[0]+" "+chapter+":"+v.v,content:item.text,item_url:"conta.html#favoritos",metadata:{book:book[0],chapter,verse:v.v,version}});
+          if(result.error){status.textContent=result.error.message;return;}
+          list.push(item);localStorage.setItem("bibleFavorites",JSON.stringify(list));
+          favorite.textContent="♥";favorite.title="Remover dos favoritos";status.textContent="Versículo salvo na sua conta. Acesse Minha conta → Favoritos.";
+        }
       });
       const share=document.createElement("button");share.type="button";share.className="verse-action";share.textContent="↗";share.title="Compartilhar versículo";
       share.addEventListener("click",async()=>{
