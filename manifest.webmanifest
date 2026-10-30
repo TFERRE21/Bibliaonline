@@ -1,7 +1,7 @@
 {
   "id": "/",
   "name": "Conecta Bíblia",
-  "short_name": "Conecta Bíblia",
+  "short_name": "Conecta",
   "description": "Leia, ouça e estude a Bíblia. Histórias, devocionais e recursos para sua família.",
   "lang": "pt-BR",
   "start_url": "/",
