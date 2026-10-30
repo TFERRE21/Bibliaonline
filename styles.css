@@ -765,3 +765,74 @@ body.dark .theme-toggle:focus-visible{outline:3px solid #d8b879;outline-offset:3
   .site-header .install-app-button { font-size: 10px; padding-inline: 9px; }
   .site-header .header-account { padding-inline: 10px; }
 }
+
+/* Conecta Bíblia — mobile first: seletor de livros sem sobreposição */
+@media (max-width: 900px) {
+  .reader-dashboard {
+    width: calc(100% - 28px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .book-sidebar, #ler, .reader-sidebar-right {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .book-sidebar {
+    max-height: none;
+    overflow: visible;
+    padding: 16px;
+  }
+  .testament-switch {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+    gap: 4px;
+    padding: 4px;
+    margin: 0 0 12px;
+    border-radius: 12px;
+    background: #f0f3ef;
+    overflow: visible;
+  }
+  .testament-switch button {
+    min-width: 0;
+    min-height: 44px;
+    padding: 9px 7px;
+    border-radius: 9px;
+    line-height: 1.25;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .sidebar-book-list {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 5px 8px;
+    max-height: 330px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 2px;
+  }
+  .sidebar-book-list button {
+    min-width: 0;
+    min-height: 42px;
+    padding: 8px 9px;
+    font-size: 13px;
+  }
+  #ler.section { padding: 0; }
+  .reader-panel { padding: 12px; }
+}
+@media (max-width: 620px) {
+  .reader-dashboard { width: calc(100% - 20px); margin-top: 10px; }
+  .book-sidebar h2 { font-size: 24px; margin-bottom: 14px; }
+  .sidebar-book-list { max-height: 300px; }
+  .reader-controls { grid-template-columns: minmax(0,1fr) minmax(90px,.55fr); gap: 10px; }
+  .reader-controls .version-label { grid-column: 1 / -1; }
+  .reader-controls .btn { min-height: 44px; }
+  .reader-tools { flex-direction: column; align-items: stretch; }
+  .font-tools { justify-content: flex-start; flex-wrap: wrap; }
+  .chapter-content { overflow-wrap: anywhere; }
+}
+body.dark .testament-switch { background: #20392d; border-color: #405548; }
+body.dark .testament-switch button { background: #294438; color: #dce8df; }
+body.dark .testament-switch button.active { background: #c49b58; color: #172a21; }
