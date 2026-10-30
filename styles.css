@@ -690,3 +690,27 @@ html,body{background:#fffdf9!important;color:#273444!important}
 .contact-item small{font-size:12px;color:#738091;margin-top:5px}
 .contact-note{font-size:13px;color:#738091}
 @media(max-width:680px){.brand{font-size:21px!important}.brand-mark{width:48px!important;height:48px!important;flex-basis:48px!important}.contact-panel{grid-template-columns:1fr;padding:14px;gap:4px}}
+
+/* Conecta Bíblia — tema global e acessível */
+body.dark{color-scheme:dark;--ink:#e8eee9;--muted:#b4c0b7;--line:#3b5045;--cream:#20372c;--white:#1d3328;--shadow:0 18px 55px #0005;background:#172a21;color:var(--ink)}
+body.dark .site-header{background:#1b3026;border-color:#34483d}
+body.dark .brand,body.dark .main-nav a,body.dark .header-account{color:#e0e9e1}
+body.dark .brand small{color:#aab9ad}
+body.dark .theme-toggle{background:#294438;border-color:#496353;color:#f1d59b}
+body.dark .main-nav{background:#1b3026}
+body.dark .section-soft,body.dark .reader-controls,body.dark .newsletter-panel{background:#20372c}
+body.dark .reader-panel,body.dark .feature-card,body.dark .library-card,body.dark .contact-panel,body.dark .outline-item,body.dark .audio-card,body.dark .quick-links{background:#1d3328;border-color:#3b5045;color:#e8eee9}
+body.dark .reader-controls label,body.dark .reader-tools,body.dark .chapter-content,body.dark .chapter-content p,body.dark .feature-card p,body.dark .section-heading p,body.dark .library-card p,body.dark main p,body.dark main li{color:#c5d0c7}
+body.dark .reader-controls select,body.dark input,body.dark textarea,body.dark select{background:#172a21;color:#e8eee9;border-color:#496353}
+body.dark .font-tools button,body.dark .reader-tabs button,body.dark .testament-switch button,body.dark .sidebar-book-list button{background:#294438;color:#e8eee9;border-color:#496353}
+body.dark .reader-empty h3,body.dark .feature-card h3,body.dark .outline-item strong,body.dark main h1,body.dark main h2,body.dark main h3{color:#e8eee9}
+body.dark .source-note,body.dark .reader-tools{border-color:#3b5045;color:#aebdb2}
+body.dark .ad-slot{border-color:#496353;color:#aebdb2}
+body.dark .feature-icon{background:#2d4c3b;color:#e0e9e1}
+body.dark .site-footer{background:#102219}
+body.dark .library-hero{background:#20372c;color:#e8eee9}
+body.dark .story-card,body.dark .story-dialog,body.dark dialog{background:#1d3328;color:#e8eee9}
+body.dark .story-dialog-body p,body.dark .story-dialog h2{color:#e8eee9}
+body.dark .story-dialog-reminder{background:#294438;color:#d5e0d7}
+body.dark .theme-toggle:focus-visible{outline:3px solid #d8b879;outline-offset:3px}
+.theme-toggle{flex:0 0 auto}
