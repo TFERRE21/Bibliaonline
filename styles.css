@@ -594,3 +594,48 @@ body{padding-top:0!important}
 .install-app-status{position:relative;z-index:25;margin:0;padding:10px 18px;text-align:center;background:#f4f7ef;color:#28543a;font-size:12px;border-bottom:1px solid #e2e9df}
 .kids-header-actions{display:flex;align-items:center;gap:12px;margin-left:auto}
 @media(max-width:760px){.install-app-button{padding:9px 11px;font-size:10px}.kids-header-actions{gap:8px}}
+
+/* Identidade visual 2026 — azul profundo, marfim e dourado */
+:root{--green:#203b5b;--green2:#345779;--green3:#e7edf3;--cream:#f7f4ed;--ink:#263342;--muted:#687584;--line:#e5e2da;--white:#fffdf8;--gold:#c49b58;--shadow:0 18px 55px #203b5b12}
+body{background:#fffefa;color:#263342}
+.site-header{background:#fffefa;border-bottom:1px solid #e9e4da;box-shadow:0 4px 18px #203b5b08}
+.brand{gap:12px;color:#203b5b;font-family:'Playfair Display',Georgia,serif;font-size:25px;letter-spacing:-.8px}
+.brand-mark{display:block;width:54px;height:54px;flex:0 0 54px;border-radius:16px;background:#203b5b url('/assets/logo-biblia-online.svg') no-repeat left center;background-size:54px 54px;color:transparent;font-size:0;box-shadow:0 7px 18px #203b5b20}
+.brand small{font-family:'DM Sans',sans-serif;font-size:8px;letter-spacing:2.1px;color:#9a8055;margin-top:5px}
+.brand-light{font-weight:600}
+.hero{background:#203b5b}
+.hero:before{background:radial-gradient(ellipse at 75% 40%,#6e8eaa55,transparent 44%),linear-gradient(110deg,#182f4b 30%,#345779)}
+.hero .eyebrow,.kids-section .eyebrow{color:#e1c48f}
+.hero h1 em,.hero h2 em{color:#e2c58e}
+.hero-bottom-line{background:linear-gradient(90deg,#9a8055,#ead9b4,#9a8055)}
+.btn-primary{background:#c49b58;color:#182f4b}
+.btn-primary:hover{background:#d4b477}
+.btn-ghost{border-color:#ffffff75}
+.theme-toggle,.menu-toggle{color:#203b5b}
+.main-nav a:hover,.section-link:hover{color:#9a7138}
+.section-link,.text-button,.card-arrow{color:#345779}
+.feature-icon{background:#e7edf3;color:#345779}
+.section-soft{background:#f7f4ed}
+.reader-controls{background:#f7f4ed}
+.reader-empty h3{color:#203b5b}
+.verse-card{background:#fbf8f0}
+.verse-ref{color:#345779}
+.cross-mark,.quote-mark,.verse-card .quote-mark{color:#b58a49}
+.kids-section{background:#263f5c}
+.kids-section .btn-light{background:#f7f4ed;color:#203b5b}
+.site-footer{background:#172b43}
+.footer-brand .brand-mark{background:#203b5b url('/assets/logo-biblia-online.svg') no-repeat left center;background-size:54px 54px}
+.ad-slot{border-color:#e3dfd6}
+.library-hero{background:linear-gradient(120deg,#1b3452,#456887)!important}
+.library-hero .eyebrow{color:#ead7ad!important}
+.library-hero h1{color:#fff!important}
+.library-card h2,.library-card h3{color:#203b5b}
+.library-card .reflection{border-left-color:#c49b58;background:#f7f4ed}
+.library-controls input,.library-controls select{border-color:#e2ddd2}
+.library-controls input:focus,.library-controls select:focus{outline:2px solid #b8c8d8;outline-offset:1px}
+h1[style*="color:var(--green)"],h1[style*="color: var(--green)"]{color:#203b5b!important}
+body.dark{--green:#9eb8d1;--green2:#b5c9dc;--green3:#31465d;--cream:#22364c;--ink:#edf2f7;--muted:#b9c5d1;--line:#3a5068;background:#172b43;color:#edf2f7}
+body.dark .site-header,body.dark .reader-panel,body.dark .feature-card,body.dark .theme-toggle{background:#20364e;color:#edf2f7}
+body.dark .section-soft,body.dark .reader-controls,body.dark .newsletter-panel{background:#223a53}
+body.dark .brand,body.dark .main-nav a{color:#edf2f7}
+@media(max-width:620px){.brand{font-size:21px}.brand-mark{width:46px;height:46px;flex-basis:46px;background-size:46px 46px}.brand small{font-size:7px}.main-nav{background:#fffefa}}
