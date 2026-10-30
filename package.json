@@ -1,8 +1,8 @@
 {
-  "name": "bibliaonline-vps",
+  "name": "conectabiblia-site",
   "version": "1.0.0",
   "private": true,
-  "description": "Site estático e motor editorial automático para Bíblia Online",
+  "description": "Site estático e motor editorial automático do Conecta Bíblia",
   "type": "commonjs",
   "scripts": {
     "content:publish": "node scripts/content-engine.js",
