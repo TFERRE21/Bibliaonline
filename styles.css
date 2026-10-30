@@ -649,3 +649,44 @@ body.dark .brand,body.dark .main-nav a{color:#edf2f7}
 .site-header .theme-toggle{color:#203b5b!important;background:#f1f3f5!important}
 .install-app-status{background:#eef2f6!important;color:#203b5b!important;border-color:#dce4ec!important}
 @media(max-width:760px){.brand-mark{background-size:cover!important}}
+
+/* REBRAND DEFINITIVO — editorial contemporâneo, marfim, azul ardósia e cobre */
+:root{--green:#203b5b!important;--green2:#385a79!important;--green3:#e8edf2!important;--cream:#f7f3eb!important;--ink:#273444!important;--muted:#687789!important;--line:#e5e0d7!important;--white:#fffdf9!important;--gold:#bd9251!important;--shadow:0 18px 55px #1c304714!important}
+html,body{background:#fffdf9!important;color:#273444!important}
+.site-header{background:rgba(255,253,249,.97)!important;border-bottom:1px solid #e9e2d7!important;box-shadow:0 3px 20px #243a5010!important}
+.brand{color:#203b5b!important;font-family:'Playfair Display',Georgia,serif!important;font-size:25px!important;font-weight:700!important;letter-spacing:-1px!important;gap:12px!important}
+.brand-mark{width:56px!important;height:56px!important;flex:0 0 56px!important;border-radius:17px!important;background:none!important;box-shadow:0 8px 22px #203b5b20!important;overflow:hidden!important;display:block!important}
+.brand-mark svg{display:block;width:100%!important;height:100%!important}
+.brand small{color:#9a8055!important;font-size:8px!important;letter-spacing:2px!important;font-family:'DM Sans',sans-serif!important}
+.main-nav a{color:#536477!important}
+.main-nav a:hover,.main-nav a:focus{color:#bd9251!important}
+.top-search{background:#f8f7f3!important;border:1px solid #e7e1d7!important;border-radius:28px!important}
+.top-search button{background:transparent!important;color:#385a79!important;border:0!important}
+.header-account{background:#203b5b!important;color:#fff!important;border-radius:28px!important}
+.install-app-button{background:#f5efe3!important;color:#203b5b!important;border:1px solid #d9bd8a!important}
+.theme-toggle{background:#f2f4f6!important;color:#203b5b!important}
+.hero,.hero:before{background-color:#203b5b!important}
+.hero:before{background:linear-gradient(110deg,#172d46eF 0%,#294966c9 55%,#344f6870 100%)!important}
+.hero h1 em,.hero h2 em{color:#e5c997!important}
+.hero .eyebrow{color:#e5c997!important}
+.btn-primary{background:#bd9251!important;color:#172d46!important;border-color:#bd9251!important}
+.btn-primary:hover{background:#d0aa70!important}
+.section-soft,.reader-controls{background:#f5f1e9!important}
+.feature-icon{background:#e9eef3!important;color:#385a79!important}
+.reader-panel,.feature-card,.book-sidebar,.reader-sidebar-right>*,.quick-links{border-color:#e8e2d8!important}
+.reader-panel,.feature-card{background:#fffdf9!important}
+.verse-card{background:#f8f4ec!important}
+.kids-section{background:#324f68!important}
+.library-hero{background:linear-gradient(120deg,#203b5b,#58728b)!important}
+.library-card h2,.library-card h3{color:#203b5b!important}
+.library-card .reflection{background:#f5f1e9!important;border-left-color:#bd9251!important}
+.site-footer{background:#172b43!important}
+.contact-panel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:28px 0;padding:22px;border:1px solid #e7e0d5;border-radius:18px;background:linear-gradient(135deg,#fffdf9,#f6f2ea);box-shadow:0 14px 38px #203b5b0d}
+.contact-item{display:flex;align-items:flex-start;gap:14px;padding:12px}
+.contact-icon{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border-radius:13px;background:#e8edf2;color:#203b5b;font-size:21px}
+.contact-item strong,.contact-item a,.contact-item small,.contact-item div>span{display:block}
+.contact-item strong{color:#203b5b;margin-bottom:4px}
+.contact-item a{font-weight:700;color:#8c6734;text-decoration:underline;text-underline-offset:3px}
+.contact-item small{font-size:12px;color:#738091;margin-top:5px}
+.contact-note{font-size:13px;color:#738091}
+@media(max-width:680px){.brand{font-size:21px!important}.brand-mark{width:48px!important;height:48px!important;flex-basis:48px!important}.contact-panel{grid-template-columns:1fr;padding:14px;gap:4px}}
