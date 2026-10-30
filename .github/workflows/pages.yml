@@ -31,11 +31,11 @@ jobs:
         run: npm run bible:import
       - name: Gerar biblioteca e páginas
         env:
-          SITE_URL: https://tferre21.github.io/Bibliaonline
+          SITE_URL: https://conectabiblia.com.br
         run: npm run content:build
       - name: Publicar próximo conteúdo editorial
         env:
-          SITE_URL: https://tferre21.github.io/Bibliaonline
+          SITE_URL: https://conectabiblia.com.br
         run: npm run content:publish
       - name: Persistir estado editorial para a próxima execução
         run: |
