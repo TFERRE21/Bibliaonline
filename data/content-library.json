@@ -1380,5 +1380,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-30"
+  },
+  {
+    "id": "guia-perseveranca-no-aprendizado",
+    "topicKey": "perseveranca-no-aprendizado",
+    "type": "devocional",
+    "title": "Devocional: Perseverança no aprendizado",
+    "description": "Leitura devocional com reflexão e prática sobre perseverança no aprendizado.",
+    "reference": "Provérbios 4:5–7; 2 Pedro 1:5–8",
+    "readingMinutes": 5,
+    "intro": "Aprender exige tempo, prática e disposição para corrigir erros. A formação espiritual e intelectual cresce com leitura cuidadosa, perguntas e aplicação responsável. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "Leia e observe",
+        "body": "Aprender exige tempo, prática e disposição para corrigir erros. A formação espiritual e intelectual cresce com leitura cuidadosa, perguntas e aplicação responsável. Separe alguns minutos para ler integralmente as referências. Respire com calma e escolha uma frase ou ideia do texto que mereça atenção hoje."
+      },
+      {
+        "heading": "Medite com sinceridade",
+        "body": "A reflexão sobre perseverança no aprendizado não exige esconder sentimentos ou fingir que todas as dificuldades desapareceram. Pergunte o que a passagem revela sobre sabedoria, cuidado, responsabilidade ou esperança, levando em conta o contexto."
+      },
+      {
+        "heading": "Uma prática para hoje",
+        "body": "Escolha um tema para estudar durante a semana, anote dúvidas e procure fontes confiáveis para aprofundar. Escolha apenas um passo que seja possível cumprir e reveja no fim do dia o que aprendeu com a experiência."
+      },
+      {
+        "heading": "Oração e encerramento",
+        "body": "Fale com Deus com sinceridade, agradecendo, apresentando suas dúvidas e pedindo discernimento. A oração sugerida é um ponto de partida; você pode usar suas próprias palavras."
+      }
+    ],
+    "questions": [
+      "O que o contexto da passagem ensina sobre perseverança no aprendizado?",
+      "Que atitude concreta pode colocar esse aprendizado em prática?",
+      "Que dúvida ou ponto merece ser estudado com mais profundidade?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-30"
   }
 ]
