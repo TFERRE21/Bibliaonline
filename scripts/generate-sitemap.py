@@ -5,7 +5,7 @@ from datetime import date
 from xml.sax.saxutils import escape
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_URL = "https://bibliaonline.vps11710.panel.icontainer.work"
+BASE_URL = "https://conectabiblia.com.br"
 EXCLUDE = {"404.html"}
 urls = []
 for page in sorted(ROOT.glob("*.html")):
