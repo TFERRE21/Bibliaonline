@@ -259,11 +259,18 @@ async function main() {
 function buildAll(items) {
   fs.mkdirSync(CONTENT_DIR,{recursive:true});
   // Copia os arquivos estáticos existentes para que o VPS sirva o site completo.
-  for (const name of ['index.html','styles.css','app.js','account.js','account-client.js','conta.html','audio-fallback.js','layout-home.js','estudos.html','esbocos.html','infantil.html','ferramentas.html','sobre.html','privacidade.html','termos.html','contato.html','pregacoes.html','mensagens.html','devocionais.html']) {
+  for (const name of ['index.html','styles.css','app.js','account.js','account-client.js','conta.html','audio-fallback.js','layout-home.js','pwa.js','service-worker.js','manifest.webmanifest','estudos.html','esbocos.html','infantil.html','ferramentas.html','sobre.html','privacidade.html','termos.html','contato.html','pregacoes.html','mensagens.html','devocionais.html']) {
     const source = path.join(ROOT, name);
     if (fs.existsSync(source)) {
       let content = fs.readFileSync(source, 'utf8').replaceAll('https://tferre21.github.io/Bibliaonline', BASE_URL);
       fs.writeFileSync(path.join(PUBLIC_DIR, name), content, 'utf8');
+    }
+  }
+  for (const icon of ['pwa-icon-192.svg','pwa-icon-512.svg']) {
+    const source = path.join(ROOT, 'assets', icon);
+    if (fs.existsSync(source)) {
+      fs.mkdirSync(path.join(PUBLIC_DIR, 'assets'), {recursive:true});
+      fs.copyFileSync(source, path.join(PUBLIC_DIR, 'assets', icon));
     }
   }
   const favicon = path.join(ROOT, 'assets', 'favicon.svg');
