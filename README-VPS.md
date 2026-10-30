@@ -15,35 +15,35 @@
 
 
 ## Instalação
-1. Clone o repositório para `/opt/conectabiblia`.
+1. Clone o repositório para `/opt/bibliaonline`.
 2. Crie a configuração local: `cp .env.example .env`.
 3. Edite `.env`: configure `SITE_URL` com o domínio real. Nunca publique o arquivo `.env` nem uma chave de API no GitHub.
 5. Gere a primeira biblioteca completa: `npm run content:build`.
 6. Verifique se `public/index.html`, `public/conteudo/`, `public/assets/arte/`, `public/robots.txt` e `public/sitemap.xml` foram criados.
-7. Teste localmente: `npm start`. O servidor escuta em `127.0.0.1:8080`; configure Nginx e HTTPS para encaminhar o domínio a essa porta.
+7. Teste localmente: `npm start`. O servidor Node.js escuta em `0.0.0.0:8080`; o Nginx encaminha as requisições para `127.0.0.1:8080`; configure Nginx e HTTPS para encaminhar o domínio a essa porta.
 
 ## Atualização diária
 O timer chama `node scripts/content-engine.js` uma vez por dia e tenta publicar um item novo, atualizar o índice e reconstruir o sitemap.
 
 Para instalar o servidor web persistente e o agendamento diário:
 ```bash
-sudo cp deploy/conectabiblia-web.service /etc/systemd/system/
-sudo cp deploy/conectabiblia-content.service /etc/systemd/system/
-sudo cp deploy/conectabiblia-content.timer /etc/systemd/system/
-sudo chown -R www-data:www-data /opt/conectabiblia/data /opt/conectabiblia/public
+sudo cp deploy/bibliaonline-web.service /etc/systemd/system/
+sudo cp deploy/bibliaonline-content.service /etc/systemd/system/
+sudo cp deploy/bibliaonline-content.timer /etc/systemd/system/
+sudo chown -R www-data:www-data /opt/bibliaonline/data /opt/bibliaonline/public
 sudo systemctl daemon-reload
-sudo systemctl enable --now conectabiblia-web.service
-sudo systemctl enable --now conectabiblia-content.timer
-systemctl status conectabiblia-web.service --no-pager
-systemctl list-timers conectabiblia-content.timer
-journalctl -u conectabiblia-content.service -n 100 --no-pager
+sudo systemctl enable --now bibliaonline-web.service
+sudo systemctl enable --now bibliaonline-content.timer
+systemctl status bibliaonline-web.service --no-pager
+systemctl list-timers bibliaonline-content.timer
+journalctl -u bibliaonline-content.service -n 100 --no-pager
 ```
 
-O exemplo de Nginx está em `deploy/nginx-conectabiblia.conf.example`. Copie-o para `/etc/nginx/sites-available/bibliaonline`, substitua `SEU-DOMINIO.com.br`, habilite o site, teste com `sudo nginx -t` e recarregue o Nginx. Depois configure HTTPS com Certbot para o domínio real. Não habilite o domínio de exemplo.
+O exemplo de Nginx está em `deploy/nginx-bibliaonline.conf.example`. Copie-o para `/etc/nginx/sites-available/bibliaonline`, substitua `SEU-DOMINIO.com.br`, habilite o site, teste com `sudo nginx -t` e recarregue o Nginx. Depois configure HTTPS com Certbot para o domínio real. Não habilite o domínio de exemplo.
 
-O arquivo de serviço usa `/opt/conectabiblia` e o usuário `www-data`. Ajuste o caminho e garanta que esse usuário possa escrever em `data/` e `public/`. Exemplo, após conferir o caminho correto:
+O arquivo de serviço usa `/opt/bibliaonline` e o usuário `www-data`. Ajuste o caminho e garanta que esse usuário possa escrever em `data/` e `public/`. Exemplo, após conferir o caminho correto:
 ```bash
-sudo chown -R www-data:www-data /opt/conectabiblia/data /opt/conectabiblia/public
+sudo chown -R www-data:www-data /opt/bibliaonline/data /opt/bibliaonline/public
 ```
 
 ## Como funciona a automação
