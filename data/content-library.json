@@ -1416,5 +1416,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-30"
+  },
+  {
+    "id": "guia-paz-e-resolucao-de-conflitos",
+    "topicKey": "paz-e-resolucao-de-conflitos",
+    "type": "esboco",
+    "title": "Esboço: Buscar paz sem ignorar a verdade",
+    "description": "Esboço para ensino e reflexão sobre buscar paz sem ignorar a verdade.",
+    "reference": "Romanos 12:18; Mateus 5:9",
+    "readingMinutes": 8,
+    "intro": "A Bíblia valoriza a paz, reconhecendo que nem todo conflito depende de uma única pessoa. Buscar paz não significa tolerar abuso, esconder injustiças ou abrir mão de proteção. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "Tema e texto-base",
+        "body": "Tema: Buscar paz sem ignorar a verdade. Texto-base: Romanos 12:18; Mateus 5:9. Leia cada referência por inteiro e explique à congregação o contexto antes de apresentar aplicações. A ideia central deve nascer do texto, não ser imposta a ele."
+      },
+      {
+        "heading": "Ponto 1 — Compreender a Palavra",
+        "body": "A Bíblia valoriza a paz, reconhecendo que nem todo conflito depende de uma única pessoa. Buscar paz não significa tolerar abuso, esconder injustiças ou abrir mão de proteção. Desenvolva este ponto mostrando o que a passagem diz, a quem se dirige e como se conecta ao argumento do livro bíblico. Use exemplos claros sem apresentar interpretações pessoais como se fossem citações bíblicas."
+      },
+      {
+        "heading": "Ponto 2 — Viver o ensinamento",
+        "body": "Se for seguro, tente uma conversa objetiva sobre o problema. Quando houver ameaça ou violência, priorize segurança e ajuda especializada. Convide o público a pensar em atitudes concretas. Reconheça que as circunstâncias variam e evite culpar pessoas por situações que exigem proteção, assistência ou apoio especializado."
+      },
+      {
+        "heading": "Conclusão e perguntas",
+        "body": "Retome a ideia central em uma frase, proponha uma ação prática e abra espaço para perguntas. Confirme todas as referências antes de ensinar e adapte o tempo ao público."
+      }
+    ],
+    "questions": [
+      "O que o contexto da passagem ensina sobre buscar paz sem ignorar a verdade?",
+      "Que atitude concreta pode colocar esse aprendizado em prática?",
+      "Que dúvida ou ponto merece ser estudado com mais profundidade?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-30"
   }
 ]
