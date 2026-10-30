@@ -539,3 +539,49 @@ body.dark .reader-sidebar-right .quick-links a{border-color:#34483d}
  .sidebar-book-list{grid-template-columns:repeat(2,minmax(0,1fr))}
  .quick-links{grid-template-columns:1fr}
 }
+
+
+/* Ajustes de composição — eliminar cortes, barras e colunas espremidas */
+html,body{margin:0!important;border:0!important;min-height:100%;overflow-x:hidden}
+body{padding-top:0!important}
+.site-header{top:0!important;margin-top:0!important}
+.hero-photo{height:auto!important;min-height:440px!important;overflow:hidden}
+.hero-photo .hero-grid{min-height:440px!important;height:auto!important;padding:76px 0 125px!important;align-items:center!important}
+.hero-photo .hero-copy{padding:0!important}
+.hero-photo h1{max-width:720px;font-size:clamp(46px,5.4vw,68px)!important;line-height:1.06!important;margin:0 0 16px!important}
+.reader-dashboard{width:min(1320px,calc(100% - 56px))!important;grid-template-columns:220px minmax(0,1fr) 260px!important;gap:18px!important;margin:-58px auto 0!important}
+.book-sidebar{width:100%;min-width:0!important;max-height:640px!important;overflow:hidden!important}
+.sidebar-book-list{grid-template-columns:1fr!important;max-height:440px!important;overflow-y:auto!important;overflow-x:hidden!important;padding-right:5px}
+.sidebar-book-list button{width:100%;min-width:0;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;padding:9px 10px!important}
+.reader-dashboard>#ler.section.container{width:100%!important;min-width:0!important}
+#ler .reader-panel{min-width:0!important;padding:20px!important}
+.reader-heading-row{align-items:center!important}
+.reader-version-slot{min-width:190px!important;max-width:240px!important}
+.chapter-pager{display:flex;flex-wrap:wrap!important;overflow:visible!important;gap:7px!important}
+.chapter-pager button{flex:0 0 38px!important;min-width:38px!important}
+#chapterContent{max-height:520px!important;overflow:auto!important}
+.reader-sidebar-right{width:100%;min-width:0!important}
+.reader-sidebar-right .quick-links{min-width:0}
+.quick-links a{min-width:0!important}
+.resources-section{width:min(1240px,calc(100% - 56px))!important}
+@media(min-width:761px) and (max-width:1180px){
+ .reader-dashboard{grid-template-columns:205px minmax(0,1fr)!important;width:calc(100% - 36px)!important}
+ .reader-dashboard>.reader-sidebar-right{grid-column:1/-1!important;display:grid!important;grid-template-columns:1fr 1.4fr!important}
+ .hero-photo,.hero-photo .hero-grid{min-height:410px!important}
+ .hero-photo .hero-grid{padding:65px 0 110px!important}
+}
+@media(max-width:760px){
+ .hero-photo{min-height:0!important}
+ .hero-photo .hero-grid{min-height:0!important;height:auto!important;padding:48px 0 105px!important}
+ .hero-photo h1{font-size:clamp(39px,10vw,54px)!important}
+ .hero-photo .hero-verse{max-width:100%!important}
+ .reader-dashboard{width:calc(100% - 26px)!important;grid-template-columns:minmax(0,1fr)!important;margin:-48px auto 0!important;gap:12px!important}
+ .reader-dashboard>.book-sidebar{grid-column:1!important;grid-row:1!important;max-height:none!important}
+ .sidebar-book-list{grid-template-columns:repeat(2,minmax(0,1fr))!important;max-height:170px!important}
+ .reader-dashboard>#ler.section.container{grid-column:1!important;grid-row:2!important}
+ .reader-dashboard>.reader-sidebar-right{grid-column:1!important;grid-row:3!important;display:flex!important}
+ .reader-heading-row{align-items:flex-start!important;flex-direction:column!important}
+ .reader-version-slot{width:100%!important;max-width:none!important}
+ #chapterContent{max-height:none!important;overflow:visible!important}
+ .resources-section{width:calc(100% - 30px)!important}
+}
