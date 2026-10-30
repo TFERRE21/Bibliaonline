@@ -304,7 +304,7 @@ function buildAll(items) {
       walk(dir);
     }
   }
-  fs.writeFileSync(path.join(PUBLIC_DIR,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+sitemap.join('\n')+'\n</urlset>\n','utf8');
+  // Publica páginas individuais de versículos; só comentários editoriais originais entram no sitemap.\n  const verseUrls = require('./generate-verse-pages').generate({root:ROOT, publicDir:PUBLIC_DIR, baseUrl:BASE_URL});\n  for (const url of verseUrls) add(url, '0.8');\n  fs.writeFileSync(path.join(PUBLIC_DIR,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+sitemap.join('\n')+'\n</urlset>\n','utf8');
   console.log('[editorial] Sitemap atualizado:',sitemap.length,'URLs');
 }
 main().catch(error=>{console.error('[editorial] Falha:',error);process.exitCode=1;});
