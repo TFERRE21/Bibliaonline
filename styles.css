@@ -585,3 +585,12 @@ body{padding-top:0!important}
  #chapterContent{max-height:none!important;overflow:visible!important}
  .resources-section{width:calc(100% - 30px)!important}
 }
+
+
+/* Instalação do Bíblia Online como aplicativo (PWA) */
+.install-app-button{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid #d8c28e;border-radius:24px;background:#f7f2e6;color:#244b36;padding:10px 14px;font:700 11px 'DM Sans',sans-serif;white-space:nowrap;cursor:pointer;transition:background .2s,transform .2s}
+.install-app-button:hover{background:#eadbb8;transform:translateY(-1px)}
+.install-app-button[hidden],.install-app-status[hidden]{display:none!important}
+.install-app-status{position:relative;z-index:25;margin:0;padding:10px 18px;text-align:center;background:#f4f7ef;color:#28543a;font-size:12px;border-bottom:1px solid #e2e9df}
+.kids-header-actions{display:flex;align-items:center;gap:12px;margin-left:auto}
+@media(max-width:760px){.install-app-button{padding:9px 11px;font-size:10px}.kids-header-actions{gap:8px}}
