@@ -1276,5 +1276,41 @@
     "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
     "generatedBy": "local-editorial-bank-v2",
     "publishedAt": "2026-10-30"
+  },
+  {
+    "id": "guia-consolo-no-luto",
+    "topicKey": "consolo-no-luto",
+    "type": "quadrinho",
+    "title": "Roteiro de quadrinhos: Consolo em tempos de luto",
+    "description": "Roteiro original de quatro quadros sobre consolo em tempos de luto.",
+    "reference": "Salmo 34:18; João 11:32–36",
+    "readingMinutes": 5,
+    "intro": "A Bíblia não trata o choro como falta de fé. A cena de Jesus chorando diante da morte de Lázaro mostra espaço para tristeza, presença e compaixão. Este material é um guia editorial de apoio. Leia integralmente as referências bíblicas, confira o contexto e adapte as sugestões com responsabilidade.",
+    "sections": [
+      {
+        "heading": "Quadro 1 — A pergunta",
+        "body": "Cena: uma pessoa pergunta como compreender consolo em tempos de luto. Narrador: “Vamos conferir o que a Bíblia realmente diz antes de tirar conclusões”. Leia Salmo 34:18; João 11:32–36."
+      },
+      {
+        "heading": "Quadro 2 — A leitura",
+        "body": "Cena: o grupo abre a Bíblia e lê a passagem completa. Narrador: “O contexto nos ajuda a perceber a ideia central”. A Bíblia não trata o choro como falta de fé. A cena de Jesus chorando diante da morte de Lázaro mostra espaço para tristeza, presença e compaixão."
+      },
+      {
+        "heading": "Quadro 3 — A decisão",
+        "body": "Cena: o grupo conversa sobre uma atitude concreta. Personagem: “Qual é um passo respeitoso e possível?” Narrador: Apoie quem sofre com presença e escuta, sem pressionar a pessoa a superar a dor rapidamente nem oferecer explicações fáceis."
+      },
+      {
+        "heading": "Quadro 4 — A prática",
+        "body": "Cena: os personagens escolhem uma pequena ação e combinam conversar novamente. Mensagem final: estudar, perguntar e praticar com responsabilidade faz parte do aprendizado."
+      }
+    ],
+    "questions": [
+      "O que o contexto da passagem ensina sobre consolo em tempos de luto?",
+      "Que atitude concreta pode colocar esse aprendizado em prática?",
+      "Que dúvida ou ponto merece ser estudado com mais profundidade?"
+    ],
+    "prayer": "Deus, ajuda-nos a compreender a tua Palavra com humildade e a praticar o que aprendemos com amor, sabedoria e responsabilidade. Amém.",
+    "generatedBy": "local-editorial-bank-v2",
+    "publishedAt": "2026-10-30"
   }
 ]
