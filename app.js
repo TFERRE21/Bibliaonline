@@ -107,7 +107,8 @@ async function loadChapter() {
           else {const area=document.createElement("textarea");area.value=shareText;document.body.append(area);area.select();document.execCommand("copy");area.remove();status.textContent="Versículo copiado para compartilhar.";}
         }catch(error){if(error.name!=="AbortError")status.textContent="Não foi possível compartilhar neste dispositivo.";}
       });
-      actions.append(favorite,share);p.append(n,document.createTextNode(" "),text,actions);content.append(p);
+      const noteButton=document.createElement("button");noteButton.type="button";noteButton.className="verse-action";noteButton.textContent="✎";noteButton.title="Criar anotação deste versículo";noteButton.setAttribute("aria-label","Anotar "+book[0]+" "+chapter+":"+v.v);noteButton.addEventListener("click",()=>{const ref=encodeURIComponent(book[0]+" "+chapter+":"+v.v);const verseText=encodeURIComponent(String(v.t||"").trim());window.location.href="conta.html?ref="+ref+"&text="+verseText;});
+      actions.append(favorite,share,noteButton);p.append(n,document.createTextNode(" "),text,actions);content.append(p);
     });
     content.style.fontSize=fontSize+"px";
     let creditLine=$("bibleVersionCredit");
