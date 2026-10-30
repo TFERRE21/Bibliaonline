@@ -13,7 +13,12 @@ http.createServer((req,res)=>{
   let file=path.join(root,pathname);
   if(pathname.endsWith('/')) file=path.join(file,'index.html');
   try {
-    if(!fs.existsSync(file) || !fs.statSync(file).isFile()) {res.writeHead(404,{'Content-Type':'text/html; charset=utf-8'});return res.end('<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Não encontrado</title><h1>Página não encontrada</h1><p><a href="/">Voltar ao início</a></p></html>');}
+    if(!fs.existsSync(file) || !fs.statSync(file).isFile()) {
+      const notFound=path.join(root,'404.html');
+      res.writeHead(404,{'Content-Type':'text/html; charset=utf-8','X-Content-Type-Options':'nosniff','Cache-Control':'no-store'});
+      if(fs.existsSync(notFound)) return res.end(fs.readFileSync(notFound));
+      return res.end('<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Não encontrado | Conecta Bíblia</title><h1>Página não encontrada</h1><p><a href="/">Voltar ao início</a></p></html>');
+    }
     const body=fs.readFileSync(file);
     res.writeHead(200,{'Content-Type':types[path.extname(file)]||'application/octet-stream','X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','X-Frame-Options':'SAMEORIGIN','Cache-Control':path.extname(file)==='.html'?'public, max-age=300':'public, max-age=86400'});
     res.end(body);
