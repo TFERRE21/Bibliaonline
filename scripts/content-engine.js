@@ -264,7 +264,7 @@ function buildAll(items) {
   fs.mkdirSync(CONTENT_DIR,{recursive:true});
   fs.mkdirSync(path.join(PUBLIC_DIR,'assets','arte'),{recursive:true});
   // Copia os arquivos estáticos existentes para que o VPS sirva o site completo.
-  for (const name of ['index.html','404.html','styles.css','app.js','theme.js','account.js','account-client.js','conta.html','audio-fallback.js','layout-home.js','pwa.js','service-worker.js','manifest.webmanifest','estudos.html','esbocos.html','infantil.html','ferramentas.html','sobre.html','privacidade.html','termos.html','contato.html','pregacoes.html','mensagens.html','devocionais.html']) {
+  for (const name of ['index.html','404.html','styles.css','app.js','theme.js','account.js','account-client.js','conta.html','audio-fallback.js','layout-home.js','pwa.js','plano-365.html','service-worker.js','manifest.webmanifest','estudos.html','esbocos.html','infantil.html','ferramentas.html','sobre.html','privacidade.html','termos.html','contato.html','pregacoes.html','mensagens.html','devocionais.html']) {
     const source = path.join(ROOT, name);
     if (fs.existsSync(source)) {
       let content = fs.readFileSync(source, 'utf8').replaceAll('https://conectabiblia.com.br', BASE_URL);
@@ -283,12 +283,15 @@ function buildAll(items) {
     fs.mkdirSync(path.join(PUBLIC_DIR, 'assets'), {recursive:true});
     fs.copyFileSync(favicon, path.join(PUBLIC_DIR, 'assets', 'favicon.svg'));
   }
+  require('./generate-devotional-plan').generate();
+  fs.mkdirSync(path.join(PUBLIC_DIR,'data'),{recursive:true});
+  fs.copyFileSync(path.join(ROOT,'data','devotional-plan-365.json'),path.join(PUBLIC_DIR,'data','devotional-plan-365.json'));
   fs.writeFileSync(path.join(PUBLIC_DIR, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: '+BASE_URL+'/sitemap.xml\n', 'utf8');
   fs.writeFileSync(path.join(CONTENT_DIR,'index.html'),renderHub(items.filter(x=>fs.existsSync(path.join(CONTENT_DIR,x.id,'index.html')))),'utf8');
   const sitemap = [];
   const add = (loc,priority) => sitemap.push(`  <url><loc>${ESCAPE(loc)}</loc><lastmod>${new Date().toISOString().slice(0,10)}</lastmod><priority>${priority}</priority></url>`);
   add(BASE_URL+'/', '1.0');
-  for(const p of ['estudos.html','esbocos.html','pregacoes.html','mensagens.html','devocionais.html','infantil.html','ferramentas.html','sobre.html','privacidade.html','termos.html','contato.html']) add(BASE_URL+'/'+p,p==='privacidade.html'||p==='termos.html'?'0.3':'0.6');
+  for(const p of ['estudos.html','esbocos.html','pregacoes.html','mensagens.html','devocionais.html','plano-365.html','infantil.html','ferramentas.html','sobre.html','privacidade.html','termos.html','contato.html']) add(BASE_URL+'/'+p,p==='privacidade.html'||p==='termos.html'?'0.3':'0.6');
   add(BASE_URL+'/conteudo/','0.9');
   for(const item of items) if(fs.existsSync(path.join(CONTENT_DIR,item.id,'index.html'))) add(BASE_URL+'/conteudo/'+item.id+'/','0.7');
   // GitHub Pages project sites live under /<repo>/; VPS/custom domains use the root path.
