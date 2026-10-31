@@ -66,7 +66,7 @@ if(topSearch&&!topSearch.dataset.searchBound){
    const option=findBook(match[1]);
    if(!option){alert("Não reconheci esse livro. Experimente escrever o nome completo, como João 3:16.");return;}
    const chapter=Number(match[2]),verse=match[3]?Number(match[3]):null;
-   if(chapter<1||chapter>Number(option.dataset.chapters||0)&&chapterSelect.options.length===0){alert("Capítulo inválido.");return;}
+   if(chapter<1){alert("Capítulo inválido.");return;}
    bookSelect.value=option.value;bookSelect.dispatchEvent(new Event("change",{bubbles:true}));
    const setChapter=()=>{if([...chapterSelect.options].some(o=>Number(o.value)===chapter)){chapterSelect.value=String(chapter);chapterSelect.dispatchEvent(new Event("change",{bubbles:true}));readButton?.click();if(verse){setTimeout(()=>{const el=$("#verse-"+verse);if(el){el.scrollIntoView({behavior:"smooth",block:"center"});el.classList.add("search-highlight")}else alert("O capítulo foi aberto, mas esse versículo não foi encontrado.");},500);}$("#ler")?.scrollIntoView({behavior:"smooth",block:"start"});}else alert("Esse capítulo não está disponível para o livro selecionado.");};
    setTimeout(setChapter,30);return;
@@ -74,7 +74,7 @@ if(topSearch&&!topSearch.dataset.searchBound){
   const tab=$('[data-reader-tab="search"]');tab?.click();
   const field=$("#chapterSearchTerm");
   if(field){field.value=term;$("#chapterSearchForm")?.requestSubmit();$("#ler")?.scrollIntoView({behavior:"smooth",block:"start"});}
-  else {$("#ler")?.scrollIntoView({behavior:"smooth",block:"start"});alert("Para pesquisar palavras, abra a aba Busca Avançada depois de carregar um capítulo.");}
+  else {window.location.href="assuntos/?q="+encodeURIComponent(term);}
  });
 }
 const menu=$("#menuToggle"),nav=$("#mainNav");
