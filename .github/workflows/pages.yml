@@ -42,6 +42,9 @@ jobs:
           test -f public/sitemap.xml
           test -f public/robots.txt
           test -f public/conteudo/index.html
+          test -f public/estatisticas-robos/index.html
+          test -f public/data/robot-stats.json
+          node -e "const s=require('./public/data/robot-stats.json'); if(!Number.isFinite(s.totalSitemapUrls)||!Number.isFinite(s.versePagesGenerated)) process.exit(1)"
           grep -q "https://conectabiblia.com.br/sitemap.xml" public/robots.txt
       - name: Persistir estado editorial para a próxima execução
         run: |
