@@ -287,6 +287,8 @@ function buildAll(items) {
   fs.mkdirSync(path.join(PUBLIC_DIR,'data'),{recursive:true});
   fs.copyFileSync(path.join(ROOT,'data','devotional-plan-365.json'),path.join(PUBLIC_DIR,'data','devotional-plan-365.json'));
   fs.writeFileSync(path.join(PUBLIC_DIR, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: '+BASE_URL+'/sitemap.xml\n', 'utf8');
+  const adsTxtSource = path.join(ROOT, 'ads.txt');
+  if (fs.existsSync(adsTxtSource)) fs.copyFileSync(adsTxtSource, path.join(PUBLIC_DIR, 'ads.txt'));
   fs.writeFileSync(path.join(CONTENT_DIR,'index.html'),renderHub(items.filter(x=>fs.existsSync(path.join(CONTENT_DIR,x.id,'index.html')))),'utf8');
   const sitemap = [];
   const add = (loc,priority) => sitemap.push(`  <url><loc>${ESCAPE(loc)}</loc><lastmod>${new Date().toISOString().slice(0,10)}</lastmod><priority>${priority}</priority></url>`);
@@ -320,6 +322,26 @@ function buildAll(items) {
   for (const url of topicUrls) add(url,'0.8');
   const verseUrls = require('./generate-verse-pages').generate({root:ROOT, publicDir:PUBLIC_DIR, baseUrl:BASE_URL});
   for (const url of verseUrls) add(url, '0.8');
+
+  // Aplica a identificação do AdSense a todas as páginas HTML, inclusive às
+  // páginas estáticas e às páginas geradas pelos robôs editorial, temático,
+  // devocional e de versículos. A verificação evita duplicar as tags.
+  const adsenseMeta = '<meta name="google-adsense-account" content="ca-pub-6472882150880001">';
+  const adsenseScript = '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6472882150880001" crossorigin="anonymous"></script>';
+  const injectAdSense = current => {
+    for (const entry of fs.readdirSync(current, {withFileTypes:true})) {
+      const file = path.join(current, entry.name);
+      if (entry.isDirectory()) { injectAdSense(file); continue; }
+      if (!entry.isFile() || !entry.name.endsWith('.html')) continue;
+      let html = fs.readFileSync(file, 'utf8');
+      if (!/<head[\\s>]/i.test(html) || !/<\\/head>/i.test(html)) continue;
+      if (!html.includes('google-adsense-account')) html = html.replace(/<\\/head>/i, adsenseMeta+'\\n</head>');
+      if (!html.includes('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')) html = html.replace(/<\\/head>/i, adsenseScript+'\\n</head>');
+      fs.writeFileSync(file, html, 'utf8');
+    }
+  };
+  injectAdSense(PUBLIC_DIR);
+
   fs.writeFileSync(path.join(PUBLIC_DIR,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+sitemap.join('\n')+'\n</urlset>\n','utf8');
   console.log('[editorial] Sitemap atualizado:',sitemap.length,'URLs');
 }
