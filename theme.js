@@ -1,1 +1,31 @@
-(()=>{"use strict";const KEY="bibleTheme";const read=()=>{try{return localStorage.getItem(KEY)==="dark"?"dark":"light"}catch{return"light"}};const apply=mode=>{const dark=mode==="dark";document.body.classList.toggle("dark",dark);const button=document.getElementById("themeToggle");if(button){button.textContent=dark?"☀":"☾";button.setAttribute("aria-label",dark?"Ativar tema claro":"Ativar tema escuro");button.setAttribute("aria-pressed",String(dark));button.title=dark?"Ativar tema claro":"Ativar tema escuro"}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=dark?"#172a21":"#102b45"};const init=()=>{apply(read());const button=document.getElementById("themeToggle");if(button){button.addEventListener("click",()=>{const next=document.body.classList.contains("dark")?"light":"dark";try{localStorage.setItem(KEY,next)}catch{}apply(next)})}};if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init()})();
+(()=>{"use strict";
+const KEY="bibleTheme";
+const safeRead=()=>{try{return localStorage.getItem(KEY)==="dark"?"dark":"light"}catch{return"light"}};
+const apply=mode=>{
+ const dark=mode==="dark";
+ document.body.classList.toggle("dark",dark);
+ document.documentElement.style.colorScheme=dark?"dark":"light";
+ const button=document.getElementById("themeToggle");
+ if(button){
+  button.textContent=dark?"☀":"☾";
+  button.setAttribute("aria-label",dark?"Ativar tema claro":"Ativar tema escuro");
+  button.setAttribute("aria-pressed",String(dark));
+  button.title=dark?"Ativar tema claro":"Ativar tema escuro";
+ }
+ const meta=document.querySelector('meta[name="theme-color"]');
+ if(meta)meta.content=dark?"#172a21":"#102b45";
+};
+const init=()=>{
+ apply(safeRead());
+ const button=document.getElementById("themeToggle");
+ if(button&&!button.dataset.themeBound){
+  button.dataset.themeBound="true";
+  button.addEventListener("click",()=>{
+   const next=document.body.classList.contains("dark")?"light":"dark";
+   try{localStorage.setItem(KEY,next)}catch{}
+   apply(next);
+  });
+ }
+};
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();
+})();
