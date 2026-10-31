@@ -34,6 +34,10 @@ jobs:
           test -f public/sitemap.xml
           test -f public/plano-365.html
           test -f public/data/devotional-plan-365.json
+          test -f public/devocionais/index.html
+          test -f public/devocionais/dia-1/index.html
+          test -f public/devocionais/dia-365/index.html
+          grep -q 'devocionais/dia-365' public/sitemap.xml
           test -f public/assuntos/index.html
           test -f public/assuntos/ansiedade-e-preocupacao/index.html
           grep -q 'assuntos/ansiedade-e-preocupacao' public/sitemap.xml
