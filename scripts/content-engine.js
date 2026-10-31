@@ -283,7 +283,7 @@ function buildAll(items) {
     fs.mkdirSync(path.join(PUBLIC_DIR, 'assets'), {recursive:true});
     fs.copyFileSync(favicon, path.join(PUBLIC_DIR, 'assets', 'favicon.svg'));
   }
-  require('./generate-devotional-plan');
+  const devotionalUrls = require('./generate-devotional-plan').generate();
   fs.mkdirSync(path.join(PUBLIC_DIR,'data'),{recursive:true});
   fs.copyFileSync(path.join(ROOT,'data','devotional-plan-365.json'),path.join(PUBLIC_DIR,'data','devotional-plan-365.json'));
   fs.writeFileSync(path.join(PUBLIC_DIR, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: '+BASE_URL+'/sitemap.xml\n', 'utf8');
@@ -293,6 +293,8 @@ function buildAll(items) {
   add(BASE_URL+'/', '1.0');
   for(const p of ['estudos.html','esbocos.html','pregacoes.html','mensagens.html','devocionais.html','plano-365.html','infantil.html','ferramentas.html','sobre.html','privacidade.html','termos.html','contato.html']) add(BASE_URL+'/'+p,p==='privacidade.html'||p==='termos.html'?'0.3':'0.6');
   add(BASE_URL+'/conteudo/','0.9');
+  add(BASE_URL+'/devocionais/','0.9');
+  for (const url of devotionalUrls) add(url,'0.8');
   for(const item of items) if(fs.existsSync(path.join(CONTENT_DIR,item.id,'index.html'))) add(BASE_URL+'/conteudo/'+item.id+'/','0.7');
   // GitHub Pages project sites live under /<repo>/; VPS/custom domains use the root path.
   // Rewrite only root-relative HTML href/src attributes, leaving external URLs untouched.
