@@ -20,6 +20,7 @@ jobs:
           node --check scripts/import-bible.js
           node --check scripts/generate-verse-pages.js
           node --check scripts/generate-devotional-plan.js
+          node --check scripts/generate-topic-pages.js
           node --check theme.js
           node --check service-worker.js
           node --check app.js
@@ -33,6 +34,9 @@ jobs:
           test -f public/sitemap.xml
           test -f public/plano-365.html
           test -f public/data/devotional-plan-365.json
+          test -f public/assuntos/index.html
+          test -f public/assuntos/ansiedade-e-preocupacao/index.html
+          grep -q 'assuntos/ansiedade-e-preocupacao' public/sitemap.xml
           node -e "const p=require('./data/devotional-plan-365.json');if(p.days.length!==365)throw Error('Plano anual incompleto')"
           test -f public/robots.txt
           test -f public/404.html
