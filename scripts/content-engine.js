@@ -283,7 +283,7 @@ function buildAll(items) {
     fs.mkdirSync(path.join(PUBLIC_DIR, 'assets'), {recursive:true});
     fs.copyFileSync(favicon, path.join(PUBLIC_DIR, 'assets', 'favicon.svg'));
   }
-  require('./generate-devotional-plan').generate();
+  require('./generate-devotional-plan');
   fs.mkdirSync(path.join(PUBLIC_DIR,'data'),{recursive:true});
   fs.copyFileSync(path.join(ROOT,'data','devotional-plan-365.json'),path.join(PUBLIC_DIR,'data','devotional-plan-365.json'));
   fs.writeFileSync(path.join(PUBLIC_DIR, 'robots.txt'), 'User-agent: *\nAllow: /\nSitemap: '+BASE_URL+'/sitemap.xml\n', 'utf8');
