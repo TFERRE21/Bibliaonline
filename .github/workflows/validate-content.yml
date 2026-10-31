@@ -24,6 +24,9 @@ jobs:
           node --check theme.js
           node --check service-worker.js
           node --check app.js
+          node --check layout-home.js
+          node --input-type=module --check < account-client.js
+          node --input-type=module --check < account.js
           node -e "JSON.parse(require('fs').readFileSync('data/content-library.json','utf8'))"
       - name: Gerar biblioteca completa em ambiente de teste
         run: |
