@@ -313,6 +313,9 @@ function buildAll(items) {
     }
   }
   // Publica páginas individuais de versículos; só comentários editoriais originais entram no sitemap.
+  const topicUrls = require('./generate-topic-pages').generate();
+  add(BASE_URL+'/assuntos/','0.8');
+  for (const url of topicUrls) add(url,'0.8');
   const verseUrls = require('./generate-verse-pages').generate({root:ROOT, publicDir:PUBLIC_DIR, baseUrl:BASE_URL});
   for (const url of verseUrls) add(url, '0.8');
   fs.writeFileSync(path.join(PUBLIC_DIR,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+sitemap.join('\n')+'\n</urlset>\n','utf8');
