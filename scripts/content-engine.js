@@ -343,6 +343,65 @@ function buildAll(items) {
   injectAdSense(PUBLIC_DIR);
 
   fs.writeFileSync(path.join(PUBLIC_DIR,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+sitemap.join('\n')+'\n</urlset>\n','utf8');
+
+  // Painel público de estatísticas: contagens reais dos arquivos gerados nesta execução.
+  const countHtmlFiles = directory => {
+    if (!fs.existsSync(directory)) return 0;
+    let total = 0;
+    for (const entry of fs.readdirSync(directory, {withFileTypes:true})) {
+      const file = path.join(directory, entry.name);
+      if (entry.isDirectory()) total += countHtmlFiles(file);
+      else if (entry.isFile() && entry.name === 'index.html') total++;
+    }
+    return total;
+  };
+  const stats = {
+    generatedAt: new Date().toISOString(),
+    site: BASE_URL,
+    versePagesGenerated: countHtmlFiles(path.join(PUBLIC_DIR,'versiculos')),
+    versePagesInSitemap: verseUrls.length,
+    topicPagesInSitemap: topicUrls.length,
+    devotionalPagesInSitemap: devotionalUrls.length,
+    editorialPagesPublished: items.filter(item => fs.existsSync(path.join(CONTENT_DIR,item.id,'index.html'))).length,
+    totalSitemapUrls: sitemap.length,
+    schedule: ['06:15','18:15'],
+    timezone: 'America/Sao_Paulo'
+  };
+  fs.mkdirSync(path.join(PUBLIC_DIR,'data'),{recursive:true});
+  fs.writeFileSync(path.join(PUBLIC_DIR,'data','robot-stats.json'),JSON.stringify(stats,null,2)+'\\n','utf8');
+  const dashboard = `<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#203b5b">
+<title>Estatísticas dos robôs | Conecta Bíblia</title><link rel="stylesheet" href="/styles.css">
+<style>
+.stats-wrap{max-width:1100px;margin:0 auto;padding:42px 20px 70px}.stats-head{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;margin-bottom:28px}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}.stat-card{background:#fff;border:1px solid #e7eaf0;border-radius:16px;padding:22px;box-shadow:0 5px 18px #142b4608}.stat-card small{display:block;color:#667085;font-size:13px;margin-bottom:12px}.stat-card strong{display:block;color:#203b5b;font-size:30px;line-height:1.2}.stat-card p{color:#667085;font-size:12px;margin:9px 0 0}.stats-panel{background:#fff;border:1px solid #e7eaf0;border-radius:16px;padding:22px;margin-top:20px}.stats-panel a{color:#176b55;font-weight:600}.stats-muted{color:#667085;font-size:13px}.stats-status{display:inline-flex;align-items:center;gap:8px;color:#16734a;background:#eaf7ef;padding:7px 11px;border-radius:999px;font-size:12px;font-weight:700}
+</style></head><body><header class="site-header"><div class="container header-inner"><a class="brand" href="/"><span class="brand-mark">✦</span><span>Conecta Bíblia<small>PALAVRA • FÉ • CONHECIMENTO</small></span></a><a href="/" class="section-link">Voltar ao site</a></div></header>
+<main class="stats-wrap"><div class="stats-head"><div><span class="eyebrow">MONITORAMENTO</span><h1>Estatísticas dos robôs</h1><p class="stats-muted">Acompanhe páginas geradas, publicadas e incluídas no sitemap.</p></div><span class="stats-status">● Painel atualizado automaticamente</span></div>
+<div class="stats-grid">
+<div class="stat-card"><small>Páginas de versículos geradas</small><strong id="verses">—</strong><p>Arquivos individuais criados no site.</p></div>
+<div class="stat-card"><small>Versículos no sitemap</small><strong id="verse-index">—</strong><p>Páginas com conteúdo editorial próprio.</p></div>
+<div class="stat-card"><small>Páginas de assuntos</small><strong id="topics">—</strong><p>Temas bíblicos publicados.</p></div>
+<div class="stat-card"><small>Devocionais</small><strong id="devotionals">—</strong><p>Plano devocional disponível.</p></div>
+<div class="stat-card"><small>Conteúdos editoriais</small><strong id="editorial">—</strong><p>Estudos, esboços e materiais publicados.</p></div>
+<div class="stat-card"><small>URLs no sitemap</small><strong id="sitemap">—</strong><p>Total de endereços enviados ao buscador.</p></div>
+</div>
+<section class="stats-panel"><h2>Execução do robô</h2><p id="updated" class="stats-muted">Carregando dados...</p><p class="stats-muted">Execuções programadas: todos os dias às 06h15 e 18h15 (horário de Brasília), além de execuções após alterações no código.</p><p><a href="/sitemap.xml">Abrir sitemap.xml</a> · <a href="https://github.com/TFERRE21/Bibliaonline/actions">Histórico das execuções</a> · <a href="https://search.google.com/search-console">Google Search Console</a></p><p class="stats-muted">Páginas geradas não significam páginas indexadas pelo Google. A indexação depende da avaliação e do rastreamento do buscador.</p></section></main>
+<script>
+fetch('/data/robot-stats.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Estatísticas indisponíveis');return r.json()}).then(s=>{
+const fmt=n=>Number(n||0).toLocaleString('pt-BR');
+document.getElementById('verses').textContent=fmt(s.versePagesGenerated);
+document.getElementById('verse-index').textContent=fmt(s.versePagesInSitemap);
+document.getElementById('topics').textContent=fmt(s.topicPagesInSitemap);
+document.getElementById('devotionals').textContent=fmt(s.devotionalPagesInSitemap);
+document.getElementById('editorial').textContent=fmt(s.editorialPagesPublished);
+document.getElementById('sitemap').textContent=fmt(s.totalSitemapUrls);
+document.getElementById('updated').textContent='Última atualização: '+new Date(s.generatedAt).toLocaleString('pt-BR',{dateStyle:'short',timeStyle:'short'});
+}).catch(()=>{document.getElementById('updated').textContent='Não foi possível carregar as estatísticas. O painel será preenchido após a próxima geração do site.'});
+</script></body></html>`;
+  const dashboardDir=path.join(PUBLIC_DIR,'estatisticas-robos');
+  fs.mkdirSync(dashboardDir,{recursive:true});
+  fs.writeFileSync(path.join(dashboardDir,'index.html'),dashboard,'utf8');
+  console.log('[robot-stats] Painel atualizado:',JSON.stringify(stats));
   console.log('[editorial] Sitemap atualizado:',sitemap.length,'URLs');
 }
 main().catch(error=>{console.error('[editorial] Falha:',error);process.exitCode=1;});
