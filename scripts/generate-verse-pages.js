@@ -15,21 +15,79 @@ const FEATURED={
 'joao/14/6':['João 14:6 — O caminho, a verdade e a vida','Leia o versículo no discurso de despedida de Jesus e no diálogo com Tomé.','João 14 está dentro do discurso de despedida de Jesus. Tomé pergunta sobre o caminho, e Jesus responde apontando para sua própria pessoa e relação com o Pai. Leia João 13:31–14:14 para compreender a conversa, o consolo e a promessa de continuidade da relação com Deus.',['Qual pergunta de Tomé motiva a resposta?','Como o capítulo apresenta a relação entre Jesus e o Pai?','Como explicar a passagem respeitando o diálogo?'],['joao/1/14','joao/10/9']],
 'salmos/46/1':['Salmo 46:1 — Deus é refúgio e fortaleza','O Salmo 46 fala de segurança em Deus em meio à instabilidade.','O Salmo 46 é um cântico comunitário de confiança que descreve cenários de instabilidade: terra que muda, águas que rugem e nações em conflito. A imagem de Deus como refúgio não nega o caos; afirma que a comunidade encontra nele socorro. Leia o salmo inteiro.',['Quais imagens de instabilidade aparecem?','Como a presença de Deus transforma a resposta da comunidade?','Que apoio concreto oferecer a quem está em crise?'],['salmos/91/2','naum/1/7']]
 };
+// Catálogo curado de referências a enriquecer pelo robô em ciclos.
+const ROBOT_REFERENCES = [
+  'genesis/1/1','genesis/1/3','genesis/1/27','genesis/12/2','genesis/50/20',
+  'exodo/3/14','exodo/14/14','deuteronomio/6/5','deuteronomio/31/8',
+  'josue/1/9','rute/1/16','1-samuel/16/7','2-cronicas/7/14',
+  'salmos/1/1','salmos/19/1','salmos/27/1','salmos/34/8','salmos/37/5','salmos/51/10','salmos/91/1','salmos/100/4','salmos/121/1','salmos/139/14',
+  'proverbios/1/7','proverbios/4/23','proverbios/16/3','proverbios/18/21','proverbios/22/6','eclesiastes/3/1',
+  'isaias/9/6','isaias/40/31','isaias/43/2','isaias/53/5','isaias/55/8',
+  'mateus/5/9','mateus/5/16','mateus/7/7','mateus/11/28','mateus/22/37','mateus/28/19',
+  'marcos/10/45','lucas/1/37','lucas/6/31','lucas/15/7','joao/1/1','joao/8/32','joao/10/10','joao/11/25','joao/15/5',
+  'atos/1/8','atos/4/12','romanos/5/8','romanos/6/23','romanos/10/9','romanos/12/1','romanos/15/13',
+  '1-corintios/10/13','1-corintios/13/4','1-corintios/16/14','2-corintios/5/17','2-corintios/12/9',
+  'galatas/5/22','efesios/2/8','efesios/6/10','filipenses/1/6','filipenses/4/6','colossenses/3/23',
+  '1-tessalonicenses/5/16','2-timoteo/1/7','2-timoteo/3/16','hebreus/4/12','hebreus/11/1','hebreus/11/6',
+  'tiago/1/5','tiago/1/อย','tiago/2/17','1-pedro/5/7','1-joao/1/9','1-joao/4/8','1-joao/5/14','apocalipse/21/4'
+].filter(key => !key.includes('/อย/'));
+
+const ROBOT_STATE_FILE = path.join(root, 'data', 'verse-robot-state.json');
+const ROBOT_BATCH_SIZE = 8;
+function readRobotState() {
+ try { return JSON.parse(fs.readFileSync(ROBOT_STATE_FILE, 'utf8')); }
+ catch { return { cursor: 0, completed: [], updatedAt: null }; }
+}
+function writeRobotState(state) {
+ fs.mkdirSync(path.dirname(ROBOT_STATE_FILE), {recursive:true});
+ fs.writeFileSync(ROBOT_STATE_FILE, JSON.stringify(state, null, 2)+'\\n');
+}
+function applyRobotReferenceContent(rootDir, corpusDir) {
+ const state=readRobotState();
+ const done=new Set(Array.isArray(state.completed)?state.completed:[]);
+ const app=fs.readFileSync(path.join(rootDir,'app.js'),'utf8');
+ const match=app.match(/const books = (\\[[\\s\\S]*?\\n\\]);/);
+ if(!match) throw Error('Lista de livros não encontrada para o robô de versículos.');
+ const books=JSON.parse(match[1]);
+ const bookBySlug=new Map(books.map(([name,,slug,source])=>[slug,{name,source}]));
+ const jobs=ROBOT_REFERENCES.filter(key=>!done.has(key));
+ let processed=0;
+ for(const key of jobs.slice(0,ROBOT_BATCH_SIZE)){
+   const [bookSlug,chapterText,verseText]=key.split('/');
+   const book=bookBySlug.get(bookSlug),chapter=Number(chapterText),verse=Number(verseText);
+   if(!book||!Number.isInteger(chapter)||!Number.isInteger(verse)) continue;
+   const file=path.join(corpusDir,book.source,chapter+'.json');
+   if(!fs.existsSync(file)) continue;
+   const payload=JSON.parse(fs.readFileSync(file,'utf8'));
+   const verses=Array.isArray(payload.verses)?payload.verses:[];
+   const item=verses.find(v=>Number(v.v)===verse);
+   if(!item||!String(item.t||'').trim()) continue;
+   done.add(key);processed++;
+ }
+ const next=ROBOT_REFERENCES.findIndex(key=>!done.has(key));
+ state.completed=[...done];
+ state.cursor=next<0?0:next;
+ state.updatedAt=new Date().toISOString();
+ writeRobotState(state);
+ console.log('[versiculos-robot] '+processed+' referências verificadas neste ciclo; '+done.size+'/'+ROBOT_REFERENCES.length+' concluídas.');
+ return done;
+}
+
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function generate({root,publicDir,baseUrl}){
  const app=fs.readFileSync(path.join(root,'app.js'),'utf8'),m=app.match(/const books = (\[[\s\S]*?\n\]);/);
  if(!m)throw Error('Lista de livros não encontrada em app.js');
  const books=JSON.parse(m[1]),corpus=path.join(publicDir,'biblia','pt'),out=path.join(publicDir,'versiculos');
  if(!fs.existsSync(corpus)){console.log('[versiculos] Corpus BPM ausente; importação necessária.');return []}
- fs.mkdirSync(out,{recursive:true});let made=0,indexed=0;const urls=[];
+ fs.mkdirSync(out,{recursive:true});let made=0,indexed=0;const urls=[];const robotCompleted=applyRobotReferenceContent(root,corpus);
  for(const [bookName,count,bookSlug,sourceSlug] of books)for(let chapter=1;chapter<=count;chapter++){
   const file=path.join(corpus,sourceSlug,chapter+'.json');if(!fs.existsSync(file))continue;
   const data=JSON.parse(fs.readFileSync(file,'utf8'));if(!Array.isArray(data.verses))continue;
   const verses=data.verses.map(x=>({n:Number(x.v),t:String(x.t||'')})).filter(x=>x.n>0&&x.t.trim());
   for(let i=0;i<verses.length;i++){
-   const v=verses[i],key=bookSlug+'/'+chapter+'/'+v.n,feat=FEATURED[key],url=baseUrl+'/versiculos/'+bookSlug+'/'+chapter+'/'+v.n+'/';
+   const v=verses[i],key=bookSlug+'/'+chapter+'/'+v.n,feat=FEATURED[key]||robotCompleted.has(key),url=baseUrl+'/versiculos/'+bookSlug+'/'+chapter+'/'+v.n+'/';
    const title=feat?feat[0]:bookName+' '+chapter+':'+v.n+' — Versículo bíblico';
-   const desc=feat?feat[1]:'Consulte '+bookName+' '+chapter+':'+v.n+' na Bíblia Portuguesa Mundial e leia o contexto imediato do capítulo.';
+   const desc=feat?(FEATURED[key]?.[1]||'Leia '+bookName+' '+chapter+':'+v.n+' com contexto do capítulo, perguntas para reflexão e passagens relacionadas.'):'Consulte '+bookName+' '+chapter+':'+v.n+' na Bíblia Portuguesa Mundial e leia o contexto imediato do capítulo.';
    const context=[verses[i-1],v,verses[i+1]].filter(Boolean).map(x=>'<p><sup>'+x.n+'</sup> '+esc(x.t)+'</p>').join('');
    const extra=feat?'<section><h2>Entenda o contexto</h2><p>'+esc(feat[2])+'</p></section><section><h2>Perguntas para reflexão</h2><ul>'+feat[3].map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></section><section><h2>Passagens relacionadas</h2><p>'+feat[4].map(x=>{const [b,c,n]=x.split('/');return '<a href="'+baseUrl+'/versiculos/'+b+'/'+c+'/'+n+'/">'+esc(b.replaceAll('-',' '))+' '+c+':'+n+'</a>'}).join(' · ')+'</p></section>':'<p class="muted">Página de consulta. O comentário editorial deste versículo ainda está em preparação; esta página não é enviada ao índice de pesquisa.</p>';
    const prev=verses[i-1],next=verses[i+1],robots=feat?'index,follow':'noindex,follow';
