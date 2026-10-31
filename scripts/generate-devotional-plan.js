@@ -85,4 +85,15 @@ for(let day=1;day<=365;day++){
 if(otIndex!==929||ntIndex!==260)throw new Error("A distribuição anual não cobriu todos os capítulos planejados.");
 const target=path.join(root,"data","devotional-plan-365.json");
 fs.writeFileSync(target,JSON.stringify({title:"Plano de leitura e reflexão bíblica em 365 dias",description:"Leitura sequencial de todos os capítulos da Bíblia, com reflexão diária e prática responsável.",totalDays:365,createdFrom:"catalogo de livros em app.js",days:plan},null,2)+"\n");
-console.log("[plano-365] 365 dias gerados; 929 capítulos do Antigo Testamento e 260 do Novo Testamento.");
+const publicDir=path.join(root,"public"),devotionalDir=path.join(publicDir,"devocionais");
+fs.mkdirSync(devotionalDir,{recursive:true});
+const escapeHtml=value=>String(value??"").replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+const devotionalUrls=[];
+for(const day of plan){
+ const slug="dia-"+day.day,url="https://conectabiblia.com.br/devocionais/"+slug+"/";
+ const readings=[...day.oldTestament,...(day.newTestament?[day.newTestament]:[])].join(" · ");
+ const body='<main class="container section" style="max-width:820px"><nav><a href="/">Início</a> / <a href="/devocionais.html">Devocionais</a> / Dia '+day.day+'</nav><span class="eyebrow">DEVOCIONAL DIÁRIO · '+escapeHtml(day.theme)+'</span><h1>'+escapeHtml(day.title)+'</h1><p><strong>Leitura bíblica:</strong> '+escapeHtml(readings)+'</p><h2>Meditação</h2><p>'+escapeHtml(day.reflection)+'</p><h2>Para refletir</h2><p>'+escapeHtml(day.question)+'</p><h2>Prática de hoje</h2><p>'+escapeHtml(day.practice)+'</p><h2>Oração</h2><p>'+escapeHtml(day.prayer)+'</p><p><a class="btn btn-primary" href="/plano-365.html?dia='+day.day+'">Acompanhar meu plano ↗</a> <a class="btn btn-ghost" href="/#ler">Abrir a Bíblia ↗</a></p></main>';
+ const html='<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="'+escapeHtml("Devocional do dia "+day.day+": "+day.theme+". Leitura bíblica, reflexão, prática e oração.")+'"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="'+url+'"><link rel="stylesheet" href="/styles.css"><title>'+escapeHtml(day.title)+' | Conecta Bíblia</title><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":'+JSON.stringify(day.title)+',"inLanguage":"pt-BR","mainEntityOfPage":'+JSON.stringify(url)+'}</script></head><body><header class="site-header"><div class="container header-inner"><a class="brand" href="/"><span class="brand-mark">✦</span><span>Conecta Bíblia<small>PALAVRA • FÉ • CONHECIMENTO</small></span></a><button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema">☾</button></div></header>'+body+'<footer class="site-footer"><div class="container footer-bottom">© '+new Date().getFullYear()+' Conecta Bíblia</div></footer><script src="/theme.js" defer></script></body></html>';
+ const dir=path.join(devotionalDir,slug);fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(path.join(dir,"index.html"),html,"utf8");devotionalUrls.push(url);
+}
+module.exports={generate:()=>devotionalUrls};
