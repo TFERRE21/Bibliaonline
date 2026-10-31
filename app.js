@@ -95,14 +95,19 @@ async function loadChapter() {
         const item={key:favoriteKey,book:book[0],chapter,verse:v.v,version,text:String(v.t||"").trim(),savedAt:new Date().toISOString()};
         if(index>=0){
           list.splice(index,1);localStorage.setItem("bibleFavorites",JSON.stringify(list));
-          if(window.bibleAccount){await window.bibleAccount.removeItem("favorite_verse",favoriteKey);}
-          favorite.textContent="♡";favorite.title="Salvar nos favoritos";status.textContent="Versículo removido dos favoritos.";
+          if(window.bibleAccount){const result=await window.bibleAccount.removeItem("favorite_verse",favoriteKey);if(result.error&&!/Faça login/.test(result.error.message))status.textContent="Removido deste aparelho; a nuvem não foi atualizada.";}
+          favorite.textContent="♡";favorite.title="Salvar nos favoritos";status.textContent="Versículo removido dos favoritos deste aparelho.";
         }else{
-          if(!window.bibleAccount){status.textContent="Aguarde o carregamento da área de conta e tente novamente.";return;}
-          const result=await window.bibleAccount.saveItem({item_type:"favorite_verse",item_key:favoriteKey,title:book[0]+" "+chapter+":"+v.v,reference_label:book[0]+" "+chapter+":"+v.v,content:item.text,item_url:"conta.html#favoritos",metadata:{book:book[0],chapter,verse:v.v,version}});
-          if(result.error){status.textContent=result.error.message;return;}
           list.push(item);localStorage.setItem("bibleFavorites",JSON.stringify(list));
-          favorite.textContent="♥";favorite.title="Remover dos favoritos";status.textContent="Versículo salvo na sua conta. Acesse Minha conta → Favoritos.";
+          favorite.textContent="♥";favorite.title="Remover dos favoritos";
+          if(window.bibleAccount){
+            const user=await window.bibleAccount.currentUser();
+            if(user){
+              const result=await window.bibleAccount.saveItem({item_type:"favorite_verse",item_key:favoriteKey,title:book[0]+" "+chapter+":"+v.v,reference_label:book[0]+" "+chapter+":"+v.v,content:item.text,item_url:"conta.html#favoritos",metadata:{book:book[0],chapter,verse:v.v,version}});
+              if(result.error){status.textContent="Salvo neste aparelho. Sincronização pendente: "+result.error.message;return;}
+              status.textContent="Versículo salvo nos favoritos e sincronizado com sua conta.";
+            }else status.textContent="Versículo salvo neste aparelho. Entre na conta para sincronizar em outros dispositivos.";
+          }else status.textContent="Versículo salvo neste aparelho. Entre na conta para sincronizar em outros dispositivos.";
         }
       });
       const share=document.createElement("button");share.type="button";share.className="verse-action";share.textContent="↗";share.title="Compartilhar versículo";
