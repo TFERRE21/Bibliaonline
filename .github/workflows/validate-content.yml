@@ -45,6 +45,12 @@ jobs:
           test -f public/assuntos/ansiedade-e-preocupacao/index.html
           grep -q 'assuntos/ansiedade-e-preocupacao' public/sitemap.xml
           node -e "const p=require('./data/devotional-plan-365.json');if(p.days.length!==365)throw Error('Plano anual incompleto')"
+          node -e "const t=require('./data/seo-topics.json');if(t.length<30)throw Error('Fila de temas SEO insuficiente');for(const x of t){if(!x.slug||!x.title||!x.intro||!x.sections||x.sections.length<3||!x.questions||x.questions.length<3)throw Error('Tema SEO incompleto: '+x.slug)}"
+          test -f public/assuntos/salmo-91-explicacao/index.html
+          test -f public/assuntos/pai-nosso-explicacao/index.html
+          test -f public/assuntos/como-ler-a-biblia/index.html
+          grep -q 'assuntos/salmo-91-explicacao' public/sitemap.xml
+          grep -q 'assuntos/ressurreicao-de-jesus' public/sitemap.xml
           test -f public/robots.txt
           test -f public/404.html
           grep -q 'noindex,nofollow' conta.html
