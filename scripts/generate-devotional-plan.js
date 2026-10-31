@@ -32,12 +32,10 @@ const questions=[
  "Como esta passagem se conecta com o capítulo e com o livro bíblico?",
  "Que dúvida ficou e qual fonte confiável pode ajudar a esclarecê-la?"
 ];
-let otIndex=0,ntIndex=0,extra=0;
+let otIndex=0,ntIndex=0;
 const plan=[];
 for(let day=1;day<=365;day++){
- extra+=199/365;
- const count=extra>=1?3:2;
- if(extra>=1)extra-=1;
+ const count=2+(Math.floor(day*199/365)-Math.floor((day-1)*199/365));
  const oldReading=ot.slice(otIndex,otIndex+count);otIndex+=count;
  let newReading=null;
  if(day<=260){newReading=nt[ntIndex++];}
