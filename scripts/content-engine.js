@@ -334,9 +334,9 @@ function buildAll(items) {
       if (entry.isDirectory()) { injectAdSense(file); continue; }
       if (!entry.isFile() || !entry.name.endsWith('.html')) continue;
       let html = fs.readFileSync(file, 'utf8');
-      if (!/<head[\\s>]/i.test(html) || !/<\\/head>/i.test(html)) continue;
-      if (!html.includes('google-adsense-account')) html = html.replace(/<\\/head>/i, adsenseMeta+'\\n</head>');
-      if (!html.includes('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')) html = html.replace(/<\\/head>/i, adsenseScript+'\\n</head>');
+      if (!/<head[\s>]/i.test(html) || !/<\/head>/i.test(html)) continue;
+      if (!html.includes('google-adsense-account')) html = html.replace(/<\/head>/i, adsenseMeta+'\n</head>');
+      if (!html.includes('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')) html = html.replace(/<\/head>/i, adsenseScript+'\n</head>');
       fs.writeFileSync(file, html, 'utf8');
     }
   };
