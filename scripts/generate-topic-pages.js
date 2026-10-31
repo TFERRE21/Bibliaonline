@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+"use strict";
+const fs=require("node:fs"),path=require("node:path");
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const root=path.resolve(__dirname,".."),base=(process.env.SITE_URL||"https://conectabiblia.com.br").replace(/\/$/,"");
+const topics=JSON.parse(fs.readFileSync(path.join(root,"data","seo-topics.json"),"utf8"));
+const dir=path.join(root,"public","assuntos");fs.mkdirSync(dir,{recursive:true});
+const urls=[];
+function page(title,description,canonical,body){
+ return '<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="'+esc(description)+'"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="'+esc(canonical)+'"><link rel="stylesheet" href="/styles.css"><title>'+esc(title)+' | Conecta Bíblia</title><script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":'+JSON.stringify(title)+',"description":'+JSON.stringify(description)+',"inLanguage":"pt-BR","mainEntityOfPage":'+JSON.stringify(canonical)+',"publisher":{"@type":"Organization","name":"Conecta Bíblia"}}</script></head><body><header class="site-header"><div class="container header-inner"><a class="brand" href="/"><span class="brand-mark">✦</span><span>Conecta Bíblia<small>PALAVRA • FÉ • CONHECIMENTO</small></span></a><div style="display:flex;gap:10px;align-items:center"><a class="section-link" href="/assuntos/">Assuntos bíblicos</a><button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar tema">☾</button></div></div></header><main class="container section" style="max-width:850px"><nav><a href="/">Início</a> / <a href="/assuntos/">Assuntos bíblicos</a></nav><span class="eyebrow">ESTUDO TEMÁTICO</span><h1>'+esc(title)+'</h1><p>'+esc(description)+'</p>'+body+'<p><a class="btn btn-primary" href="/#ler">Abrir leitor bíblico ↗</a> <a class="btn btn-ghost" href="/assuntos/">Ver outros assuntos</a></p></main><footer class="site-footer"><div class="container footer-bottom">© '+new Date().getFullYear()+' Conecta Bíblia</div></footer><script src="/theme.js" defer></script></body></html>';
+}
+for(const t of topics){
+ const url=base+"/assuntos/"+t.slug+"/";
+ const sections=t.sections.map(s=>'<section class="feature-card" style="margin:18px 0"><h2>'+esc(s[0])+'</h2><p>'+esc(s[1])+'</p></section>').join("");
+ const questions='<section class="feature-card" style="margin:18px 0"><h2>Perguntas para reflexão</h2><ul>'+t.questions.map(q=>'<li>'+esc(q)+'</li>').join("")+'</ul></section>';
+ const related='<section class="feature-card" style="margin:18px 0"><h2>Versículos relacionados</h2><p>'+t.related.map(r=>{const a=r.split("/");return '<a href="/versiculos/'+a[0]+'/'+a[1]+'/'+a[2]+'/">'+esc(a[0].replace(/-/g," "))+' '+a[1]+':'+a[2]+'</a>'}).join(" · ")+'</p></section>';
+ const body='<p><strong>Leitura principal:</strong> '+esc(t.reference)+'</p><p>'+esc(t.intro)+'</p>'+sections+questions+related;
+ const target=path.join(dir,t.slug,"index.html");fs.mkdirSync(path.dirname(target),{recursive:true});fs.writeFileSync(target,page(t.title,t.description,url,body),"utf8");urls.push(url);
+}
+const cards=topics.map(t=>'<a class="feature-card" href="/assuntos/'+esc(t.slug)+'/"><span class="card-kicker">ESTUDO TEMÁTICO · '+esc(t.reference)+'</span><h2>'+esc(t.title)+'</h2><p>'+esc(t.description)+'</p><span class="card-arrow">Ler estudo ↗</span></a>').join("");
+const hub='<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Explore assuntos bíblicos com referências, contexto, perguntas para reflexão e aplicações responsáveis."><meta name="robots" content="index,follow"><link rel="canonical" href="'+base+'/assuntos/"><link rel="stylesheet" href="/styles.css"><title>Assuntos bíblicos | Conecta Bíblia</title></head><body><header class="site-header"><div class="container header-inner"><a class="brand" href="/"><span class="brand-mark">✦</span><span>Conecta Bíblia<small>PALAVRA • FÉ • CONHECIMENTO</small></span></a><button class="theme-toggle" id="themeToggle" type="button">☾</button></div></header><main class="container section"><span class="eyebrow">ENCONTRE PELA SUA DÚVIDA</span><h1>Assuntos bíblicos</h1><p>Estudos temáticos com referências e atenção ao contexto das Escrituras.</p><div class="feature-grid">'+cards+'</div></main><script src="/theme.js" defer></script></body></html>';
+fs.writeFileSync(path.join(dir,"index.html"),hub,"utf8");
+console.log("[assuntos] "+urls.length+" páginas temáticas geradas.");
+module.exports={generate:()=>urls};
