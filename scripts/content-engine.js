@@ -368,7 +368,7 @@ function buildAll(items) {
     timezone: 'America/Sao_Paulo'
   };
   fs.mkdirSync(path.join(PUBLIC_DIR,'data'),{recursive:true});
-  fs.writeFileSync(path.join(PUBLIC_DIR,'data','robot-stats.json'),JSON.stringify(stats,null,2)+'\\n','utf8');
+  fs.writeFileSync(path.join(PUBLIC_DIR,'data','robot-stats.json'),JSON.stringify(stats,null,2),'utf8');
   const dashboard = `<!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#203b5b">
