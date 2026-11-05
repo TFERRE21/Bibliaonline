@@ -38,7 +38,15 @@ function generate({root,publicDir,baseUrl}){
    if(feat){indexed++;urls.push(url)}
   }
  }
- console.log('[versiculos] '+made+' páginas criadas; '+indexed+' com comentário próprio enviadas ao sitemap.');
+ const hubUrl=baseUrl+'/versiculos/';
+ const hubCards=Object.entries(FEATURED).map(([key,item])=>{
+   const [book,chapter,verse]=key.split('/');
+   return '<article class="feature-card"><h2><a href="'+baseUrl+'/versiculos/'+key+'/">'+esc(item[0])+'</a></h2><p>'+esc(item[1])+'</p><a class="card-arrow" href="'+baseUrl+'/versiculos/'+key+'/">Ler versículo e contexto ↗</a></article>';
+ }).join('');
+ const hub='<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Encontre versículos bíblicos populares com texto, contexto, explicação e passagens relacionadas. Estude a Bíblia com o Conecta Bíblia."><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="'+hubUrl+'"><link rel="stylesheet" href="/styles.css"><title>Versículos Bíblicos com Explicação e Contexto | Conecta Bíblia</title></head><body><header class="site-header"><div class="container header-inner"><a class="brand" href="/"><span class="brand-mark">✦</span><span>Conecta Bíblia<small>PALAVRA • FÉ • CONHECIMENTO</small></span></a><a class="section-link" href="/">Início</a></div></header><main class="container section" style="max-width:1100px"><nav><a href="/">Início</a> / Versículos bíblicos</nav><span class="eyebrow">ESTUDO DA PALAVRA</span><h1>Versículos bíblicos com explicação e contexto</h1><p>Leia passagens conhecidas, confira o contexto do capítulo e explore perguntas para reflexão. A interpretação de cada versículo deve considerar o texto ao redor e o contexto do livro bíblico.</p><div class="feature-grid">'+hubCards+'</div><p>Para continuar a leitura, <a href="/">abra o leitor da Bíblia online</a> ou explore os <a href="/assuntos/">assuntos bíblicos</a>.</p></main><footer class="site-footer"><div class="container footer-bottom">© '+new Date().getFullYear()+' Conecta Bíblia</div></footer></body></html>';
+ fs.writeFileSync(path.join(out,'index.html'),hub,'utf8');
+ urls.unshift(hubUrl);
+ console.log('[versiculos] '+made+' páginas criadas; '+indexed+' versículos editoriais mais a página de índice enviados ao sitemap.');
  return urls;
 }
 module.exports={generate};
