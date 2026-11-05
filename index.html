@@ -13,15 +13,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#102b45">
-  <meta name="description" content="Leia a Bíblia online, pesquise capítulos e versículos, encontre estudos bíblicos, esboços, devocionais e histórias bíblicas para crianças.">
+  <meta name="description" content="Bíblia online grátis para ler e estudar. Consulte livros, capítulos e versículos, acompanhe devocionais, estudos bíblicos, esboços de pregação e conteúdos para crianças no Conecta Bíblia.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Conecta Bíblia">
+  <meta property="og:title" content="Bíblia Online Grátis para Ler e Estudar | Conecta Bíblia">
+  <meta property="og:description" content="Leia a Bíblia online, consulte capítulos e versículos e encontre estudos, devocionais e recursos para sua caminhada de fé.">
+  <meta property="og:url" content="https://conectabiblia.com.br/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Bíblia Online Grátis | Conecta Bíblia">
+  <meta name="twitter:description" content="Leia a Bíblia online e encontre estudos, devocionais e recursos bíblicos gratuitos.">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="https://conectabiblia.com.br/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="stylesheet" href="styles.css?v=header-fit-20261030">
-  <title>Conecta Bíblia — Palavra que Transforma</title>
+  <title>Bíblia Online Grátis para Ler e Estudar | Conecta Bíblia</title>
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebSite","name":"Conecta Bíblia","url":"https://conectabiblia.com.br/","inLanguage":"pt-BR","description":"Leitura bíblica, estudos, esboços e histórias bíblicas."}
+  {"@context":"https://schema.org","@type":"WebSite","name":"Conecta Bíblia","url":"https://conectabiblia.com.br/","inLanguage":"pt-BR","description":"Bíblia online grátis para leitura e estudo, com capítulos, versículos, estudos bíblicos e devocionais.","publisher":{"@type":"Organization","name":"Conecta Bíblia","url":"https://conectabiblia.com.br/"}}
   </script>
 </head>
 <body>
@@ -30,7 +39,7 @@
   
   <p class="install-app-status" id="installAppStatus" role="status" hidden></p>
   <main id="conteudo">
-    <section class="hero hero-photo"><div class="container hero-grid"><div class="hero-copy"><h1>A Palavra de <em>Deus</em><br>para o seu <em>dia</em></h1><p>Leia, ouça, estude e compartilhe a Conecta Bíblia.</p><div class="hero-actions"><a class="btn btn-primary" href="#ler">Começar a ler <span aria-hidden="true">→</span></a><a class="btn btn-ghost" href="#ler" id="heroListen">Ouvir a Bíblia <span aria-hidden="true">♫</span></a></div><nav class="hero-shortcuts" aria-label="Acessos rápidos"><a href="estudos.html"><span aria-hidden="true">✧</span>Estudos</a><a href="devocionais.html"><span aria-hidden="true">☼</span>Devocionais</a><a href="pregacoes.html"><span aria-hidden="true">♫</span>Pregações</a><a href="infantil.html"><span aria-hidden="true">♡</span>Infantil</a></nav></div><aside class="hero-verse" id="versiculoDia"><blockquote>“Lâmpada para os meus pés é a tua palavra, e luz para o meu caminho.”</blockquote><strong>Salmo 119:105</strong></aside></div></section>
+    <section class="hero hero-photo"><div class="container hero-grid"><div class="hero-copy"><h1>Bíblia <em>Online</em><br>para o seu <em>dia</em></h1><p>Leia a Bíblia online grátis, consulte capítulos e versículos e aprofunde seu estudo da Palavra de Deus.</p><div class="hero-actions"><a class="btn btn-primary" href="#ler">Começar a ler <span aria-hidden="true">→</span></a><a class="btn btn-ghost" href="#ler" id="heroListen">Ouvir a Bíblia <span aria-hidden="true">♫</span></a></div><nav class="hero-shortcuts" aria-label="Acessos rápidos"><a href="estudos.html"><span aria-hidden="true">✧</span>Estudos</a><a href="devocionais.html"><span aria-hidden="true">☼</span>Devocionais</a><a href="pregacoes.html"><span aria-hidden="true">♫</span>Pregações</a><a href="infantil.html"><span aria-hidden="true">♡</span>Infantil</a></nav></div><aside class="hero-verse" id="versiculoDia"><blockquote>“Lâmpada para os meus pés é a tua palavra, e luz para o meu caminho.”</blockquote><strong>Salmo 119:105</strong></aside></div></section>
     <div class="container"><div class="ad-slot" aria-label="Espaço reservado para publicidade"><span>PUBLICIDADE</span><div>Espaço reservado para anúncio</div></div></div>
     <div class="reader-dashboard"><aside class="book-sidebar" aria-label="Livros da Bíblia"><h2>Livros da Bíblia</h2><div class="testament-switch"><button type="button" class="active" data-testament="old">Antigo Testamento</button><button type="button" data-testament="new">Novo Testamento</button></div><div class="sidebar-book-list" id="sidebarBookList"></div></aside><section class="section container" id="ler">
       <div class="section-heading"><div><span class="eyebrow">EXPLORE A ESCRITURA</span><h2>Mais do que leitura,<br>um encontro com Deus.</h2><p>Encontre um livro, capítulo ou versículo para começar.</p></div><span class="section-symbol">✧</span></div>
@@ -84,6 +93,31 @@
     <section class="kids-section" id="infantil"><div class="container kids-grid"><div><span class="eyebrow">PEQUENOS CORAÇÕES, GRANDES DESCOBERTAS</span><h2>A Bíblia também<br><em>é para os pequenos.</em></h2><p>Histórias, atividades e desenhos para ajudar as crianças a conhecer as narrativas bíblicas de maneira acolhedora e educativa.</p><a class="btn btn-light" href="infantil.html">Conhecer a área infantil ↗</a></div><div class="kids-art" aria-hidden="true"><div class="sun"></div><div class="hill hill-one"></div><div class="hill hill-two"></div><div class="storybook"><span>✦</span><strong>HISTÓRIAS<br>DA BÍBLIA</strong><small>APRENDER • COLORIR • DESCOBRIR</small></div></div></div></section>
     <div class="container"><div class="ad-slot" aria-label="Espaço reservado para publicidade"><span>PUBLICIDADE</span><div>Espaço reservado para anúncio</div></div></div>
     <section class="section container" id="planos"><div class="newsletter-panel"><div><span class="eyebrow">UM MOMENTO COM DEUS</span><h2>Reserve um tempo para a Palavra.</h2><p>Comece hoje com um capítulo, uma reflexão e uma oração.</p></div><a class="btn btn-primary" href="#ler">Ler agora ↗</a></div></section>
+    <section class="section section-soft" id="sobre-biblia-online">
+      <div class="container">
+        <div class="section-heading"><div><span class="eyebrow">BÍBLIA ONLINE GRATUITA</span><h2>Leia e estude a Bíblia em um só lugar.</h2><p>O Conecta Bíblia reúne ferramentas para acompanhar a leitura bíblica, pesquisar passagens e organizar momentos de estudo.</p></div></div>
+        <div class="feature-grid">
+          <article class="feature-card"><h3>Leia livros, capítulos e versículos</h3><p>Escolha um dos livros do Antigo ou do Novo Testamento, selecione o capítulo e acompanhe o texto bíblico. Use a busca para localizar uma passagem e retome sua leitura com tranquilidade.</p><a class="card-arrow" href="#ler">Abrir leitor bíblico ↗</a></article>
+          <article class="feature-card"><h3>Encontre estudos e explicações</h3><p>Consulte assuntos bíblicos, estudos temáticos e referências relacionadas. Leia o contexto da passagem e compare as ideias com o texto bíblico antes de tirar conclusões.</p><a class="card-arrow" href="assuntos/">Explorar assuntos bíblicos ↗</a></article>
+          <article class="feature-card"><h3>Crie uma rotina de leitura</h3><p>Use o plano de leitura de 365 dias e os devocionais para separar um momento diário para a Palavra, reflexão e oração.</p><a class="card-arrow" href="plano-365.html">Conhecer o plano 365 ↗</a></article>
+        </div>
+        <div class="section-heading" style="margin-top:34px"><div><h2>Perguntas frequentes sobre a Bíblia online</h2></div></div>
+        <div class="outline-list">
+          <details class="outline-item"><summary><strong>Posso ler a Bíblia online gratuitamente?</strong></summary><p>Sim. O Conecta Bíblia oferece acesso gratuito ao leitor bíblico e aos recursos públicos do site. Algumas traduções possuem condições próprias de licença, que devem ser respeitadas.</p></details>
+          <details class="outline-item"><summary><strong>Como encontro um versículo específico?</strong></summary><p>Use a busca do site ou selecione o livro e o capítulo no leitor. Você também pode navegar pelos assuntos bíblicos e consultar as referências relacionadas aos estudos.</p></details>
+          <details class="outline-item"><summary><strong>O site oferece plano de leitura e devocionais?</strong></summary><p>Sim. Há um plano de leitura de 365 dias e uma área de devocionais para apoiar a organização da leitura e da reflexão diária.</p></details>
+          <details class="outline-item"><summary><strong>Posso usar o Conecta Bíblia para preparar estudos e pregações?</strong></summary><p>Sim. A área de estudos e esboços oferece materiais de apoio. Confira sempre as referências no texto bíblico e considere o contexto completo de cada passagem.</p></details>
+        </div>
+      </div>
+    </section>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+      {"@type":"Question","name":"Posso ler a Bíblia online gratuitamente?","acceptedAnswer":{"@type":"Answer","text":"Sim. O Conecta Bíblia oferece acesso gratuito ao leitor bíblico e aos recursos públicos do site. Algumas traduções possuem condições próprias de licença, que devem ser respeitadas."}},
+      {"@type":"Question","name":"Como encontro um versículo específico?","acceptedAnswer":{"@type":"Answer","text":"Use a busca do site ou selecione o livro e o capítulo no leitor. Você também pode navegar pelos assuntos bíblicos e consultar as referências relacionadas aos estudos."}},
+      {"@type":"Question","name":"O site oferece plano de leitura e devocionais?","acceptedAnswer":{"@type":"Answer","text":"Sim. Há um plano de leitura de 365 dias e uma área de devocionais para apoiar a organização da leitura e da reflexão diária."}},
+      {"@type":"Question","name":"Posso usar o Conecta Bíblia para preparar estudos e pregações?","acceptedAnswer":{"@type":"Answer","text":"Sim. A área de estudos e esboços oferece materiais de apoio. Confira sempre as referências no texto bíblico e considere o contexto completo de cada passagem."}}
+    ]}
+    </script>
   </main>
   <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="./"><span class="brand-mark" aria-hidden="true"></span><span>Conecta<span class="brand-light">Bíblia</span><small>PALAVRA • FÉ • CONHECIMENTO</small></span></a><p>Um espaço digital para leitura, aprendizado e reflexão bíblica.</p></div><div><strong>Explorar</strong><a href="#ler">Ler a Bíblia</a><a href="estudos.html">Estudos bíblicos</a><a href="esbocos.html">Esboços</a><a href="pregacoes.html">Pregações</a><a href="mensagens.html">Mensagens</a><a href="devocionais.html">Devocionais</a><a href="infantil.html">Área infantil</a><a href="ferramentas.html">Ferramentas bíblicas</a><a href="conteudo/">Biblioteca completa</a></div><div><strong>Informações</strong><a href="sobre.html">Sobre o projeto</a><a href="privacidade.html">Privacidade</a><a href="termos.html">Termos de uso</a><a href="contato.html">Contato</a></div></div><div class="container footer-bottom"><span>© <span id="year"></span> Conecta Bíblia. Conteúdo sujeito a direitos autorais.</span><span>Feito para apoiar a leitura e o estudo bíblico.</span></div></footer>
   <script type="module" src="account-client.js?v=library-20261030"></script><script src="app.js?v=theme-fix-20261030" defer></script><script src="theme.js?v=theme-fix-20261030" defer></script><script src="layout-home.js?v=mobile-20261030" defer></script>
